@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a40c6141-95b7-4b92-9760-67b238b4606e" name="Changes" comment="Rearranged local REST API and Android app to be part of same project">
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/releases/restaurants-api-v1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../restaurants-rest-api/src/main/kotlin/Restaurant.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/net/firzen/android/restaurantcomposeexample/ExampleInstrumentedTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/Constants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/CoroutinesPlayground.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/Effects.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/Restaurant.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/db/RestaurantsDao.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/db/RestaurantsDb.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/network/ApiService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/screens/RestaurantDetailsScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/screens/RestaurantDetailsViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/screens/RestaurantsScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/screens/RestaurantsViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/theme/Color.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/theme/Theme.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/net/firzen/android/restaurantcomposeexample/ui/theme/Type.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/net/firzen/android/restaurantcomposeexample/ExampleUnitTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/home/firzen/.android/avd/Android_15_large.avd)]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="37QLMupaiRN5Wv3CimsAvUGvmuo" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/firzen/active_projects/2026/restaurant-compose-example",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="net.firzen.android.restaurantcomposeexample.ui.screens" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="RestaurantComposeExample.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a40c6141-95b7-4b92-9760-67b238b4606e" name="Changes" comment="" />
+      <created>1766830303283</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766830303283</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added (very) basic ViewModel for Restaurants">
+      <option name="closed" value="true" />
+      <created>1766849406604</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766849406604</updated>
+    </task>
+    <task id="LOCAL-00002" summary="A bit better dummy restaurants list :-)">
+      <option name="closed" value="true" />
+      <created>1766852173149</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766852173149</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added favourite button and state to each RestaurantItem">
+      <option name="closed" value="true" />
+      <created>1766853391630</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766853391630</updated>
+    </task>
+    <task id="LOCAL-00004" summary="RestaurantItem's Row weights make more sense now">
+      <option name="closed" value="true" />
+      <created>1766853488025</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1766853488025</updated>
+    </task>
+    <task id="LOCAL-00005" summary="State hoisted (lifted upwards) from FavouriteIcon to RestaurantItem. Also FavouriteIcon was replaced by RestaurantIcon being extended to be more universal now.">
+      <option name="closed" value="true" />
+      <created>1766856166976</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1766856166976</updated>
+    </task>
+    <task id="LOCAL-00006" summary="State hoisted (lifted upwards) directly to RestaurantsScreen from RestaurantItem">
+      <option name="closed" value="true" />
+      <created>1766857544945</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1766857544945</updated>
+    </task>
+    <task id="LOCAL-00007" summary="RestaurantsScreen state handling replaced by extending standalone RestaurantsViewModel">
+      <option name="closed" value="true" />
+      <created>1766858619590</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1766858619590</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Restaurant favourite status now survives system-initiated process death using SavedStateHandle">
+      <option name="closed" value="true" />
+      <created>1766861484596</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766861484596</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added basic Retrofit based API client">
+      <option name="closed" value="true" />
+      <created>1766940435151</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1766940435151</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixed comment">
+      <option name="closed" value="true" />
+      <created>1766940475859</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766940475859</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added cancelling of ongoing network calls (restaurants API) when cleanup is triggered">
+      <option name="closed" value="true" />
+      <created>1766942712114</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766942712114</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Reduced network calls amount by moving API call into ViewModel init block">
+      <option name="closed" value="true" />
+      <created>1767004196020</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1767004196020</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Simple coroutine example added">
+      <option name="closed" value="true" />
+      <created>1767011392546</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1767011392546</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Coroutines examples extended">
+      <option name="closed" value="true" />
+      <created>1767013197360</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1767013197360</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Coroutines examples extended">
+      <option name="closed" value="true" />
+      <created>1767023087542</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1767023087542</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Coroutines comment added">
+      <option name="closed" value="true" />
+      <created>1767024990465</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1767024990465</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Replaced Retrofit callback with Coroutines">
+      <option name="closed" value="true" />
+      <created>1767026946646</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1767026946646</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added comments about Coroutines for future me">
+      <option name="closed" value="true" />
+      <created>1767027173101</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1767027173101</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Using pre-defined CoroutineScope (viewModelScope) for network calls in RestaurantsViewModel">
+      <option name="closed" value="true" />
+      <created>1767027947655</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1767027947655</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added error handling for API call">
+      <option name="closed" value="true" />
+      <created>1767028467482</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1767028467482</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added convenient CoroutineExceptionHandler">
+      <option name="closed" value="true" />
+      <created>1767029306253</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1767029306253</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Commented out unused code, TODO added">
+      <option name="closed" value="true" />
+      <created>1767095557885</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1767095557885</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Improvements of coroutines calls">
+      <option name="closed" value="true" />
+      <created>1767097655776</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1767097655776</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added nweb startup script">
+      <option name="closed" value="true" />
+      <created>1767098733934</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1767098733934</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Extended ApiService for new endpoint, added RestaurantDetailScreen, which will be used to show information about individual restaurants">
+      <option name="closed" value="true" />
+      <created>1767118435970</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1767118435970</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added navigation component to navigate between screens">
+      <option name="closed" value="true" />
+      <created>1767122463897</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1767122463897</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Custom REST API added">
+      <option name="closed" value="true" />
+      <created>1767277250336</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1767277250336</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Explanations about navigation component and passing data to ViewModels added. Also removed unused data directory.">
+      <option name="closed" value="true" />
+      <created>1767278266682</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1767278266682</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added deep links support">
+      <option name="closed" value="true" />
+      <created>1767279221925</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1767279221925</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Added Room DB as a network cache (partially working)">
+      <option name="closed" value="true" />
+      <created>1767377735614</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1767377735614</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Rearranged local REST API and Android app to be part of same project">
+      <option name="closed" value="true" />
+      <created>1768747815580</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1768747815580</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7af34273-178d-4bda-8d41-f3642f5a7e75" value="TOOL_WINDOW" />
+        <entry key="818ef7b2-6a99-46e3-88bf-a1a7049c38e9" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="7af34273-178d-4bda-8d41-f3642f5a7e75">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/home/firzen/active_projects/2026/restaurant-compose-example/app" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="818ef7b2-6a99-46e3-88bf-a1a7049c38e9">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/home/firzen/active_projects/2026/restaurant-compose-example/app/src/main/java/net/firzen/android/restaurantcomposeexample" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="State hoisted (lifted upwards) directly to RestaurantsScreen from RestaurantItem" />
+    <MESSAGE value="RestaurantsScreen state handling replaced by extending standalone RestaurantsViewModel" />
+    <MESSAGE value="Restaurant favourite status now survives system-initiated process death using SavedStateHandle" />
+    <MESSAGE value="Added basic Retrofit based API client" />
+    <MESSAGE value="Fixed comment" />
+    <MESSAGE value="Added cancelling of ongoing network calls (restaurants API) when cleanup is triggered" />
+    <MESSAGE value="Reduced network calls amount by moving API call into ViewModel init block" />
+    <MESSAGE value="Simple coroutine example added" />
+    <MESSAGE value="Coroutines examples extended" />
+    <MESSAGE value="Coroutines comment added" />
+    <MESSAGE value="Replaced Retrofit callback with Coroutines" />
+    <MESSAGE value="Added comments about Coroutines for future me" />
+    <MESSAGE value="Using pre-defined CoroutineScope (viewModelScope) for network calls in RestaurantsViewModel" />
+    <MESSAGE value="Added error handling for API call" />
+    <MESSAGE value="Added convenient CoroutineExceptionHandler" />
+    <MESSAGE value="Commented out unused code, TODO added" />
+    <MESSAGE value="Improvements of coroutines calls" />
+    <MESSAGE value="Added nweb startup script" />
+    <MESSAGE value="Extended ApiService for new endpoint, added RestaurantDetailScreen, which will be used to show information about individual restaurants" />
+    <MESSAGE value="Added navigation component to navigate between screens" />
+    <MESSAGE value="Custom REST API added" />
+    <MESSAGE value="Explanations about navigation component and passing data to ViewModels added. Also removed unused data directory." />
+    <MESSAGE value="Added deep links support" />
+    <MESSAGE value="Added Room DB as a network cache (partially working)" />
+    <MESSAGE value="Rearranged local REST API and Android app to be part of same project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rearranged local REST API and Android app to be part of same project" />
+  </component>
+  <component name="play_dynamic_filters_status">
+    <option name="appIdToCheckInfo">
+      <map>
+        <entry key="net.firzen.android.restaurantcomposeexample">
+          <value>
+            <CheckInfo lastCheckTimestamp="1768747807953" />
+          </value>
+        </entry>
+        <entry key="net.firzen.android.restaurantcomposeexample.test">
+          <value>
+            <CheckInfo lastCheckTimestamp="1768747807956" />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

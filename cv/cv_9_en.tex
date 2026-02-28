@@ -1,0 +1,179 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+\moderncvcolor{cerulean}
+\moderncvstyle[noqr]{contemporary}
+% adjust the page margins
+\usepackage[hmargin=0.5in,vmargin=10pt]{geometry}
+
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
+% document language
+\usepackage[czech]{babel}
+
+% personal data
+\renewcommand*{\namefont}{\fontsize{28}{40}\mdseries\upshape}
+\name{Bc. Ondřej Bockschneider}{}
+\title{Curriculum Vitae}
+\born{11.7.1991}
+\address{Komenského 316/13}{679 04 Adamov}{(20 minutes from Brno)}
+\phone[mobile]{+420 737 491 274}
+\email{obockschneider@gmail.com}
+
+% Social icons
+\social[linkedin]{obockschneider}
+%\social[xing]{john\_doe}
+
+\social[github]{ondrejsml}
+\social[github]{Firzen7}
+\social[stackoverflow]{1735603/firzen}
+
+\photo[64pt][2pt]{pictures/photo}
+\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
+
+\begin{document}
+
+\newcommand{\nicehref}[2] {
+	\hspace*{-1mm}\underline{\href{#1}{#2}}\hspace*{-1mm}
+}
+
+\newcommand{\nicehrefspacious}[2] {
+	\underline{\href{#1}{#2}}
+}
+
+\newcommand{\cvlistitemtight}[1]{
+	\hspace*{-2cm}\cvlistitem{#1}
+}
+
+\newcommand{\cvlistdoubleitemtight}[2]{
+	\hspace*{-2cm}\cvlistdoubleitem{#1}{#2}
+}
+
+\makecvtitle
+\vspace*{-5mm}
+
+\section{Work experience}
+\cventry{2/2019--present}{Android Developer}{\textsc{Sanctus Media, Ltd.}}{}{}{Development of 6 Android applications, 2 Android libraries, 2 REST API microservices, 1 Alexa skill, and~9~side projects. Occasionally administration of Linux servers, Google Play Console, Firebase, and AWS infrastructure.
+\newline{}
+100\% remote work since 2020. Daily communication with team exclusively in English.
+\newline{}
+Some of the projects I created here:
+\begin{itemize}
+	\item \textbf{WattsUp} -- Assistant for EV drivers which allows to find nearest rapid chargers, plan route, select charging stops along the chosen route, and also view the live status of charging stations.
+	\begin{itemize}
+		\item 2019: Design and development of an Android version for the existing iOS version and graphical design of~dark mode.
+		\item 2020: Design and development of the first and most successful paid feature to date: Discovery Mode.
+		\item 2022: Added dynamic logos for charger operators.
+		\item 2024: Implementation of advanced filtering, price calculation, and WattsUp Pro paywall dialog.
+		\item 2024: Added support for generic charger operators and close integration with the \nicehref{https://evroaming.org/wp-content/uploads/2024/11/OCPI-2.2.1-d2.pdf}{OCPI} standard.
+		\item 2025: The beginning of a major redesign and transition to Mapbox 11.
+		\item Releasing on \nicehref{https://play.google.com/store/apps/details?id=com.sanctusmedia.android.WattsUp}{Google Play} and providing user support.
+	\end{itemize}
+	\item \textbf{Sanctuary First} -- Christian spiritual community with modern approach. The app contains videos, podcasts, likes, comments, live streams, music, favorites, Bible reader, etc. Everything that you miss in a church building is here!
+	\begin{itemize}
+		\item 2020--2021: Development of the initial Android version based on the graphical design.
+		\item 2021: Initial graphical design of the user section.
+		\item 2022: Database architecture design for comments and likes + graphical design of the comments section.
+		\item 2023: Dynamic updates of likes, comments, and the start/end of live streams using the Pusher library.
+		\item 2025: Major refactoring of core architecture; added Bible reader and playlists for guided meditations.
+		\item Releasing on \nicehref{https://play.google.com/store/apps/details?id=com.sanctusmedia.android.sanctuaryfirst}{Google Play}, providing user support and direct consultation with the client.
+	\end{itemize}
+	\item \textbf{CrossReach} -- Originally, it was just an electronic version of a physical book annually released by~the~organization of the same name. Over time, however, interesting features were added:
+	\begin{itemize}
+		\item 2024: Implementation of Google sign-in.
+		\item 2024: Payments via the native Stripe API.
+		\item 2025: Added support for deep links.
+		\item 2025: Notifications using Pusher Beams with dynamic Room DB updates on-demand.
+		\item Releasing on \nicehref{https://play.google.com/store/apps/details?id=com.sanctusmedia.android.crossreach}{Google Play} and providing user support.
+	\end{itemize}
+	\item \textbf{Sanctus Tools} -- AAR library created in response to the growing number of Android applications at Sanctus Media. It contains top-level utility functions and Kotlin extensions, which helped to speed-up development and improved quality of our apps. This library contains one-liners for quick fade-out animation, detection of~overlapping Views, hiding the virtual keyboard, and many more.
+	\item \textbf{Sanctuary First pro Amazon Alexa} -- Alexa Skill, that allows user to listen to daily prayers or readings from Bible or other spiritual book. Prayers and reading are downloaded from Sanctuary First API.
+	\begin{itemize}
+		\item Design and development of Alexa Skill
+		\item Publication on \nicehref{https://www.amazon.co.uk/Santus-Media-Ltd-Sanctuary-First/dp/B0811W4GFK}{Amazon Store}.
+	\end{itemize}
+\end{itemize}
+}
+
+\cventry{3/2017--3/2018}{Support Worker}{\textsc{Redcroft Care Homes, Ltd.}}{}{}{Support and protection of adults suffering from Learning Disability, ASD and Prader-Willi Syndrome.}
+
+\cventry{6/2016--1/2017}{Java Developer}{\textsc{FCR Tech, spol. s.r.o.}}{}{}{Development of an application for printing yellow pages. Leading team of four Turkish internship students.}
+
+\cventry{1/2014--6/2016}{Java Developer}{\textsc{Bach systems, s.r.o.}}{}{}{Development of intranet web applications in Vaadin \& Java. I have worked here on larger projects, such as Archive of Czech National Bank.}
+
+\cventry{1/2014--6/2014}{Java Developer}{\textsc{Exekutorský úřad Havlíčkův Brod}}{}{}{Development and support of the Hybrid Post application.}
+
+\cventry{6/2011--1/2014}{Administrator}{\textsc{Exekutorský úřad Havlíčkův Brod}}{}{}{Administration of client stations and servers, development of custom software tools according to employer’s needs. Created initial version of Hybrid Post and focused on software development since then.}
+
+\vspace*{1mm}
+
+\section{Education}
+
+\cventry{2011--2015}{Bachelor’s degree in Applied Computer Science}{Palacký University Olomouc}{}{}{}
+\cventry{2003--2011}{Maturita}{Gymnázium Havlíčkův Brod}{}{}{}
+
+\section{Programming languages}
+
+\cvtripleitem{Kotlin}{\cvskill{5}}{Java}{\cvskill{5}}{Bash}{\cvskill{4}}
+\cvtripleitem{C/C++}{\cvskill{3}}{Swift}{\cvskill{2}}{Common Lisp}{\cvskill{2}}
+
+\section{Android \& related technologies}
+\cvitem{Basics}{Android SDK, Activity, Services, Fragments, Composable functions, Lifecycle}
+\cvitem{UI}{Jetpack Compose, XML layouts, Custom Views (Canvas), Material Design}
+\cvitem{Parallelization}{Kotlin Coroutines, Java Executors}
+\cvitem{Networking}{OkHttp, Retrofit, REST APIs, JSON, GSON, Base64}
+\cvitem{Data}{Room DB, SQLite, Shared Preferences}
+\cvitem{Security}{AES, R8 / ProGuard, Secure token handling, JWT, Google Sign-In}
+\cvitem{Architecture}{Lifecycle-aware components, ViewModel, Navigation Component, KMM}
+\cvitem{Notifications}{Push notifications, Deep links, Pusher, Pusher Beams, Pushwoosh}
+\cvitem{Maps}{Mapbox SDK}
+\cvitem{Media}{ExoPlayer}
+\cvitem{Monetization}{Google Play Billing library, Stripe SDK}
+\cvitem{Tooling}{Gradle, Google Play Console, App Signing}
+\cvitem{Testing}{Unit tests, System tests, Organizing of internal beta testing}
+\cvitem{Telemetry}{Sentry, Mixpanel}
+\cvitem{Others}{Graphical design, Google Play Console management, App signing \& release management}
+
+\section{Other skills and knowledge}
+\cvitem{Versioning}{Git, GitLab, Github}
+\cvitem{Organization}{Slack, Zoom, Github Issues, Jira, Clockify}
+\cvitem{CI/CD}{Jenkins, Teamcity}
+\cvitem{Backend}{Ktor, MariaDB, MySQL, PostgreSQL, Elasticsearch}
+\cvitem{Server-side}{Apache, Nginx, Supervisord, TLS/SSL, Wowza Streaming Engine}
+\cvitem{Infrastructure}{AWS, Hetzner, Linode, Digital Ocean}
+\cvitem{OS}{GNU/Linux, Android, Mac OS, Windows}
+\cvitem{Others}{HTML/CSS, SQL, \LaTeX}
+
+\section{Jazyky}
+\cvitemwithcomment{Czech}{Native}{}
+\cvitemwithcomment{English}{Intermediate (\textasciitilde ~C1)}{Fluent interaction with native speakers}
+
+\section{Personality}
+\cvlistitemtight{Independence}
+\cvlistitemtight{Honesty}
+\cvlistitemtight{Perseverance}
+\cvlistitemtight{Passion to learn new things}
+
+\section{Interests}
+\cvlistdoubleitemtight{Photography}{Graphics}
+\cvlistdoubleitemtight{Artificial Intelligence}{Travel}
+
+\clearpage
+
+%----- Cover letter ---------------------------------------------------------
+
+
+%\coverletter
+
+\end{document}

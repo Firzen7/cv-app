@@ -1,0 +1,194 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+\moderncvcolor{cerulean}
+\moderncvstyle[noqr]{contemporary}
+% adjust the page margins
+\usepackage[hmargin=0.5in,vmargin=10pt]{geometry}
+
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
+% document language
+\usepackage[czech]{babel}
+
+% personal data
+\renewcommand*{\namefont}{\fontsize{28}{40}\mdseries\upshape}
+\name{Bc. Ondřej Bockschneider}{}
+\title{Curriculum Vitae}
+\born{11.7.1991}
+\address{Komenského 316/13}{679 04 Adamov}{(20 minut od Brna)}
+\phone[mobile]{+420 737 491 274}
+\email{obockschneider@gmail.com}
+
+% Social icons
+\social[linkedin]{obockschneider}
+%\social[xing]{john\_doe}
+
+\social[github]{ondrejsml}
+\social[github]{Firzen7}
+\social[stackoverflow]{1735603/firzen}
+
+\photo[64pt][2pt]{pictures/photo}
+\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
+
+\begin{document}
+
+\newcommand{\nicehref}[2] {
+	\hspace*{-1mm}\underline{\href{#1}{#2}}\hspace*{-1mm}
+}
+
+\newcommand{\cvlistitemtight}[1]{
+	\hspace*{-2cm}\cvlistitem{#1}
+}
+
+\newcommand{\cvlistdoubleitemtight}[2]{
+	\hspace*{-2cm}\cvlistdoubleitem{#1}{#2}
+}
+
+\makecvtitle
+\vspace*{-5mm}
+
+\section{Pracovní zkušenosti}
+\cventry{2/2019--souč.}{Android Developer}{\textsc{Sanctus Media, Ltd.}}{}{}{Vývoj celkem 6 Android aplikací, 2 Android knihoven, 2 REST API microservices, 1 schopnosti pro Alexu a~9~pomocných projektů. Okrajověji také správa Linuxových serverů, Google Play Console, Firebase nebo AWS infrastruktury.
+\newline{}
+100\% remote práce od roku 2020. Denní komunikace s týmem výhradně v angličtině.
+\newline{}
+Vytvořil jsem zde například:
+\begin{itemize}
+	\item \textbf{WattsUp} -- Asistent pro řidiče elektromobilů, který umožňuje nalézt nejbližší rychlé nabíječky, naplánovat trasu, zvolit zastávky pro nabití podél zvolené trasy a zobrazit status nabíječek v reálném čase.
+	\begin{itemize}
+		\item 2019: Návrh a vývoj Android verze pro existující iOS verzi a grafický návrh tmavého režimu.
+		\item 2020: Návrh a vývoj první a dosud nejúspěšnější placené funkce: Discovery Mode.
+		\item 2022: Přidána dynamická loga operátorů nabíječek.
+		\item 2024: Implementace pokročilého filtrování, výpočtu cen a paywall dialogu WattsUp Pro.
+		\item 2024: Přidána podpora obecného operátora nabíječek, a úzká provázanost se standardem \nicehref{https://evroaming.org/wp-content/uploads/2024/11/OCPI-2.2.1-d2.pdf}{OCPI}.
+		\item 2025: Počátek velkého redesignu a přechod na Mapbox 11.
+		\item Zveřejnění na \nicehref{https://play.google.com/store/apps/details?id=com.sanctusmedia.android.WattsUp}{Google Play} a poskytování uživatelské podpory.
+	\end{itemize}
+	\item \textbf{Sanctuary First} -- Duchovní, křesťanská komunita ve velmi moderním pojetí. Aplikace obsahuje videa, podcasty, lajky, komentáře, živé streamy, hudbu, oblíbené položky, čtečku Bible, atd. Zkrátka vše, co v~kostele chybí.
+	\begin{itemize}
+		\item 2020--2021: Vývoj prvotní Android verze dle grafického návrhu.
+		\item 2021: Prvotní grafický návrh uživatelské sekce.
+		\item 2022: Návrh databázové architektury komentářů s reakcemi a lajky + grafický návrh sekce komentářů.
+		\item 2023: Dynamické updaty lajků, komentářů a začátku / konce živých streamů s pomocí knihovny Pusher.
+		\item 2025: Velký refactoring základní architektury; přidána čtečka Bible a playlisty pro vedené meditace.
+		\item Zveřejnění na \nicehref{https://play.google.com/store/apps/details?id=com.sanctusmedia.android.sanctuaryfirst}{Google Play} a poskytování uživatelské podpory. Taktéž přímá komunikace se zadavatelem.
+	\end{itemize}
+	\item \textbf{CrossReach} -- Původně to byla pouze elektronická verze knihy každoročně vydávané
+stejnojmennou organizací. Časem byly ale přidány zajímavé funkce:
+	\begin{itemize}
+		\item 2024: Přihlášení pomocí Google sign-in a platby přes nativní Stripe API.
+		\item 2025: Přidána podpora Deep linků.
+		\item 2025: Notifikace pomocí Pusher Beams.
+		\item Zveřejnění na \nicehref{https://play.google.com/store/apps/details?id=com.sanctusmedia.android.crossreach}{Google Play} a poskytování uživatelské podpory.
+	\end{itemize}
+	\item \textbf{Sanctus Tools} -- AAR knihovna vytvořená v reakci na rostoucí počet Android aplikací
+v Sanctus Media, a~zároveň na~častou redundanci boilerplate kódu. Obsahuje utility
+top-level funkce, ale také spoustu Kotlin extensions. Funkce jsou rozděleny do několika
+vrstev. Celkově pak knihovna umožňuje například rychlou fade-out animaci, zjištění,
+zda se daný View překrývá s jiným, skrýt virtuální klávesnici, atd. A to vše v~jednom
+řádku kódu!
+	\item \textbf{Sanctuary First pro Amazon Alexa} -- Schopnost (aplikace), která uživateli přečte
+denní modlitbu či~výňatek z~Bible, popř. jiné duchovní knihy. Modlitby jsou stahovány
+ze Sanctuary First API.
+	\begin{itemize}
+		\item Kompletní návrh a vývoj aplikace.
+		\item Zveřejnění v obchodě \nicehref{https://www.amazon.co.uk/Santus-Media-Ltd-Sanctuary-First/dp/B0811W4GFK}{Amazon}.
+	\end{itemize}
+\end{itemize}
+}
+
+\cventry{3/2017--3/2018}{Support Worker}{\textsc{Redcroft Care Homes, Ltd.}}{}{}{Práce v chráněném bydlení s klienty trpícími poruchou učení, ASD a Prader-Willi syndromem.}
+
+\cventry{6/2016--1/2017}{Java Programátor}{\textsc{FCR Tech, spol. s.r.o.}}{}{}{Vývoj aplikace pro tisk zlatých stránek. Vedení čtyřčlenného týmu studentů z Turecka.}
+
+\cventry{1/2014--6/2016}{Java Programátor}{\textsc{Bach systems, s.r.o.}}{}{}{Vývoj webových aplikací s pomocí technologie Vaadin v Javě. Pracoval jsem zde zejména na projektu Dabs~Web vyvíjeného pro ČNB.}
+
+\cventry{1/2014--6/2014}{Programátor}{\textsc{Exekutorský úřad Havlíčkův Brod}}{}{}{Vývoj a podpora aplikace Hybrid Post.}
+
+\cventry{6/2011--1/2014}{Správce sítě}{\textsc{Exekutorský úřad Havlíčkův Brod}}{}{}{Administrace klientských a serverových stanic, vývoj software na míru dle potřeb zaměstnavatele. Zde jsem vytvořil program Hybrid Post a uvědomil si, že se chci stát programátorem.}
+
+\vspace*{1mm}
+\section{Vzdělání}
+
+\cventry{2011--2015}{Bc., Aplikovaná informatika}{Univerzita Palackého Olomouc}{}{}{}
+\cventry{2003--2011}{Maturita}{Gymnázium Havlíčkův Brod}{}{}{}
+
+
+%\section{Programovací jazyky}
+
+%\setcvskillcolumns[0em][][]
+%\setcvskillcolumns[][][\widthof{``Roky zkušeností''}]
+
+%\cvskillhead[0.25em][Úroveň znalosti][Dovednost][Roky zkušeností][Komentář]
+%\cvskillentry*{}{5}{Kotlin}{6}{Díky zkušenostem s Javou a inspiraci z Common Lispu byl pro mě Kotlin láska na první pohled!}
+%\cvskillentry{}{5}{Java}{12}{Javu mám velmi rád, neboť je memory-safe a silně typovaná. Navíc její poměrně přísná syntaxe vede k čistšímu kódu.}
+%\cvskillentry{}{4}{Bash}{18}{Rád bych se naučil lepší skriptovací jazyk, ale široká podpora Bashe napříč UNIXovými systémy a spousta dostupných snippetů u mě stále vítězí. Za ty roky mám navíc poměrně opravdu bohatou sbírku hotových skriptů.}
+%\cvskillentry{}{3}{C/C++}{4}{V těchto jazycích nejsem až tak ostřílený, jako v těch výše. Pár projektů jsem v nich ale vytvořil, a to i komerečně. Mám také celkem pozitivní zkušenost s JNI, a nebál bych se případně tyto jazyky oprášit.}
+%\cvskillentry{}{2}{Common Lisp}{3}{V tomto jazyce jsem sice nic komerečního nedělal, ale jeho principy velmi pozitivně ovlivnily můj přístup k programování.}
+
+\section{Programovací jazyky}
+
+\cvtripleitem{Kotlin}{\cvskill{5}}{Java}{\cvskill{5}}{Bash}{\cvskill{4}}
+\cvtripleitem{C/C++}{\cvskill{3}}{Swift}{\cvskill{2}}{Common Lisp}{\cvskill{2}}
+
+\section{Android a přidružené technologie}
+\cvitem{Základy}{Android SDK, Activity, Services, Fragmenty, Composable funkce, Lifecycle}
+\cvitem{UI}{Jetpack Compose, XML layouty, Custom Views (Canvas), Material Design}
+\cvitem{Paralelizace}{Kotlin Coroutines, Java Executors}
+\cvitem{Síťování}{OkHttp, Retrofit, REST APIs, JSON, GSON, Base64}
+\cvitem{Data}{Room DB, SQLite, Shared Preferences}
+\cvitem{Bezpečnost}{AES, R8 / ProGuard, Secure token handling, JWT, Google Sign-In}
+\cvitem{Architektura}{Lifecycle-aware components, ViewModel, Navigation Component, KMM}
+\cvitem{Notifikace}{Push notifications, Deep links, Pusher, Pusher Beams, Pushwoosh}
+\cvitem{Mapy}{Mapbox SDK}
+\cvitem{Média}{ExoPlayer}
+\cvitem{Monetizace}{Google Play Billing library, Stripe SDK}
+\cvitem{Nástroje}{Gradle, Google Play Console, App Signing}
+\cvitem{Testování}{Unit testy, Systémové testy, Organizace interního testování}
+\cvitem{Telemetrie}{Sentry, Mixpanel}
+\cvitem{Ostatní}{Grafický design, Google Play Console management, App signing \& release management}
+
+\section{Ostatní dovednosti a znalosti}
+\cvitem{Verzování}{Git, GitLab, Github}
+\cvitem{Organizace}{Slack, Zoom, Github Issues, Jira, Clockify}
+\cvitem{CI/CD}{Jenkins, Teamcity}
+\cvitem{Backend}{Ktor, MariaDB, MySQL, PostgreSQL, Elasticsearch}
+\cvitem{Infrastruktura}{AWS, Wowza Streaming Engine, Hetzner, Linode, Digital Ocean}
+\cvitem{OS}{GNU/Linux, Mac OS, Windows}
+\cvitem{Ostatní}{HTML/CSS, SQL, \LaTeX}
+
+\section{Jazyky}
+\cvitemwithcomment{Čeština}{mateřský jazyk}{}
+\cvitemwithcomment{Angličtina}{pokročilý}{Znalost umožňující profesionální práci}
+
+\section{Osobnost}
+\cvlistitemtight{Samostatnost}
+\cvlistitemtight{Poctivost}
+\cvlistitemtight{Vytrvalost}
+\cvlistitemtight{Rád experimentuji a učím se nové věci}
+
+\section{Zájmy}
+\cvlistdoubleitemtight{Fotografie}{Počítačová grafika}
+\cvlistdoubleitemtight{Umělá inteligence}{Cestování}
+
+
+\clearpage
+
+%-----       letter       ---------------------------------------------------------
+%----- Cover letter ---------------------------------------------------------
+
+%\coverletter
+
+\end{document}

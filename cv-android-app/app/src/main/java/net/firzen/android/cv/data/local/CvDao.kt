@@ -16,7 +16,7 @@ import net.firzen.android.cv.data.local.entities.*
 @Dao
 interface CvDao {
 
-    // ── Profile ──────────────────────────────────────────────────────────────
+    // -- Profile --------------------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProfile(profile: ProfileEntity)
@@ -24,7 +24,7 @@ interface CvDao {
     @Query("SELECT * FROM profile LIMIT 1")
     suspend fun getProfile(): ProfileEntity?
 
-    // ── Work Experience ──────────────────────────────────────────────────────
+    // -- Work Experience ------------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkExperiences(experiences: List<WorkExperienceEntity>)
@@ -33,7 +33,7 @@ interface CvDao {
     @Query("SELECT * FROM work_experience ORDER BY ordinal ASC")
     suspend fun getAllWorkExperiences(): List<WorkExperienceEntity>
 
-    // ── Projects ─────────────────────────────────────────────────────────────
+    // -- Projects -------------------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProjects(projects: List<ProjectEntity>)
@@ -41,7 +41,7 @@ interface CvDao {
     @Query("SELECT * FROM projects ORDER BY ordinal ASC")
     suspend fun getAllProjects(): List<ProjectEntity>
 
-    // ── Project Milestones ───────────────────────────────────────────────────
+    // -- Project Milestones --------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProjectMilestones(milestones: List<ProjectMilestoneEntity>)
@@ -53,7 +53,7 @@ interface CvDao {
     @Query("SELECT * FROM project_milestones ORDER BY project_id, ordinal ASC")
     suspend fun getAllMilestones(): List<ProjectMilestoneEntity>
 
-    // ── Education ────────────────────────────────────────────────────────────
+    // -- Education ------------------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEducation(education: List<EducationEntity>)
@@ -61,7 +61,7 @@ interface CvDao {
     @Query("SELECT * FROM education ORDER BY start_year DESC")
     suspend fun getAllEducation(): List<EducationEntity>
 
-    // ── Programming Languages ────────────────────────────────────────────────
+    // -- Programming Languages ------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProgrammingLanguages(languages: List<ProgrammingLanguageEntity>)
@@ -70,7 +70,7 @@ interface CvDao {
     @Query("SELECT * FROM programming_languages ORDER BY level DESC")
     suspend fun getAllProgrammingLanguages(): List<ProgrammingLanguageEntity>
 
-    // ── Technology Categories & Technologies ─────────────────────────────────
+    // -- Technology Categories & Technologies ---------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTechnologyCategories(categories: List<TechnologyCategoryEntity>)
@@ -87,7 +87,7 @@ interface CvDao {
     @Query("SELECT * FROM technologies ORDER BY category_id, id ASC")
     suspend fun getAllTechnologies(): List<TechnologyEntity>
 
-    // ── Other Skill Categories & Skills ──────────────────────────────────────
+    // -- Other Skill Categories & Skills --------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOtherSkillCategories(categories: List<OtherSkillCategoryEntity>)
@@ -104,7 +104,7 @@ interface CvDao {
     @Query("SELECT * FROM other_skills ORDER BY category_id, id ASC")
     suspend fun getAllOtherSkills(): List<OtherSkillEntity>
 
-    // ── Languages ────────────────────────────────────────────────────────────
+    // -- Languages ------------------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLanguages(languages: List<LanguageEntity>)
@@ -112,7 +112,7 @@ interface CvDao {
     @Query("SELECT * FROM languages ORDER BY id ASC")
     suspend fun getAllLanguages(): List<LanguageEntity>
 
-    // ── Personality Traits ───────────────────────────────────────────────────
+    // -- Personality Traits ---------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPersonalityTraits(traits: List<PersonalityTraitEntity>)
@@ -120,7 +120,7 @@ interface CvDao {
     @Query("SELECT * FROM personality_traits ORDER BY id ASC")
     suspend fun getAllPersonalityTraits(): List<PersonalityTraitEntity>
 
-    // ── Interests ────────────────────────────────────────────────────────────
+    // -- Interests ------------------------------------------------------------
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertInterests(interests: List<InterestEntity>)

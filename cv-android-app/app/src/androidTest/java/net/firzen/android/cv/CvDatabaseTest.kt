@@ -13,6 +13,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import timber.log.Timber
 
 /**
  * Instrumented tests for the CV Room database.
@@ -22,25 +23,26 @@ import org.junit.runner.RunWith
  * 2. All DAO queries return expected results
  * 3. Data counts match the CV content
  *
- * Each test also prints the data to Logcat (tag: "CvDbTest") so you can manually
+ * Each test also prints the data to Logcat via Timber so you can manually
  * inspect the contents in Android Studio's Logcat window.
  *
  * Run with: ./gradlew :app:connectedDebugAndroidTest
- * or right-click this file in Android Studio → Run
+ * or right-click this file in Android Studio -> Run
  */
 @RunWith(AndroidJUnit4::class)
 class CvDatabaseTest {
-
-    companion object {
-        private const val TAG = "CvDbTest"
-    }
 
     private lateinit var database: CvDatabase
     private lateinit var dao: CvDao
 
     @Before
     fun setup() {
-        // Create an in-memory database for testing — it's destroyed when the test finishes
+        // Plant Timber tree for test output
+        if (Timber.treeCount == 0) {
+            Timber.plant(Timber.DebugTree())
+        }
+
+        // Create an in-memory database for testing - it's destroyed when the test finishes
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         database = Room.inMemoryDatabaseBuilder(context, CvDatabase::class.java)
             .allowMainThreadQueries() // OK for tests, never do this in production
@@ -58,55 +60,55 @@ class CvDatabaseTest {
         database.close()
     }
 
-    // ── Profile ──────────────────────────────────────────────────────────────
+    // -- Profile --------------------------------------------------------------
 
     @Test
     fun profileIsSeeded() = runBlocking {
         val profile = dao.getProfile()
 
         assertNotNull("Profile should not be null", profile)
-        Log.i(TAG, "=== PROFILE ===")
-        Log.i(TAG, "Name: ${profile!!.name}")
-        Log.i(TAG, "Title: ${profile.title}")
-        Log.i(TAG, "Born: ${profile.dateOfBirth}")
-        Log.i(TAG, "Address: ${profile.address}")
-        Log.i(TAG, "Phone: ${profile.phone}")
-        Log.i(TAG, "Email: ${profile.email}")
-        Log.i(TAG, "LinkedIn: ${profile.linkedInUsername}")
-        Log.i(TAG, "GitHub: ${profile.githubUsernames}")
-        Log.i(TAG, "StackOverflow: ${profile.stackOverflowId}")
+        Timber.i("=== PROFILE ===")
+        Timber.i("Name: ${profile!!.name}")
+        Timber.i("Title: ${profile.title}")
+        Timber.i("Born: ${profile.dateOfBirth}")
+        Timber.i("Address: ${profile.address}")
+        Timber.i("Phone: ${profile.phone}")
+        Timber.i("Email: ${profile.email}")
+        Timber.i("LinkedIn: ${profile.linkedInUsername}")
+        Timber.i("GitHub: ${profile.githubUsernames}")
+        Timber.i("StackOverflow: ${profile.stackOverflowId}")
 
         assertEquals("Bc. Ondřej Bockschneider", profile.name)
         assertEquals("Android Developer", profile.title)
     }
 
-    // ── Work Experience ──────────────────────────────────────────────────────
+    // -- Work Experience ------------------------------------------------------
 
     @Test
     fun workExperiencesAreSeeded() = runBlocking {
         val experiences = dao.getAllWorkExperiences()
 
-        Log.i(TAG, "=== WORK EXPERIENCE (${experiences.size} entries) ===")
+        Timber.i("=== WORK EXPERIENCE (${experiences.size} entries) ===")
         experiences.forEach { exp ->
-            Log.i(TAG, "${exp.startDate}–${exp.endDate ?: "present"}: " +
+            Timber.i("${exp.startDate}-${exp.endDate ?: "present"}: " +
                     "${exp.position} at ${exp.company}")
-            Log.i(TAG, "  ${exp.description.take(80)}...")
+            Timber.i("  ${exp.description.take(80)}...")
         }
 
         assertEquals("Should have 6 work experiences", 6, experiences.size)
         assertEquals("First should be Sanctus Media", "Sanctus Media, Ltd.", experiences[0].company)
     }
 
-    // ── Projects ─────────────────────────────────────────────────────────────
+    // -- Projects -------------------------------------------------------------
 
     @Test
     fun projectsAreSeeded() = runBlocking {
         val projects = dao.getAllProjects()
 
-        Log.i(TAG, "=== PROJECTS (${projects.size} entries) ===")
+        Timber.i("=== PROJECTS (${projects.size} entries) ===")
         projects.forEach { project ->
-            Log.i(TAG, "${project.name}: ${project.description.take(60)}...")
-            Log.i(TAG, "  Google Play: ${project.googlePlayUrl ?: "N/A"}")
+            Timber.i("${project.name}: ${project.description.take(60)}...")
+            Timber.i("  Google Play: ${project.googlePlayUrl ?: "N/A"}")
         }
 
         assertEquals("Should have 5 projects", 5, projects.size)
@@ -118,12 +120,12 @@ class CvDatabaseTest {
         val allMilestones = dao.getAllMilestones()
         val projects = dao.getAllProjects()
 
-        Log.i(TAG, "=== PROJECT MILESTONES (${allMilestones.size} total) ===")
+        Timber.i("=== PROJECT MILESTONES (${allMilestones.size} total) ===")
         projects.forEach { project ->
             val milestones = dao.getMilestonesForProject(project.id)
-            Log.i(TAG, "--- ${project.name} (${milestones.size} milestones) ---")
+            Timber.i("--- ${project.name} (${milestones.size} milestones) ---")
             milestones.forEach { ms ->
-                Log.i(TAG, "  ${ms.year}: ${ms.title} — ${ms.description.take(50)}...")
+                Timber.i("  ${ms.year}: ${ms.title} - ${ms.description.take(50)}...")
             }
         }
 
@@ -133,129 +135,129 @@ class CvDatabaseTest {
         assertEquals("WattsUp should have 6 milestones", 6, wattsUpMilestones.size)
     }
 
-    // ── Education ────────────────────────────────────────────────────────────
+    // -- Education ------------------------------------------------------------
 
     @Test
     fun educationIsSeeded() = runBlocking {
         val education = dao.getAllEducation()
 
-        Log.i(TAG, "=== EDUCATION (${education.size} entries) ===")
+        Timber.i("=== EDUCATION (${education.size} entries) ===")
         education.forEach { edu ->
-            Log.i(TAG, "${edu.startYear}–${edu.endYear}: ${edu.degree} at ${edu.institution}")
+            Timber.i("${edu.startYear}-${edu.endYear}: ${edu.degree} at ${edu.institution}")
         }
 
         assertEquals("Should have 2 education entries", 2, education.size)
     }
 
-    // ── Programming Languages ────────────────────────────────────────────────
+    // -- Programming Languages ------------------------------------------------
 
     @Test
     fun programmingLanguagesAreSeeded() = runBlocking {
         val languages = dao.getAllProgrammingLanguages()
 
-        Log.i(TAG, "=== PROGRAMMING LANGUAGES (${languages.size} entries) ===")
+        Timber.i("=== PROGRAMMING LANGUAGES (${languages.size} entries) ===")
         languages.forEach { lang ->
             val bar = "●".repeat(lang.level) + "○".repeat(5 - lang.level)
-            Log.i(TAG, "$bar ${lang.name} (${lang.level}/5)")
+            Timber.i("$bar ${lang.name} (${lang.level}/5)")
         }
 
         assertEquals("Should have 6 programming languages", 6, languages.size)
         assertEquals("Kotlin should be 5/5", 5, languages.first { it.name == "Kotlin" }.level)
     }
 
-    // ── Technologies ─────────────────────────────────────────────────────────
+    // -- Technologies ---------------------------------------------------------
 
     @Test
     fun technologiesAreSeeded() = runBlocking {
         val categories = dao.getAllTechnologyCategories()
         val allTechs = dao.getAllTechnologies()
 
-        Log.i(TAG, "=== ANDROID TECHNOLOGIES (${categories.size} categories, ${allTechs.size} total) ===")
+        Timber.i("=== ANDROID TECHNOLOGIES (${categories.size} categories, ${allTechs.size} total) ===")
         categories.forEach { cat ->
             val techs = dao.getTechnologiesForCategory(cat.id)
-            Log.i(TAG, "${cat.categoryName}: ${techs.joinToString(", ") { it.name }}")
+            Timber.i("${cat.categoryName}: ${techs.joinToString(", ") { it.name }}")
         }
 
         assertEquals("Should have 14 technology categories", 14, categories.size)
         assertTrue("Should have many technologies", allTechs.size > 40)
     }
 
-    // ── Other Skills ─────────────────────────────────────────────────────────
+    // -- Other Skills ---------------------------------------------------------
 
     @Test
     fun otherSkillsAreSeeded() = runBlocking {
         val categories = dao.getAllOtherSkillCategories()
         val allSkills = dao.getAllOtherSkills()
 
-        Log.i(TAG, "=== OTHER SKILLS (${categories.size} categories, ${allSkills.size} total) ===")
+        Timber.i("=== OTHER SKILLS (${categories.size} categories, ${allSkills.size} total) ===")
         categories.forEach { cat ->
             val skills = dao.getOtherSkillsForCategory(cat.id)
-            Log.i(TAG, "${cat.categoryName}: ${skills.joinToString(", ") { it.name }}")
+            Timber.i("${cat.categoryName}: ${skills.joinToString(", ") { it.name }}")
         }
 
         assertEquals("Should have 8 other skill categories", 8, categories.size)
         assertTrue("Should have many other skills", allSkills.size > 25)
     }
 
-    // ── Languages ────────────────────────────────────────────────────────────
+    // -- Languages ------------------------------------------------------------
 
     @Test
     fun languagesAreSeeded() = runBlocking {
         val languages = dao.getAllLanguages()
 
-        Log.i(TAG, "=== SPOKEN LANGUAGES (${languages.size} entries) ===")
+        Timber.i("=== SPOKEN LANGUAGES (${languages.size} entries) ===")
         languages.forEach { lang ->
-            Log.i(TAG, "${lang.name}: ${lang.level}${lang.note?.let { " — $it" } ?: ""}")
+            Timber.i("${lang.name}: ${lang.level}${lang.note?.let { " - $it" } ?: ""}")
         }
 
         assertEquals("Should have 2 languages", 2, languages.size)
     }
 
-    // ── Personality Traits ───────────────────────────────────────────────────
+    // -- Personality Traits ---------------------------------------------------
 
     @Test
     fun personalityTraitsAreSeeded() = runBlocking {
         val traits = dao.getAllPersonalityTraits()
 
-        Log.i(TAG, "=== PERSONALITY TRAITS (${traits.size} entries) ===")
-        traits.forEach { Log.i(TAG, "• ${it.trait}") }
+        Timber.i("=== PERSONALITY TRAITS (${traits.size} entries) ===")
+        traits.forEach { Timber.i("* ${it.trait}") }
 
         assertEquals("Should have 4 personality traits", 4, traits.size)
     }
 
-    // ── Interests ────────────────────────────────────────────────────────────
+    // -- Interests ------------------------------------------------------------
 
     @Test
     fun interestsAreSeeded() = runBlocking {
         val interests = dao.getAllInterests()
 
-        Log.i(TAG, "=== INTERESTS (${interests.size} entries) ===")
-        interests.forEach { Log.i(TAG, "• ${it.name}") }
+        Timber.i("=== INTERESTS (${interests.size} entries) ===")
+        interests.forEach { Timber.i("* ${it.name}") }
 
         assertEquals("Should have 4 interests", 4, interests.size)
     }
 
-    // ── Full Database Summary ────────────────────────────────────────────────
+    // -- Full Database Summary ------------------------------------------------
 
     @Test
     fun fullDatabaseSummary() = runBlocking {
-        Log.i(TAG, "╔══════════════════════════════════════╗")
-        Log.i(TAG, "║     CV DATABASE — FULL SUMMARY       ║")
-        Log.i(TAG, "╠══════════════════════════════════════╣")
-        Log.i(TAG, "║ Profile:                1 record     ║")
-        Log.i(TAG, "║ Work Experiences:       ${dao.getAllWorkExperiences().size} records    ║")
-        Log.i(TAG, "║ Projects:               ${dao.getAllProjects().size} records    ║")
-        Log.i(TAG, "║ Project Milestones:    ${dao.getAllMilestones().size} records   ║")
-        Log.i(TAG, "║ Education:              ${dao.getAllEducation().size} records    ║")
-        Log.i(TAG, "║ Programming Languages:  ${dao.getAllProgrammingLanguages().size} records    ║")
-        Log.i(TAG, "║ Tech Categories:       ${dao.getAllTechnologyCategories().size} records   ║")
-        Log.i(TAG, "║ Technologies:          ${dao.getAllTechnologies().size} records   ║")
-        Log.i(TAG, "║ Skill Categories:       ${dao.getAllOtherSkillCategories().size} records    ║")
-        Log.i(TAG, "║ Other Skills:          ${dao.getAllOtherSkills().size} records   ║")
-        Log.i(TAG, "║ Languages:              ${dao.getAllLanguages().size} records    ║")
-        Log.i(TAG, "║ Personality Traits:     ${dao.getAllPersonalityTraits().size} records    ║")
-        Log.i(TAG, "║ Interests:              ${dao.getAllInterests().size} records    ║")
-        Log.i(TAG, "╚══════════════════════════════════════╝")
+        Timber.i("╔══════════════════════════════════════╗")
+        Timber.i("║     CV DATABASE — FULL SUMMARY       ║")
+        Timber.i("╠══════════════════════════════════════╣")
+        Timber.i("║ Profile:                1 record     ║")
+        Timber.i("║ Work Experiences:       ${dao.getAllWorkExperiences().size} records    ║")
+        Timber.i("║ Projects:               ${dao.getAllProjects().size} records    ║")
+        Timber.i("║ Project Milestones:    ${dao.getAllMilestones().size} records   ║")
+        Timber.i("║ Education:              ${dao.getAllEducation().size} records    ║")
+        Timber.i("║ Programming Languages:  ${dao.getAllProgrammingLanguages().size} records    ║")
+        Timber.i("║ Tech Categories:       ${dao.getAllTechnologyCategories().size} records   ║")
+        Timber.i("║ Technologies:          ${dao.getAllTechnologies().size} records   ║")
+        Timber.i("║ Skill Categories:       ${dao.getAllOtherSkillCategories().size} records    ║")
+        Timber.i("║ Other Skills:          ${dao.getAllOtherSkills().size} records   ║")
+        Timber.i("║ Languages:              ${dao.getAllLanguages().size} records    ║")
+        Timber.i("║ Personality Traits:     ${dao.getAllPersonalityTraits().size} records    ║")
+        Timber.i("║ Interests:              ${dao.getAllInterests().size} records    ║")
+        Timber.i("╚══════════════════════════════════════╝")
 
         // Basic sanity checks
         assertNotNull(dao.getProfile())

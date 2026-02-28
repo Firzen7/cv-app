@@ -54,7 +54,7 @@ object CvDataSeeder {
         dao.insertInterests(interests())
     }
 
-    // ── Profile ──────────────────────────────────────────────────────────────
+    // -- Profile --------------------------------------------------------------
 
     private fun profile() = ProfileEntity(
         id = 1,
@@ -69,7 +69,7 @@ object CvDataSeeder {
         stackOverflowId = "1735603/firzen"
     )
 
-    // ── Work Experience ──────────────────────────────────────────────────────
+    // -- Work Experience ------------------------------------------------------
 
     private fun workExperiences() = listOf(
         WorkExperienceEntity(
@@ -119,7 +119,7 @@ object CvDataSeeder {
         )
     )
 
-    // ── Projects ─────────────────────────────────────────────────────────────
+    // -- Projects -------------------------------------------------------------
 
     private fun projects() = listOf(
         ProjectEntity(
@@ -165,7 +165,7 @@ object CvDataSeeder {
         )
     )
 
-    // ── Project Milestones ───────────────────────────────────────────────────
+    // -- Project Milestones ---------------------------------------------------
 
     private fun projectMilestones() = listOf(
         // WattsUp milestones (projectId = 1)
@@ -277,7 +277,7 @@ object CvDataSeeder {
         )
     )
 
-    // ── Education ────────────────────────────────────────────────────────────
+    // -- Education ------------------------------------------------------------
 
     private fun education() = listOf(
         EducationEntity(
@@ -292,7 +292,7 @@ object CvDataSeeder {
         )
     )
 
-    // ── Programming Languages ────────────────────────────────────────────────
+    // -- Programming Languages ------------------------------------------------
 
     private fun programmingLanguages() = listOf(
         ProgrammingLanguageEntity(id = 1, name = "Kotlin", level = 5),
@@ -303,7 +303,7 @@ object CvDataSeeder {
         ProgrammingLanguageEntity(id = 6, name = "Common Lisp", level = 2)
     )
 
-    // ── Technology Categories & Technologies ─────────────────────────────────
+    // -- Technology Categories & Technologies ---------------------------------
     // Category IDs are hardcoded to match the foreign keys in technologies()
 
     private fun technologyCategories() = listOf(
@@ -387,7 +387,7 @@ object CvDataSeeder {
         TechnologyEntity(categoryId = 14, name = "Mixpanel")
     )
 
-    // ── Other Skill Categories & Skills ──────────────────────────────────────
+    // -- Other Skill Categories & Skills --------------------------------------
 
     private fun otherSkillCategories() = listOf(
         OtherSkillCategoryEntity(id = 1, categoryName = "Versioning"),
@@ -442,7 +442,7 @@ object CvDataSeeder {
         OtherSkillEntity(categoryId = 8, name = "LaTeX")
     )
 
-    // ── Languages ────────────────────────────────────────────────────────────
+    // -- Languages ------------------------------------------------------------
 
     private fun languages() = listOf(
         LanguageEntity(id = 1, name = "Czech", level = "Native", note = null),
@@ -452,7 +452,7 @@ object CvDataSeeder {
         )
     )
 
-    // ── Personality Traits ───────────────────────────────────────────────────
+    // -- Personality Traits ---------------------------------------------------
 
     private fun personalityTraits() = listOf(
         PersonalityTraitEntity(id = 1, trait = "Independence"),
@@ -461,7 +461,7 @@ object CvDataSeeder {
         PersonalityTraitEntity(id = 4, trait = "Passion to learn new things")
     )
 
-    // ── Interests ────────────────────────────────────────────────────────────
+    // -- Interests ------------------------------------------------------------
 
     private fun interests() = listOf(
         InterestEntity(id = 1, name = "Photography"),

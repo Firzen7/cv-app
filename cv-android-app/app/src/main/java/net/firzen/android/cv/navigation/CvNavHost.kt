@@ -10,6 +10,7 @@ import net.firzen.android.cv.presentation.screens.ExperienceScreen
 import net.firzen.android.cv.presentation.screens.ProfileScreen
 import net.firzen.android.cv.presentation.models.ExperienceViewModel
 import net.firzen.android.cv.presentation.models.ProfileViewModel
+import net.firzen.android.cv.presentation.models.ProjectsViewModel
 import net.firzen.android.cv.presentation.models.SkillsViewModel
 import net.firzen.android.cv.presentation.screens.ProjectsScreen
 import net.firzen.android.cv.presentation.screens.SkillsScreen
@@ -47,7 +48,7 @@ fun CvNavHost(
             SkillsScreen(hiltViewModel<SkillsViewModel>())
         }
         composable(Screen.Projects.route) {
-            ProjectsScreen()
+            ProjectsScreen(hiltViewModel<ProjectsViewModel>())
         }
     }
 }

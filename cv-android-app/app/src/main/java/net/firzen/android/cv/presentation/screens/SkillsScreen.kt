@@ -18,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -205,20 +207,42 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                 }
             }
         } else {
-            // Collapsed: show horizontal scrollable preview of chips
-            Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                items.forEach { item ->
-                    SuggestionChip(
-                        onClick = { expanded = true },
-                        label = {
-                            Text(text = item, style = MaterialTheme.typography.bodySmall)
-                        },
-                        shape = RoundedCornerShape(8.dp)
-                    )
+            // Collapsed: show horizontal scrollable preview of chips with fade-out gradient
+            val surfaceColor = MaterialTheme.colorScheme.surface
+            Box {
+                Row(
+                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    items.forEach { item ->
+                        SuggestionChip(
+                            onClick = { expanded = true },
+                            label = {
+                                Text(text = item, style = MaterialTheme.typography.bodySmall)
+                            },
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                    }
                 }
+
+                // Gradient overlay on the right edge to fade out overflowing chips
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .width(48.dp)
+                        // TODO this is ugly hack to make the gradient work.
+                        //  Can you fill the whole height correctly?
+                        .height(20.dp)
+                        .fillMaxHeight()
+                        .background(
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(
+                                    Color.Transparent,
+                                    surfaceColor
+                                )
+                            )
+                        )
+                )
             }
         }
     }

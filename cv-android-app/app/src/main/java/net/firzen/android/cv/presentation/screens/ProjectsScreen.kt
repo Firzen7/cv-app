@@ -1,4 +1,4 @@
-package net.firzen.android.cv.presentation.skills
+package net.firzen.android.cv.presentation.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,13 +10,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun SkillsScreen() {
+fun ProjectsScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Skills",
+            // TODO move hardcoded string to strings.xml
+            text = "Projects",
             textAlign = TextAlign.Center
         )
     }
@@ -24,6 +25,6 @@ fun SkillsScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun SkillsScreenPreview() {
-    SkillsScreen()
+fun ProjectsScreenPreview() {
+    ProjectsScreen()
 }

@@ -26,6 +26,7 @@ sealed class Screen(
 ) {
     // `data object` is Kotlin's way of creating a singleton with a meaningful toString()
     // and equals()/hashCode() — perfect for representing fixed navigation destinations
+    // TODO put hardcoded strings into string.xml - remember that we will be adding 2nd language
     data object Profile : Screen("profile", "Profile", Icons.Default.Person)
     data object Experience : Screen("experience", "Experience", Icons.Default.Work)
     data object Skills : Screen("skills", "Skills", Icons.Default.Code)

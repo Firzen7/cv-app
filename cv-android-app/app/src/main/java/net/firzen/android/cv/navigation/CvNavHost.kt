@@ -6,11 +6,11 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import net.firzen.android.cv.presentation.experience.ExperienceScreen
-import net.firzen.android.cv.presentation.profile.ProfileScreen
-import net.firzen.android.cv.presentation.profile.ProfileViewModel
-import net.firzen.android.cv.presentation.projects.ProjectsScreen
-import net.firzen.android.cv.presentation.skills.SkillsScreen
+import net.firzen.android.cv.presentation.screens.ExperienceScreen
+import net.firzen.android.cv.presentation.screens.ProfileScreen
+import net.firzen.android.cv.presentation.models.ProfileViewModel
+import net.firzen.android.cv.presentation.screens.ProjectsScreen
+import net.firzen.android.cv.presentation.screens.SkillsScreen
 
 /**
  * Navigation host that defines all navigation destinations and handles screen transitions.

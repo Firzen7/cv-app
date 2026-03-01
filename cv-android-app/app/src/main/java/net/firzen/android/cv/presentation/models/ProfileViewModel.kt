@@ -1,4 +1,4 @@
-package net.firzen.android.cv.presentation.profile
+package net.firzen.android.cv.presentation.models
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

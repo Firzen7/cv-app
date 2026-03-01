@@ -26,4 +26,7 @@
     <string name="github_profile">Profile</string>
     <!-- Format: "Work (username)" -->
     <string name="github_label_format">%1$s (%2$s)</string>
+
+    <!-- Experience screen -->
+    <string name="experience_date_present">present</string>
 </resources>

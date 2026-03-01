@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">cv-android-app</string>
+
+    <!-- Bottom Navigation tab titles -->
+    <string name="tab_profile">Profile</string>
+    <string name="tab_experience">Experience</string>
+    <string name="tab_skills">Skills</string>
+    <string name="tab_projects">Projects</string>
+
+    <!-- Profile screen section titles -->
+    <string name="section_about">About</string>
+    <string name="section_languages">Languages</string>
+    <string name="section_personality">Personality</string>
+    <string name="section_interests">Interests</string>
+
+    <!-- Contact button content descriptions (accessibility) -->
+    <string name="cd_call">Call</string>
+    <string name="cd_email">Email</string>
+    <string name="cd_linkedin">LinkedIn</string>
+    <string name="cd_github">GitHub</string>
+    <string name="cd_stackoverflow">StackOverflow</string>
+
+    <!-- GitHub dropdown menu labels -->
+    <string name="github_work">Work</string>
+    <string name="github_personal">Personal</string>
+    <string name="github_profile">Profile</string>
+    <!-- Format: "Work (username)" -->
+    <string name="github_label_format">%1$s (%2$s)</string>
 </resources>

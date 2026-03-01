@@ -23,9 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import net.firzen.android.cv.R
 import net.firzen.android.cv.data.local.entities.LanguageEntity
 import net.firzen.android.cv.presentation.models.ProfileViewModel
 
@@ -74,8 +76,7 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
         Spacer(modifier = Modifier.height(16.dp))
 
         // -- About Card -------------------------------------------------------
-        // TODO move hardcoded string to strings.xml
-        SectionCard(title = "About") {
+        SectionCard(title = stringResource(R.string.section_about)) {
             InfoRow(
                 icon = Icons.Outlined.CalendarToday,
                 text = profile.dateOfBirth
@@ -88,8 +89,7 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
         }
 
         // -- Languages Card ---------------------------------------------------
-        // TODO move hardcoded string to strings.xml
-        SectionCard(title = "Languages") {
+        SectionCard(title = stringResource(R.string.section_languages)) {
             state.languages.forEach { language ->
                 LanguageRow(language)
                 if (language != state.languages.last()) {
@@ -99,14 +99,12 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
         }
 
         // -- Personality Card -------------------------------------------------
-        // TODO move hardcoded string to strings.xml
-        SectionCard(title = "Personality") {
+        SectionCard(title = stringResource(R.string.section_personality)) {
             ChipsRow(items = state.personalityTraits.map { it.trait })
         }
 
         // -- Interests Card ---------------------------------------------------
-        // TODO move hardcoded string to strings.xml
-        SectionCard(title = "Interests") {
+        SectionCard(title = stringResource(R.string.section_interests)) {
             ChipsRow(items = state.interests.map { it.name })
         }
     }
@@ -173,8 +171,7 @@ private fun ContactIconsRow(phone: String,
         // Phone contact button
         ContactIconButton(
             icon = Icons.Default.Phone,
-            // TODO move hardcoded string to strings.xml
-            contentDescription = "Call",
+            contentDescription = stringResource(R.string.cd_call),
             onClick = {
                 context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone")))
             }
@@ -183,8 +180,7 @@ private fun ContactIconsRow(phone: String,
         // Email contact button
         ContactIconButton(
             icon = Icons.Default.Email,
-            // TODO move hardcoded string to strings.xml
-            contentDescription = "Email",
+            contentDescription = stringResource(R.string.cd_email),
             onClick = {
                 context.startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$email")))
             }
@@ -193,8 +189,7 @@ private fun ContactIconsRow(phone: String,
         // Linkedin button
         ContactIconButton(
             icon = Icons.Default.Person,
-            // TODO move hardcoded string to strings.xml
-            contentDescription = "LinkedIn",
+            contentDescription = stringResource(R.string.cd_linkedin),
             onClick = {
                 context.startActivity(
                     Intent(Intent.ACTION_VIEW,
@@ -212,8 +207,7 @@ private fun ContactIconsRow(phone: String,
         // Stackoverflow profile button
         ContactIconButton(
             icon = Icons.Default.QuestionAnswer,
-            // TODO move hardcoded string to strings.xml
-            contentDescription = "StackOverflow",
+            contentDescription = stringResource(R.string.cd_stackoverflow),
             onClick = {
                 context.startActivity(
                     Intent(Intent.ACTION_VIEW,
@@ -250,14 +244,15 @@ private fun GitHubDropdownButton(githubUsernames: String, context: Context) {
     val usernames = githubUsernames.split(",").map { it.trim() }
 
     // Labels for each GitHub profile
-    // TODO move hardcoded strings to strings.xml
-    val labels = listOf("Work", "Personal")
+    val labels = listOf(
+        stringResource(R.string.github_work),
+        stringResource(R.string.github_personal)
+    )
 
     Box {
         ContactIconButton(
             icon = Icons.Default.Code,
-            // TODO move hardcoded string to strings.xml
-            contentDescription = "GitHub",
+            contentDescription = stringResource(R.string.cd_github),
             onClick = { expanded = true }
         )
 
@@ -266,10 +261,11 @@ private fun GitHubDropdownButton(githubUsernames: String, context: Context) {
             onDismissRequest = { expanded = false }
         ) {
             usernames.forEachIndexed { index, username ->
+                val label = labels.getOrElse(index) { stringResource(R.string.github_profile) }
+
                 DropdownMenuItem(
                     text = {
-                        // TODO move hardcoded string to strings.xml
-                        Text("${labels.getOrElse(index) { "Profile" }} ($username)")
+                        Text(stringResource(R.string.github_label_format, label, username))
                     },
                     onClick = {
                         expanded = false

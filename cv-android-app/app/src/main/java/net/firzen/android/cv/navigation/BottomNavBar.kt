@@ -6,6 +6,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -30,6 +31,8 @@ fun BottomNavBar(navController: NavController) {
 
     NavigationBar {
         Screen.bottomNavItems.forEach { screen ->
+            val title = stringResource(screen.titleResId)
+
             NavigationBarItem(
                 // Highlights this tab when its route matches the current destination
                 selected = currentRoute == screen.route,
@@ -52,10 +55,10 @@ fun BottomNavBar(navController: NavController) {
                 icon = {
                     Icon(
                         imageVector = screen.icon,
-                        contentDescription = screen.title
+                        contentDescription = title
                     )
                 },
-                label = { Text(screen.title) }
+                label = { Text(title) }
             )
         }
     }

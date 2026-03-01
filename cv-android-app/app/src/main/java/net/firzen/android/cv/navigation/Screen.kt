@@ -1,11 +1,13 @@
 package net.firzen.android.cv.navigation
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Rocket
 import androidx.compose.material.icons.filled.Work
 import androidx.compose.ui.graphics.vector.ImageVector
+import net.firzen.android.cv.R
 
 /**
  * Defines all screens accessible via bottom navigation.
@@ -16,21 +18,20 @@ import androidx.compose.ui.graphics.vector.ImageVector
  *
  * Each screen has:
  *  - [route]: unique string identifier used by the Navigation component to identify the destination
- *  - [title]: human-readable label shown in the bottom navigation bar
+ *  - [titleResId]: string resource ID for the tab label (supports i18n)
  *  - [icon]: Material icon displayed in the bottom navigation bar
  */
 sealed class Screen(
     val route: String,
-    val title: String,
+    @StringRes val titleResId: Int,
     val icon: ImageVector
 ) {
     // `data object` is Kotlin's way of creating a singleton with a meaningful toString()
-    // and equals()/hashCode() — perfect for representing fixed navigation destinations
-    // TODO put hardcoded strings into string.xml - remember that we will be adding 2nd language
-    data object Profile : Screen("profile", "Profile", Icons.Default.Person)
-    data object Experience : Screen("experience", "Experience", Icons.Default.Work)
-    data object Skills : Screen("skills", "Skills", Icons.Default.Code)
-    data object Projects : Screen("projects", "Projects", Icons.Default.Rocket)
+    // and equals()/hashCode() -- perfect for representing fixed navigation destinations
+    data object Profile : Screen("profile", R.string.tab_profile, Icons.Default.Person)
+    data object Experience : Screen("experience", R.string.tab_experience, Icons.Default.Work)
+    data object Skills : Screen("skills", R.string.tab_skills, Icons.Default.Code)
+    data object Projects : Screen("projects", R.string.tab_projects, Icons.Default.Rocket)
 
     companion object {
         /** All screens that should appear as tabs in the bottom navigation bar. */

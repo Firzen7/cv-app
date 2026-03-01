@@ -12,9 +12,9 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import net.firzen.android.cv.data.local.CvDao
 import net.firzen.android.cv.data.local.CvDatabase
 import net.firzen.android.cv.data.local.CvDataSeeder
+import net.firzen.android.cv.data.local.dao.*
 import timber.log.Timber
 import javax.inject.Singleton
 
@@ -48,7 +48,7 @@ object DatabaseModule {
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
-                    Timber.i("Database created — seeding CV data...")
+                    Timber.i("Database created - seeding CV data...")
 
                     // We need to seed data after the database is created.
                     // Since Room DAO operations are suspend functions, we launch a coroutine.
@@ -59,7 +59,7 @@ object DatabaseModule {
                             "cv_database"
                         ).build()
 
-                        CvDataSeeder.seedAll(database.dao)
+                        CvDataSeeder.seedAll(database)
                         Timber.i("Database seeding complete!")
                     }
                 }
@@ -67,13 +67,40 @@ object DatabaseModule {
             .build()
     }
 
-    /**
-     * Provides the DAO from the database.
-     * Any class that needs the DAO can simply declare it as a constructor parameter
-     * and Hilt will inject it automatically.
-     */
+    // -- Individual DAO providers ---------------------------------------------
+    // Each DAO is provided from the database so Hilt can inject them into
+    // Repository and tests.
+
     @Provides
-    fun provideDao(database: CvDatabase): CvDao {
-        return database.dao
-    }
+    fun provideProfileDao(db: CvDatabase): ProfileDao = db.profileDao
+
+    @Provides
+    fun provideWorkExperienceDao(db: CvDatabase): WorkExperienceDao = db.workExperienceDao
+
+    @Provides
+    fun provideProjectDao(db: CvDatabase): ProjectDao = db.projectDao
+
+    @Provides
+    fun provideProjectMilestoneDao(db: CvDatabase): ProjectMilestoneDao = db.projectMilestoneDao
+
+    @Provides
+    fun provideEducationDao(db: CvDatabase): EducationDao = db.educationDao
+
+    @Provides
+    fun provideProgrammingLanguageDao(db: CvDatabase): ProgrammingLanguageDao = db.programmingLanguageDao
+
+    @Provides
+    fun provideTechnologyDao(db: CvDatabase): TechnologyDao = db.technologyDao
+
+    @Provides
+    fun provideOtherSkillDao(db: CvDatabase): OtherSkillDao = db.otherSkillDao
+
+    @Provides
+    fun provideLanguageDao(db: CvDatabase): LanguageDao = db.languageDao
+
+    @Provides
+    fun providePersonalityTraitDao(db: CvDatabase): PersonalityTraitDao = db.personalityTraitDao
+
+    @Provides
+    fun provideInterestDao(db: CvDatabase): InterestDao = db.interestDao
 }

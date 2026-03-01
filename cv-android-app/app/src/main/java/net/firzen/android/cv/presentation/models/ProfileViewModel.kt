@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import net.firzen.android.cv.data.local.CvDao
 import net.firzen.android.cv.data.local.entities.*
+import net.firzen.android.cv.data.repository.CvRepository
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -21,10 +21,10 @@ data class ProfileScreenState(
     val error: String? = null
 )
 
-// ViewModel loads profile data from Room DB and exposes it as Compose state.
-// @HiltViewModel tells Hilt to inject the DAO via constructor.
+// ViewModel loads profile data via Repository and exposes it as Compose state.
+// @HiltViewModel tells Hilt to inject the Repository via constructor.
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val dao: CvDao) : ViewModel() {
+class ProfileViewModel @Inject constructor(private val repository: CvRepository) : ViewModel() {
 
     private val _state = mutableStateOf(ProfileScreenState())
     val state: State<ProfileScreenState> get() = _state
@@ -36,10 +36,10 @@ class ProfileViewModel @Inject constructor(private val dao: CvDao) : ViewModel()
     private fun loadProfileData() {
         viewModelScope.launch {
             try {
-                val profile = dao.getProfile()
-                val languages = dao.getAllLanguages()
-                val traits = dao.getAllPersonalityTraits()
-                val interests = dao.getAllInterests()
+                val profile = repository.getProfile()
+                val languages = repository.getAllLanguages()
+                val traits = repository.getAllPersonalityTraits()
+                val interests = repository.getAllInterests()
 
                 _state.value = ProfileScreenState(
                     profile = profile,

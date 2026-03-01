@@ -5,9 +5,9 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
-import net.firzen.android.cv.data.local.CvDao
 import net.firzen.android.cv.data.local.CvDataSeeder
 import net.firzen.android.cv.data.local.CvDatabase
+import net.firzen.android.cv.data.local.dao.*
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -33,7 +33,17 @@ import timber.log.Timber
 class CvDatabaseTest {
 
     private lateinit var database: CvDatabase
-    private lateinit var dao: CvDao
+    private lateinit var profileDao: ProfileDao
+    private lateinit var workExperienceDao: WorkExperienceDao
+    private lateinit var projectDao: ProjectDao
+    private lateinit var projectMilestoneDao: ProjectMilestoneDao
+    private lateinit var educationDao: EducationDao
+    private lateinit var programmingLanguageDao: ProgrammingLanguageDao
+    private lateinit var technologyDao: TechnologyDao
+    private lateinit var otherSkillDao: OtherSkillDao
+    private lateinit var languageDao: LanguageDao
+    private lateinit var personalityTraitDao: PersonalityTraitDao
+    private lateinit var interestDao: InterestDao
 
     @Before
     fun setup() {
@@ -47,11 +57,23 @@ class CvDatabaseTest {
         database = Room.inMemoryDatabaseBuilder(context, CvDatabase::class.java)
             .allowMainThreadQueries() // OK for tests, never do this in production
             .build()
-        dao = database.dao
+
+        // Initialize individual DAOs
+        profileDao = database.profileDao
+        workExperienceDao = database.workExperienceDao
+        projectDao = database.projectDao
+        projectMilestoneDao = database.projectMilestoneDao
+        educationDao = database.educationDao
+        programmingLanguageDao = database.programmingLanguageDao
+        technologyDao = database.technologyDao
+        otherSkillDao = database.otherSkillDao
+        languageDao = database.languageDao
+        personalityTraitDao = database.personalityTraitDao
+        interestDao = database.interestDao
 
         // Seed the database with CV data
         runBlocking {
-            CvDataSeeder.seedAll(dao)
+            CvDataSeeder.seedAll(database)
         }
     }
 
@@ -64,7 +86,7 @@ class CvDatabaseTest {
 
     @Test
     fun profileIsSeeded() = runBlocking {
-        val profile = dao.getProfile()
+        val profile = profileDao.get()
 
         assertNotNull("Profile should not be null", profile)
         Timber.i("=== PROFILE ===")
@@ -86,7 +108,7 @@ class CvDatabaseTest {
 
     @Test
     fun workExperiencesAreSeeded() = runBlocking {
-        val experiences = dao.getAllWorkExperiences()
+        val experiences = workExperienceDao.getAll()
 
         Timber.i("=== WORK EXPERIENCE (${experiences.size} entries) ===")
         experiences.forEach { exp ->
@@ -103,7 +125,7 @@ class CvDatabaseTest {
 
     @Test
     fun projectsAreSeeded() = runBlocking {
-        val projects = dao.getAllProjects()
+        val projects = projectDao.getAll()
 
         Timber.i("=== PROJECTS (${projects.size} entries) ===")
         projects.forEach { project ->
@@ -117,12 +139,12 @@ class CvDatabaseTest {
 
     @Test
     fun projectMilestonesAreSeeded() = runBlocking {
-        val allMilestones = dao.getAllMilestones()
-        val projects = dao.getAllProjects()
+        val allMilestones = projectMilestoneDao.getAll()
+        val projects = projectDao.getAll()
 
         Timber.i("=== PROJECT MILESTONES (${allMilestones.size} total) ===")
         projects.forEach { project ->
-            val milestones = dao.getMilestonesForProject(project.id)
+            val milestones = projectMilestoneDao.getForProject(project.id)
             Timber.i("--- ${project.name} (${milestones.size} milestones) ---")
             milestones.forEach { ms ->
                 Timber.i("  ${ms.year}: ${ms.title} - ${ms.description.take(50)}...")
@@ -131,7 +153,7 @@ class CvDatabaseTest {
 
         assertTrue("Should have milestones", allMilestones.isNotEmpty())
         // WattsUp should have 6 milestones
-        val wattsUpMilestones = dao.getMilestonesForProject(1)
+        val wattsUpMilestones = projectMilestoneDao.getForProject(1)
         assertEquals("WattsUp should have 6 milestones", 6, wattsUpMilestones.size)
     }
 
@@ -139,7 +161,7 @@ class CvDatabaseTest {
 
     @Test
     fun educationIsSeeded() = runBlocking {
-        val education = dao.getAllEducation()
+        val education = educationDao.getAll()
 
         Timber.i("=== EDUCATION (${education.size} entries) ===")
         education.forEach { edu ->
@@ -153,7 +175,7 @@ class CvDatabaseTest {
 
     @Test
     fun programmingLanguagesAreSeeded() = runBlocking {
-        val languages = dao.getAllProgrammingLanguages()
+        val languages = programmingLanguageDao.getAll()
 
         Timber.i("=== PROGRAMMING LANGUAGES (${languages.size} entries) ===")
         languages.forEach { lang ->
@@ -169,12 +191,12 @@ class CvDatabaseTest {
 
     @Test
     fun technologiesAreSeeded() = runBlocking {
-        val categories = dao.getAllTechnologyCategories()
-        val allTechs = dao.getAllTechnologies()
+        val categories = technologyDao.getAllCategories()
+        val allTechs = technologyDao.getAll()
 
         Timber.i("=== ANDROID TECHNOLOGIES (${categories.size} categories, ${allTechs.size} total) ===")
         categories.forEach { cat ->
-            val techs = dao.getTechnologiesForCategory(cat.id)
+            val techs = technologyDao.getForCategory(cat.id)
             Timber.i("${cat.categoryName}: ${techs.joinToString(", ") { it.name }}")
         }
 
@@ -186,12 +208,12 @@ class CvDatabaseTest {
 
     @Test
     fun otherSkillsAreSeeded() = runBlocking {
-        val categories = dao.getAllOtherSkillCategories()
-        val allSkills = dao.getAllOtherSkills()
+        val categories = otherSkillDao.getAllCategories()
+        val allSkills = otherSkillDao.getAll()
 
         Timber.i("=== OTHER SKILLS (${categories.size} categories, ${allSkills.size} total) ===")
         categories.forEach { cat ->
-            val skills = dao.getOtherSkillsForCategory(cat.id)
+            val skills = otherSkillDao.getForCategory(cat.id)
             Timber.i("${cat.categoryName}: ${skills.joinToString(", ") { it.name }}")
         }
 
@@ -203,7 +225,7 @@ class CvDatabaseTest {
 
     @Test
     fun languagesAreSeeded() = runBlocking {
-        val languages = dao.getAllLanguages()
+        val languages = languageDao.getAll()
 
         Timber.i("=== SPOKEN LANGUAGES (${languages.size} entries) ===")
         languages.forEach { lang ->
@@ -217,7 +239,7 @@ class CvDatabaseTest {
 
     @Test
     fun personalityTraitsAreSeeded() = runBlocking {
-        val traits = dao.getAllPersonalityTraits()
+        val traits = personalityTraitDao.getAll()
 
         Timber.i("=== PERSONALITY TRAITS (${traits.size} entries) ===")
         traits.forEach { Timber.i("* ${it.trait}") }
@@ -229,7 +251,7 @@ class CvDatabaseTest {
 
     @Test
     fun interestsAreSeeded() = runBlocking {
-        val interests = dao.getAllInterests()
+        val interests = interestDao.getAll()
 
         Timber.i("=== INTERESTS (${interests.size} entries) ===")
         interests.forEach { Timber.i("* ${it.name}") }
@@ -245,33 +267,33 @@ class CvDatabaseTest {
         Timber.i("║     CV DATABASE — FULL SUMMARY       ║")
         Timber.i("╠══════════════════════════════════════╣")
         Timber.i("║ Profile:                1 record     ║")
-        Timber.i("║ Work Experiences:       ${dao.getAllWorkExperiences().size} records    ║")
-        Timber.i("║ Projects:               ${dao.getAllProjects().size} records    ║")
-        Timber.i("║ Project Milestones:    ${dao.getAllMilestones().size} records   ║")
-        Timber.i("║ Education:              ${dao.getAllEducation().size} records    ║")
-        Timber.i("║ Programming Languages:  ${dao.getAllProgrammingLanguages().size} records    ║")
-        Timber.i("║ Tech Categories:       ${dao.getAllTechnologyCategories().size} records   ║")
-        Timber.i("║ Technologies:          ${dao.getAllTechnologies().size} records   ║")
-        Timber.i("║ Skill Categories:       ${dao.getAllOtherSkillCategories().size} records    ║")
-        Timber.i("║ Other Skills:          ${dao.getAllOtherSkills().size} records   ║")
-        Timber.i("║ Languages:              ${dao.getAllLanguages().size} records    ║")
-        Timber.i("║ Personality Traits:     ${dao.getAllPersonalityTraits().size} records    ║")
-        Timber.i("║ Interests:              ${dao.getAllInterests().size} records    ║")
+        Timber.i("║ Work Experiences:       ${workExperienceDao.getAll().size} records    ║")
+        Timber.i("║ Projects:               ${projectDao.getAll().size} records    ║")
+        Timber.i("║ Project Milestones:    ${projectMilestoneDao.getAll().size} records   ║")
+        Timber.i("║ Education:              ${educationDao.getAll().size} records    ║")
+        Timber.i("║ Programming Languages:  ${programmingLanguageDao.getAll().size} records    ║")
+        Timber.i("║ Tech Categories:       ${technologyDao.getAllCategories().size} records   ║")
+        Timber.i("║ Technologies:          ${technologyDao.getAll().size} records   ║")
+        Timber.i("║ Skill Categories:       ${otherSkillDao.getAllCategories().size} records    ║")
+        Timber.i("║ Other Skills:          ${otherSkillDao.getAll().size} records   ║")
+        Timber.i("║ Languages:              ${languageDao.getAll().size} records    ║")
+        Timber.i("║ Personality Traits:     ${personalityTraitDao.getAll().size} records    ║")
+        Timber.i("║ Interests:              ${interestDao.getAll().size} records    ║")
         Timber.i("╚══════════════════════════════════════╝")
 
         // Basic sanity checks
-        assertNotNull(dao.getProfile())
-        assertTrue(dao.getAllWorkExperiences().isNotEmpty())
-        assertTrue(dao.getAllProjects().isNotEmpty())
-        assertTrue(dao.getAllMilestones().isNotEmpty())
-        assertTrue(dao.getAllEducation().isNotEmpty())
-        assertTrue(dao.getAllProgrammingLanguages().isNotEmpty())
-        assertTrue(dao.getAllTechnologyCategories().isNotEmpty())
-        assertTrue(dao.getAllTechnologies().isNotEmpty())
-        assertTrue(dao.getAllOtherSkillCategories().isNotEmpty())
-        assertTrue(dao.getAllOtherSkills().isNotEmpty())
-        assertTrue(dao.getAllLanguages().isNotEmpty())
-        assertTrue(dao.getAllPersonalityTraits().isNotEmpty())
-        assertTrue(dao.getAllInterests().isNotEmpty())
+        assertNotNull(profileDao.get())
+        assertTrue(workExperienceDao.getAll().isNotEmpty())
+        assertTrue(projectDao.getAll().isNotEmpty())
+        assertTrue(projectMilestoneDao.getAll().isNotEmpty())
+        assertTrue(educationDao.getAll().isNotEmpty())
+        assertTrue(programmingLanguageDao.getAll().isNotEmpty())
+        assertTrue(technologyDao.getAllCategories().isNotEmpty())
+        assertTrue(technologyDao.getAll().isNotEmpty())
+        assertTrue(otherSkillDao.getAllCategories().isNotEmpty())
+        assertTrue(otherSkillDao.getAll().isNotEmpty())
+        assertTrue(languageDao.getAll().isNotEmpty())
+        assertTrue(personalityTraitDao.getAll().isNotEmpty())
+        assertTrue(interestDao.getAll().isNotEmpty())
     }
 }

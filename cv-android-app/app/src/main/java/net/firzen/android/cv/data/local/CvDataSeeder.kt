@@ -13,45 +13,44 @@ import timber.log.Timber
 object CvDataSeeder {
 
     /**
-     * Inserts all CV data into the database via the DAO.
+     * Inserts all CV data into the database via individual DAOs.
      * Called from [DatabaseModule]'s RoomDatabase.Callback when the database is first created.
      */
-    suspend fun seedAll(dao: CvDao) {
+    suspend fun seedAll(database: CvDatabase) {
         Timber.i("Seeding profile...")
-        dao.insertProfile(profile())
+        database.profileDao.insert(profile())
 
         Timber.i("Seeding work experiences...")
-        dao.insertWorkExperiences(workExperiences())
+        database.workExperienceDao.insertAll(workExperiences())
 
         Timber.i("Seeding projects...")
-        val projects = projects()
-        dao.insertProjects(projects)
+        database.projectDao.insertAll(projects())
 
         Timber.i("Seeding project milestones...")
-        dao.insertProjectMilestones(projectMilestones())
+        database.projectMilestoneDao.insertAll(projectMilestones())
 
         Timber.i("Seeding education...")
-        dao.insertEducation(education())
+        database.educationDao.insertAll(education())
 
         Timber.i("Seeding programming languages...")
-        dao.insertProgrammingLanguages(programmingLanguages())
+        database.programmingLanguageDao.insertAll(programmingLanguages())
 
         Timber.i("Seeding technology categories and technologies...")
-        dao.insertTechnologyCategories(technologyCategories())
-        dao.insertTechnologies(technologies())
+        database.technologyDao.insertCategories(technologyCategories())
+        database.technologyDao.insertTechnologies(technologies())
 
         Timber.i("Seeding other skill categories and skills...")
-        dao.insertOtherSkillCategories(otherSkillCategories())
-        dao.insertOtherSkills(otherSkills())
+        database.otherSkillDao.insertCategories(otherSkillCategories())
+        database.otherSkillDao.insertSkills(otherSkills())
 
         Timber.i("Seeding languages...")
-        dao.insertLanguages(languages())
+        database.languageDao.insertAll(languages())
 
         Timber.i("Seeding personality traits...")
-        dao.insertPersonalityTraits(personalityTraits())
+        database.personalityTraitDao.insertAll(personalityTraits())
 
         Timber.i("Seeding interests...")
-        dao.insertInterests(interests())
+        database.interestDao.insertAll(interests())
     }
 
     // -- Profile --------------------------------------------------------------
@@ -210,7 +209,7 @@ object CvDataSeeder {
         ),
         // Sanctuary First milestones (projectId = 2)
         ProjectMilestoneEntity(
-            projectId = 2, year = "2020–2021",
+            projectId = 2, year = "2020-2021",
             title = "Initial Android version",
             description = "Development of the initial Android version based on the graphical design.",
             ordinal = 1
@@ -261,7 +260,7 @@ object CvDataSeeder {
             description = "Notifications using Pusher Beams with dynamic Room DB updates on-demand.",
             ordinal = 3
         ),
-        // Sanctus Tools (projectId = 4) — library, no timeline milestones
+        // Sanctus Tools (projectId = 4) -- library, no timeline milestones
         // Alexa skill milestones (projectId = 5)
         ProjectMilestoneEntity(
             projectId = 5, year = "2019",

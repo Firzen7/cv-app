@@ -2,6 +2,7 @@ package net.firzen.android.cv.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import net.firzen.android.cv.data.local.dao.*
 import net.firzen.android.cv.data.local.entities.*
 
 /**
@@ -34,6 +35,16 @@ import net.firzen.android.cv.data.local.entities.*
     exportSchema = false
 )
 abstract class CvDatabase : RoomDatabase() {
-    /** Room generates the implementation of this DAO at compile time. */
-    abstract val dao: CvDao
+    /** Room generates the implementation of each DAO at compile time. */
+    abstract val profileDao: ProfileDao
+    abstract val workExperienceDao: WorkExperienceDao
+    abstract val projectDao: ProjectDao
+    abstract val projectMilestoneDao: ProjectMilestoneDao
+    abstract val educationDao: EducationDao
+    abstract val programmingLanguageDao: ProgrammingLanguageDao
+    abstract val technologyDao: TechnologyDao
+    abstract val otherSkillDao: OtherSkillDao
+    abstract val languageDao: LanguageDao
+    abstract val personalityTraitDao: PersonalityTraitDao
+    abstract val interestDao: InterestDao
 }

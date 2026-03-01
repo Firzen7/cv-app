@@ -2,11 +2,13 @@ package net.firzen.android.cv.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import net.firzen.android.cv.presentation.experience.ExperienceScreen
 import net.firzen.android.cv.presentation.profile.ProfileScreen
+import net.firzen.android.cv.presentation.profile.ProfileViewModel
 import net.firzen.android.cv.presentation.projects.ProjectsScreen
 import net.firzen.android.cv.presentation.skills.SkillsScreen
 
@@ -34,7 +36,7 @@ fun CvNavHost(
         // Each `composable()` block registers a route and the screen to display for it.
         // The route strings must match those defined in the Screen sealed class.
         composable(Screen.Profile.route) {
-            ProfileScreen()
+            ProfileScreen(hiltViewModel<ProfileViewModel>())
         }
         composable(Screen.Experience.route) {
             ExperienceScreen()

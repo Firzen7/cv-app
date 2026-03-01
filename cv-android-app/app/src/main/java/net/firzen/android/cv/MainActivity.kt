@@ -13,7 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.firzen.android.cv.navigation.BottomNavBar
 import net.firzen.android.cv.navigation.CvNavHost
-import net.firzen.android.cv.ui.theme.CvandroidappTheme
+import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
 /**
  * The single Activity in this app (single-activity architecture).
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             // CvandroidappTheme wraps the entire UI in Material 3 theming,
             // providing colors, typography, and shapes to all child composables.
-            CvandroidappTheme {
+            CvAndroidAppTheme {
                 MainScreen()
             }
         }

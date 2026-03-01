@@ -154,19 +154,25 @@ private fun SectionCard(title: String, content: @Composable ColumnScope.() -> Un
 @Composable
 private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
     var expanded by remember { mutableStateOf(false) }
+    // Whether the chips overflow the available width (null = not yet measured)
+    var overflows by remember { mutableStateOf<Boolean?>(null) }
     val chevronRotation by animateFloatAsState(
         targetValue = if (expanded) 180f else 0f,
         label = "chevron"
     )
+    val isCollapsible = overflows ?: false
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .animateContentSize()
-            .clickable { expanded = !expanded }
+            .then(
+                if (isCollapsible) Modifier.clickable { expanded = !expanded }
+                else Modifier
+            )
             .padding(vertical = 4.dp)
     ) {
-        // Header row: category name + chevron
+        // Header row: category name + chevron (chevron only if collapsible)
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
@@ -178,14 +184,16 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.weight(1f)
             )
-            Icon(
-                imageVector = Icons.Default.ExpandMore,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier
-                    .size(20.dp)
-                    .rotate(chevronRotation)
-            )
+            if (isCollapsible) {
+                Icon(
+                    imageVector = Icons.Default.ExpandMore,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier
+                        .size(20.dp)
+                        .rotate(chevronRotation)
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(6.dp))
@@ -207,16 +215,24 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                 }
             }
         } else {
-            // Collapsed: show horizontal scrollable preview of chips with fade-out gradient
+            // Collapsed: measure overflow, then show gradient only if needed
             val surfaceColor = MaterialTheme.colorScheme.surface
+            val scrollState = rememberScrollState()
+
+            // Detect overflow after composition
+            LaunchedEffect(scrollState.maxValue) {
+                overflows = scrollState.maxValue > 0
+            }
+
             Box(modifier = Modifier.fillMaxSize()) {
                 Row(
-                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                    modifier = Modifier
+                        .horizontalScroll(scrollState),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     items.forEach { item ->
                         SuggestionChip(
-                            onClick = { expanded = true },
+                            onClick = { if (isCollapsible) expanded = true },
                             label = {
                                 Text(text = item, style = MaterialTheme.typography.bodySmall)
                             },
@@ -225,19 +241,21 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                     }
                 }
 
-                // Gradient overlay on the right edge to fade out overflowing chips
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(
-                            brush = Brush.horizontalGradient(
-                                colorStops = arrayOf(
-                                    0.85f to Color.Transparent,
-                                    1f to surfaceColor
+                // Gradient overlay only when items overflow
+                if (isCollapsible) {
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize()
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colorStops = arrayOf(
+                                        0.85f to Color.Transparent,
+                                        1f to surfaceColor
+                                    )
                                 )
                             )
-                        )
-                )
+                    )
+                }
             }
         }
     }

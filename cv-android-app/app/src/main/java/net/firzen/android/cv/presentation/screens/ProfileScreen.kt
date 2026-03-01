@@ -28,7 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.firzen.android.cv.R
-import net.firzen.android.cv.data.local.entities.LanguageEntity
+import net.firzen.android.cv.domain.model.Language
 import net.firzen.android.cv.presentation.models.ProfileViewModel
 
 @Composable
@@ -336,7 +336,7 @@ private fun InfoRow(icon: ImageVector, text: String) {
 // -- Language row with name, level, and optional note --------------------------
 
 @Composable
-private fun LanguageRow(language: LanguageEntity) {
+private fun LanguageRow(language: Language) {
     Column {
         Text(
             text = "${language.name} - ${language.level}",

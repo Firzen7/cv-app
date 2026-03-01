@@ -6,25 +6,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import net.firzen.android.cv.data.local.entities.*
-import net.firzen.android.cv.data.repository.CvRepository
+import net.firzen.android.cv.domain.GetProfileDataUseCase
+import net.firzen.android.cv.domain.model.*
 import timber.log.Timber
 import javax.inject.Inject
 
 // UI state holding all data needed by the Profile screen
 data class ProfileScreenState(
-    val profile: ProfileEntity? = null,
-    val languages: List<LanguageEntity> = emptyList(),
-    val personalityTraits: List<PersonalityTraitEntity> = emptyList(),
-    val interests: List<InterestEntity> = emptyList(),
+    val profile: Profile? = null,
+    val languages: List<Language> = emptyList(),
+    val personalityTraits: List<PersonalityTrait> = emptyList(),
+    val interests: List<Interest> = emptyList(),
     val isLoading: Boolean = true,
     val error: String? = null
 )
 
-// ViewModel loads profile data via Repository and exposes it as Compose state.
-// @HiltViewModel tells Hilt to inject the Repository via constructor.
+// ViewModel loads profile data via use case and exposes it as Compose state.
+// @HiltViewModel tells Hilt to inject the use case via constructor.
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val repository: CvRepository) : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val getProfileDataUseCase: GetProfileDataUseCase
+) : ViewModel() {
 
     private val _state = mutableStateOf(ProfileScreenState())
     val state: State<ProfileScreenState> get() = _state
@@ -36,20 +38,17 @@ class ProfileViewModel @Inject constructor(private val repository: CvRepository)
     private fun loadProfileData() {
         viewModelScope.launch {
             try {
-                val profile = repository.getProfile()
-                val languages = repository.getAllLanguages()
-                val traits = repository.getAllPersonalityTraits()
-                val interests = repository.getAllInterests()
+                val data = getProfileDataUseCase()
 
                 _state.value = ProfileScreenState(
-                    profile = profile,
-                    languages = languages,
-                    personalityTraits = traits,
-                    interests = interests,
+                    profile = data.profile,
+                    languages = data.languages,
+                    personalityTraits = data.personalityTraits,
+                    interests = data.interests,
                     isLoading = false
                 )
 
-                Timber.i("Profile data loaded: ${profile?.name}")
+                Timber.i("Profile data loaded: ${data.profile?.name}")
             } catch (e: Exception) {
                 Timber.e(e, "Error loading profile data")
                 _state.value = _state.value.copy(

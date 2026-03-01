@@ -209,7 +209,7 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
         } else {
             // Collapsed: show horizontal scrollable preview of chips with fade-out gradient
             val surfaceColor = MaterialTheme.colorScheme.surface
-            Box {
+            Box(modifier = Modifier.fillMaxSize()) {
                 Row(
                     modifier = Modifier.horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -228,17 +228,12 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                 // Gradient overlay on the right edge to fade out overflowing chips
                 Box(
                     modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .width(48.dp)
-                        // TODO this is ugly hack to make the gradient work.
-                        //  Can you fill the whole height correctly?
-                        .height(20.dp)
-                        .fillMaxHeight()
+                        .matchParentSize()
                         .background(
                             brush = Brush.horizontalGradient(
-                                colors = listOf(
-                                    Color.Transparent,
-                                    surfaceColor
+                                colorStops = arrayOf(
+                                    0.85f to Color.Transparent,
+                                    1f to surfaceColor
                                 )
                             )
                         )

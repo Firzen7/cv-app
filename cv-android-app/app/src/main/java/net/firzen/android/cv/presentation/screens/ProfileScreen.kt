@@ -25,15 +25,24 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.firzen.android.cv.R
-import net.firzen.android.cv.domain.model.Language
+import net.firzen.android.cv.domain.model.*
+import net.firzen.android.cv.presentation.models.ProfileScreenState
 import net.firzen.android.cv.presentation.models.ProfileViewModel
+import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
+// Entry point called from navigation — reads ViewModel state and delegates to content
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel) {
-    val state = viewModel.state.value
+    ProfileScreenContent(state = viewModel.state.value)
+}
+
+// Stateless content composable — can be used in @Preview with sample data
+@Composable
+fun ProfileScreenContent(state: ProfileScreenState) {
     val context = LocalContext.current
 
     if (state.isLoading) {
@@ -374,5 +383,47 @@ private fun ChipsRow(items: List<String>) {
                 shape = RoundedCornerShape(8.dp)
             )
         }
+    }
+}
+
+// -- Preview ------------------------------------------------------------------
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ProfileScreenPreview() {
+    CvAndroidAppTheme {
+        ProfileScreenContent(
+            state = ProfileScreenState(
+                profile = Profile(
+                    id = 1,
+                    name = "Bc. Ondřej Bockschneider",
+                    title = "Android Developer",
+                    dateOfBirth = "11.7.1991",
+                    address = "Komenského 316/13, 679 04 Adamov",
+                    phone = "+420 737 491 274",
+                    email = "obockschneider@gmail.com",
+                    linkedInUsername = "obockschneider",
+                    githubUsernames = "ondrejsml,Firzen7",
+                    stackOverflowId = "1735603/firzen"
+                ),
+                languages = listOf(
+                    Language(1, "Czech", "Native", null),
+                    Language(2, "English", "Intermediate (~C1)", "Fluent interaction with native speakers")
+                ),
+                personalityTraits = listOf(
+                    PersonalityTrait(1, "Independence"),
+                    PersonalityTrait(2, "Honesty"),
+                    PersonalityTrait(3, "Perseverance"),
+                    PersonalityTrait(4, "Passion to learn new things")
+                ),
+                interests = listOf(
+                    Interest(1, "Photography"),
+                    Interest(2, "Graphics"),
+                    Interest(3, "Artificial Intelligence"),
+                    Interest(4, "Travel")
+                ),
+                isLoading = false
+            )
+        )
     }
 }

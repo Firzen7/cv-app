@@ -36,5 +36,11 @@ sealed class Screen(
     companion object {
         /** All screens that should appear as tabs in the bottom navigation bar. */
         val bottomNavItems = listOf(Profile, Experience, Skills, Projects)
+
+        /** Route pattern for project detail screen (not in bottom nav). */
+        const val PROJECT_DETAIL_ROUTE = "project_detail/{projectId}"
+
+        /** Creates a navigation route for a specific project. */
+        fun projectDetailRoute(projectId: Int) = "project_detail/$projectId"
     }
 }

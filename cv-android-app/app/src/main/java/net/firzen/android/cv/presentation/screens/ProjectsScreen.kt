@@ -28,13 +28,13 @@ import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
 // Entry point called from navigation - reads ViewModel state and delegates to content
 @Composable
-fun ProjectsScreen(viewModel: ProjectsViewModel) {
-    ProjectsScreenContent(state = viewModel.state.value)
+fun ProjectsScreen(viewModel: ProjectsViewModel, onProjectClick: (Int) -> Unit) {
+    ProjectsScreenContent(state = viewModel.state.value, onProjectClick = onProjectClick)
 }
 
 // Stateless content composable - can be used in @Preview with sample data
 @Composable
-fun ProjectsScreenContent(state: ProjectsScreenState) {
+fun ProjectsScreenContent(state: ProjectsScreenState, onProjectClick: (Int) -> Unit = {}) {
     if (state.isLoading) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
@@ -52,7 +52,7 @@ fun ProjectsScreenContent(state: ProjectsScreenState) {
             ProjectCard(
                 project = project,
                 iconResId = projectIconResId(project.id),
-                onClick = { /* TODO: navigate to project detail screen */ }
+                onClick = { onProjectClick(project.id) }
             )
         }
     }

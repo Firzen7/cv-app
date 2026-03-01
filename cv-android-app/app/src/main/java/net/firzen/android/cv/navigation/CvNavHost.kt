@@ -4,16 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import net.firzen.android.cv.presentation.screens.ExperienceScreen
 import net.firzen.android.cv.presentation.screens.ProfileScreen
-import net.firzen.android.cv.presentation.models.ExperienceViewModel
-import net.firzen.android.cv.presentation.models.ProfileViewModel
-import net.firzen.android.cv.presentation.models.ProjectsViewModel
-import net.firzen.android.cv.presentation.models.SkillsViewModel
+import net.firzen.android.cv.presentation.screens.ProjectDetailScreen
 import net.firzen.android.cv.presentation.screens.ProjectsScreen
 import net.firzen.android.cv.presentation.screens.SkillsScreen
+import net.firzen.android.cv.presentation.models.ExperienceViewModel
+import net.firzen.android.cv.presentation.models.ProfileViewModel
+import net.firzen.android.cv.presentation.models.ProjectDetailViewModel
+import net.firzen.android.cv.presentation.models.ProjectsViewModel
+import net.firzen.android.cv.presentation.models.SkillsViewModel
 
 /**
  * Navigation host that defines all navigation destinations and handles screen transitions.
@@ -48,8 +52,21 @@ fun CvNavHost(
             SkillsScreen(hiltViewModel<SkillsViewModel>())
         }
         composable(Screen.Projects.route) {
-            ProjectsScreen(hiltViewModel<ProjectsViewModel>())
+            ProjectsScreen(
+                viewModel = hiltViewModel<ProjectsViewModel>(),
+                onProjectClick = { projectId ->
+                    navController.navigate(Screen.projectDetailRoute(projectId))
+                }
+            )
+        }
+        composable(
+            route = Screen.PROJECT_DETAIL_ROUTE,
+            arguments = listOf(navArgument("projectId") { type = NavType.IntType })
+        ) {
+            ProjectDetailScreen(
+                viewModel = hiltViewModel<ProjectDetailViewModel>(),
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
     }
 }
-

@@ -48,6 +48,12 @@ class CvRepository @Inject constructor(
             entity.toDomain(milestones)
         }
 
+    suspend fun getProjectById(projectId: Int): Project? {
+        val entity = projectDao.getById(projectId) ?: return null
+        val milestones = projectMilestoneDao.getForProject(entity.id)
+        return entity.toDomain(milestones)
+    }
+
     // -- Education ------------------------------------------------------------
 
     suspend fun getAllEducation(): List<Education> =

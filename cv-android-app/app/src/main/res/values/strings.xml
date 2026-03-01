@@ -41,4 +41,11 @@
     <!-- Projects screen -->
     <string name="cd_project_icon">Project icon</string>
     <string name="cd_show_details">Show details</string>
+
+    <!-- Project detail screen -->
+    <string name="project_details_title">Project Details</string>
+    <string name="section_milestones">Milestones</string>
+    <string name="view_on_google_play">View on Google Play</string>
+    <string name="view_on_amazon">View on Amazon</string>
+    <string name="cd_navigate_back">Navigate back</string>
 </resources>

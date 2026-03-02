@@ -31,9 +31,13 @@ import net.firzen.android.cv.presentation.models.SkillsScreenState
 import net.firzen.android.cv.presentation.models.SkillsViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+
 // Entry point called from navigation - reads ViewModel state and delegates to content
 @Composable
 fun SkillsScreen(viewModel: SkillsViewModel) {
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refreshLocale() }
     SkillsScreenContent(state = viewModel.state.collectAsState().value)
 }
 

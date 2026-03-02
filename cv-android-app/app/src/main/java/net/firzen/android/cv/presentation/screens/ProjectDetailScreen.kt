@@ -31,6 +31,9 @@ import net.firzen.android.cv.presentation.models.ProjectDetailScreenState
 import net.firzen.android.cv.presentation.models.ProjectDetailViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+
 // Entry point called from navigation - reads ViewModel state and delegates to content
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +41,7 @@ fun ProjectDetailScreen(
     viewModel: ProjectDetailViewModel,
     onNavigateBack: () -> Unit
 ) {
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refreshLocale() }
     val state = viewModel.state.collectAsState().value
 
     Scaffold(

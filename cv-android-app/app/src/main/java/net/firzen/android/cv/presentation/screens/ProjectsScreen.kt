@@ -28,9 +28,13 @@ import net.firzen.android.cv.presentation.models.ProjectsScreenState
 import net.firzen.android.cv.presentation.models.ProjectsViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+
 // Entry point called from navigation - reads ViewModel state and delegates to content
 @Composable
 fun ProjectsScreen(viewModel: ProjectsViewModel, onProjectClick: (Int) -> Unit) {
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refreshLocale() }
     ProjectsScreenContent(state = viewModel.state.collectAsState().value, onProjectClick = onProjectClick)
 }
 

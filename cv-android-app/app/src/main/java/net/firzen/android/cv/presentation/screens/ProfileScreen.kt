@@ -36,9 +36,13 @@ import net.firzen.android.cv.presentation.models.ProfileViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 import androidx.core.net.toUri
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+
 // Entry point called from navigation — reads ViewModel state and delegates to content
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel) {
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refreshLocale() }
     ProfileScreenContent(state = viewModel.state.collectAsState().value)
 }
 

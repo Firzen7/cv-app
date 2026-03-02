@@ -22,9 +22,13 @@ import net.firzen.android.cv.presentation.models.ExperienceScreenState
 import net.firzen.android.cv.presentation.models.ExperienceViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+
 // Entry point called from navigation -- reads ViewModel state and delegates to content
 @Composable
 fun ExperienceScreen(viewModel: ExperienceViewModel) {
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refreshLocale() }
     ExperienceScreenContent(state = viewModel.state.collectAsState().value)
 }
 

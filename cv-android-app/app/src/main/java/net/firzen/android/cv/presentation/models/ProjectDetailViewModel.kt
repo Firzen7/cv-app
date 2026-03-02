@@ -4,9 +4,13 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetProjectByIdUseCase
@@ -23,21 +27,25 @@ data class ProjectDetailScreenState(
 )
 
 // ViewModel loads a single project by ID from the navigation argument.
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class ProjectDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    getProjectByIdUseCase: GetProjectByIdUseCase
+    private val getProjectByIdUseCase: GetProjectByIdUseCase
 ) : ViewModel() {
 
     private val projectId: Int = savedStateHandle.get<Int>("projectId") ?: -1
+    private val locale = MutableStateFlow(getSupportedLocaleCode())
 
-    val state: StateFlow<ProjectDetailScreenState> = getProjectByIdUseCase(projectId, getSupportedLocaleCode())
-        .map { project ->
-            Timber.i("Project detail loaded: ${project?.name}")
-            ProjectDetailScreenState(
-                project = project,
-                isLoading = false
-            )
+    val state: StateFlow<ProjectDetailScreenState> = locale
+        .flatMapLatest { lang ->
+            getProjectByIdUseCase(projectId, lang).map { project ->
+                Timber.i("Project detail loaded: ${project?.name}")
+                ProjectDetailScreenState(
+                    project = project,
+                    isLoading = false
+                )
+            }
         }
         .catch { e ->
             Timber.e(e, "Error loading project detail")
@@ -48,4 +56,9 @@ class ProjectDetailViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = ProjectDetailScreenState()
         )
+
+    /** Call from ON_RESUME to pick up system locale changes. */
+    fun refreshLocale() {
+        locale.value = getSupportedLocaleCode()
+    }
 }

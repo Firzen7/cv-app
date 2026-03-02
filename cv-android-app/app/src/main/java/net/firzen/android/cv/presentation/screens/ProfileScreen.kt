@@ -2,9 +2,7 @@ package net.firzen.android.cv.presentation.screens
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -31,12 +29,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import net.firzen.android.cv.R
 import net.firzen.android.cv.domain.model.*
 import net.firzen.android.cv.presentation.models.ProfileScreenState
 import net.firzen.android.cv.presentation.models.ProfileViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
+import androidx.core.net.toUri
 
 // Entry point called from navigation — reads ViewModel state and delegates to content
 @Composable
@@ -175,7 +173,7 @@ private fun ContactIconsRow(phone: String,
             icon = Icons.Default.Phone,
             contentDescription = stringResource(R.string.cd_call),
             onClick = {
-                context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone")))
+                context.startActivity(Intent(Intent.ACTION_DIAL, "tel:$phone".toUri()))
             }
         )
 
@@ -184,7 +182,7 @@ private fun ContactIconsRow(phone: String,
             icon = Icons.Default.Email,
             contentDescription = stringResource(R.string.cd_email),
             onClick = {
-                context.startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$email")))
+                context.startActivity(Intent(Intent.ACTION_SENDTO, "mailto:$email".toUri()))
             }
         )
 
@@ -195,7 +193,7 @@ private fun ContactIconsRow(phone: String,
             onClick = {
                 context.startActivity(
                     Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://linkedin.com/in/$linkedInUsername"))
+                        "https://linkedin.com/in/$linkedInUsername".toUri())
                 )
             }
         )
@@ -213,7 +211,7 @@ private fun ContactIconsRow(phone: String,
             onClick = {
                 context.startActivity(
                     Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://stackoverflow.com/users/$stackOverflowId"))
+                        "https://stackoverflow.com/users/$stackOverflowId".toUri())
                 )
             }
         )
@@ -273,7 +271,7 @@ private fun GitHubDropdownButton(githubUsernames: String, context: Context) {
                         expanded = false
                         context.startActivity(
                             Intent(Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/$username"))
+                                "https://github.com/$username".toUri())
                         )
                     },
                     leadingIcon = {

@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,7 +30,7 @@ import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 // Entry point called from navigation - reads ViewModel state and delegates to content
 @Composable
 fun ProjectsScreen(viewModel: ProjectsViewModel, onProjectClick: (Int) -> Unit) {
-    ProjectsScreenContent(state = viewModel.state.value, onProjectClick = onProjectClick)
+    ProjectsScreenContent(state = viewModel.state.collectAsState().value, onProjectClick = onProjectClick)
 }
 
 // Stateless content composable - can be used in @Preview with sample data

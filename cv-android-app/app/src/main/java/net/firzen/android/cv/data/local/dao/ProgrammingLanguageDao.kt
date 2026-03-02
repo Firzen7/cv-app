@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.ProgrammingLanguageEntity
 
 @Dao
@@ -14,5 +15,5 @@ interface ProgrammingLanguageDao {
 
     /** Returns programming languages ordered by skill level (highest first). */
     @Query("SELECT * FROM programming_languages ORDER BY level DESC")
-    suspend fun getAll(): List<ProgrammingLanguageEntity>
+    fun getAll(): Flow<List<ProgrammingLanguageEntity>>
 }

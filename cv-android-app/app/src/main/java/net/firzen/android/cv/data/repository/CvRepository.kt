@@ -1,5 +1,11 @@
 package net.firzen.android.cv.data.repository
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import net.firzen.android.cv.data.local.dao.*
 import net.firzen.android.cv.data.local.entities.*
 import net.firzen.android.cv.domain.model.*
@@ -15,6 +21,9 @@ import javax.inject.Singleton
  *
  * Repository never returns entity classes -- it always maps them into
  * domain model classes before returning.
+ *
+ * All read methods return [Flow] so that the UI layer is automatically notified
+ * when the underlying data changes (e.g. after initial seeding on first launch).
  */
 @Singleton
 class CvRepository @Inject constructor(
@@ -33,67 +42,98 @@ class CvRepository @Inject constructor(
 
     // -- Profile --------------------------------------------------------------
 
-    suspend fun getProfile(): Profile? = profileDao.get()?.toDomain()
+    fun getProfile(): Flow<Profile?> =
+        profileDao.get().map { it?.toDomain() }
 
     // -- Work Experience ------------------------------------------------------
 
-    suspend fun getAllWorkExperiences(): List<WorkExperience> =
-        workExperienceDao.getAll().map { it.toDomain() }
+    fun getAllWorkExperiences(): Flow<List<WorkExperience>> =
+        workExperienceDao.getAll().map { list -> list.map { it.toDomain() } }
 
     // -- Projects -------------------------------------------------------------
 
-    suspend fun getAllProjects(): List<Project> =
-        projectDao.getAll().map { entity ->
-            val milestones = projectMilestoneDao.getForProject(entity.id)
-            entity.toDomain(milestones)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun getAllProjects(): Flow<List<Project>> =
+        projectDao.getAll().flatMapLatest { entities ->
+            if (entities.isEmpty()) {
+                flowOf(emptyList())
+            } else {
+                // Combine milestone flows for every project
+                val milestoneFlows = entities.map { entity ->
+                    projectMilestoneDao.getForProject(entity.id)
+                        .map { milestones -> entity.toDomain(milestones) }
+                }
+                combine(milestoneFlows) { it.toList() }
+            }
         }
 
-    suspend fun getProjectById(projectId: Int): Project? {
-        val entity = projectDao.getById(projectId) ?: return null
-        val milestones = projectMilestoneDao.getForProject(entity.id)
-        return entity.toDomain(milestones)
-    }
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun getProjectById(projectId: Int): Flow<Project?> =
+        projectDao.getById(projectId).flatMapLatest { entity ->
+            if (entity == null) {
+                flowOf(null)
+            } else {
+                projectMilestoneDao.getForProject(entity.id)
+                    .map { milestones -> entity.toDomain(milestones) }
+            }
+        }
 
     // -- Education ------------------------------------------------------------
 
-    suspend fun getAllEducation(): List<Education> =
-        educationDao.getAll().map { it.toDomain() }
+    fun getAllEducation(): Flow<List<Education>> =
+        educationDao.getAll().map { list -> list.map { it.toDomain() } }
 
     // -- Programming Languages ------------------------------------------------
 
-    suspend fun getAllProgrammingLanguages(): List<ProgrammingLanguage> =
-        programmingLanguageDao.getAll().map { it.toDomain() }
+    fun getAllProgrammingLanguages(): Flow<List<ProgrammingLanguage>> =
+        programmingLanguageDao.getAll().map { list -> list.map { it.toDomain() } }
 
     // -- Technologies ---------------------------------------------------------
 
-    suspend fun getAllTechnologyCategories(): List<TechnologyCategory> =
-        technologyDao.getAllCategories().map { category ->
-            val techs = technologyDao.getForCategory(category.id)
-            category.toDomain(techs)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun getAllTechnologyCategories(): Flow<List<TechnologyCategory>> =
+        technologyDao.getAllCategories().flatMapLatest { categories ->
+            if (categories.isEmpty()) {
+                flowOf(emptyList())
+            } else {
+                val techFlows = categories.map { category ->
+                    technologyDao.getForCategory(category.id)
+                        .map { techs -> category.toDomain(techs) }
+                }
+                combine(techFlows) { it.toList() }
+            }
         }
 
     // -- Other Skills ---------------------------------------------------------
 
-    suspend fun getAllOtherSkillCategories(): List<OtherSkillCategory> =
-        otherSkillDao.getAllCategories().map { category ->
-            val skills = otherSkillDao.getForCategory(category.id)
-            category.toDomain(skills)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun getAllOtherSkillCategories(): Flow<List<OtherSkillCategory>> =
+        otherSkillDao.getAllCategories().flatMapLatest { categories ->
+            if (categories.isEmpty()) {
+                flowOf(emptyList())
+            } else {
+                val skillFlows = categories.map { category ->
+                    otherSkillDao.getForCategory(category.id)
+                        .map { skills -> category.toDomain(skills) }
+                }
+                combine(skillFlows) { it.toList() }
+            }
         }
 
     // -- Languages ------------------------------------------------------------
 
-    suspend fun getAllLanguages(): List<Language> =
-        languageDao.getAll().map { it.toDomain() }
+    fun getAllLanguages(): Flow<List<Language>> =
+        languageDao.getAll().map { list -> list.map { it.toDomain() } }
 
     // -- Personality Traits ---------------------------------------------------
 
-    suspend fun getAllPersonalityTraits(): List<PersonalityTrait> =
-        personalityTraitDao.getAll().map { it.toDomain() }
+    fun getAllPersonalityTraits(): Flow<List<PersonalityTrait>> =
+        personalityTraitDao.getAll().map { list -> list.map { it.toDomain() } }
 
     // -- Interests ------------------------------------------------------------
 
-    suspend fun getAllInterests(): List<Interest> =
-        interestDao.getAll().map { it.toDomain() }
+    fun getAllInterests(): Flow<List<Interest>> =
+        interestDao.getAll().map { list -> list.map { it.toDomain() } }
 
     // -- Entity to domain mapping extensions -----------------------------------
 

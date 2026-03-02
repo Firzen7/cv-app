@@ -1,5 +1,7 @@
 package net.firzen.android.cv.domain
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import net.firzen.android.cv.data.repository.CvRepository
 import net.firzen.android.cv.domain.model.*
 import javax.inject.Inject
@@ -7,8 +9,8 @@ import javax.inject.Inject
 /**
  * Use case that loads all data needed by the Profile screen.
  *
- * The `operator fun invoke()` pattern allows calling this use case
- * like a function: `val data = getProfileDataUseCase()`
+ * Returns a [Flow] that combines profile, languages, personality traits, and
+ * interests. The Flow automatically re-emits when any underlying table changes.
  */
 class GetProfileDataUseCase @Inject constructor(
     private val repository: CvRepository
@@ -21,12 +23,19 @@ class GetProfileDataUseCase @Inject constructor(
         val interests: List<Interest>
     )
 
-    suspend operator fun invoke(): ProfileData {
-        return ProfileData(
-            profile = repository.getProfile(),
-            languages = repository.getAllLanguages(),
-            personalityTraits = repository.getAllPersonalityTraits(),
-            interests = repository.getAllInterests()
-        )
+    operator fun invoke(): Flow<ProfileData> {
+        return combine(
+            repository.getProfile(),
+            repository.getAllLanguages(),
+            repository.getAllPersonalityTraits(),
+            repository.getAllInterests()
+        ) { profile, languages, traits, interests ->
+            ProfileData(
+                profile = profile,
+                languages = languages,
+                personalityTraits = traits,
+                interests = interests
+            )
+        }
     }
 }

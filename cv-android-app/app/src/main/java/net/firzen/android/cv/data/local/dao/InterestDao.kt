@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.InterestEntity
 
 @Dao
@@ -13,5 +14,5 @@ interface InterestDao {
     suspend fun insertAll(interests: List<InterestEntity>)
 
     @Query("SELECT * FROM interests ORDER BY id ASC")
-    suspend fun getAll(): List<InterestEntity>
+    fun getAll(): Flow<List<InterestEntity>>
 }

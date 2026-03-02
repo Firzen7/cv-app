@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.LanguageEntity
 
 @Dao
@@ -13,5 +14,5 @@ interface LanguageDao {
     suspend fun insertAll(languages: List<LanguageEntity>)
 
     @Query("SELECT * FROM languages ORDER BY id ASC")
-    suspend fun getAll(): List<LanguageEntity>
+    fun getAll(): Flow<List<LanguageEntity>>
 }

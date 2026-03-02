@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -24,7 +25,7 @@ import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 // Entry point called from navigation -- reads ViewModel state and delegates to content
 @Composable
 fun ExperienceScreen(viewModel: ExperienceViewModel) {
-    ExperienceScreenContent(state = viewModel.state.value)
+    ExperienceScreenContent(state = viewModel.state.collectAsState().value)
 }
 
 // Stateless content composable -- can be used in @Preview with sample data

@@ -1,5 +1,7 @@
 package net.firzen.android.cv.domain
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import net.firzen.android.cv.data.repository.CvRepository
 import net.firzen.android.cv.domain.model.*
 import javax.inject.Inject
@@ -7,7 +9,7 @@ import javax.inject.Inject
 /**
  * Use case that loads all skill-related data for the Skills screen.
  * Combines programming languages, technology categories, other skill categories,
- * and education into a single result.
+ * and education into a single reactive [Flow].
  */
 class GetSkillsDataUseCase @Inject constructor(
     private val repository: CvRepository
@@ -20,12 +22,19 @@ class GetSkillsDataUseCase @Inject constructor(
         val education: List<Education>
     )
 
-    suspend operator fun invoke(): SkillsData {
-        return SkillsData(
-            programmingLanguages = repository.getAllProgrammingLanguages(),
-            technologyCategories = repository.getAllTechnologyCategories(),
-            otherSkillCategories = repository.getAllOtherSkillCategories(),
-            education = repository.getAllEducation()
-        )
+    operator fun invoke(): Flow<SkillsData> {
+        return combine(
+            repository.getAllProgrammingLanguages(),
+            repository.getAllTechnologyCategories(),
+            repository.getAllOtherSkillCategories(),
+            repository.getAllEducation()
+        ) { progLangs, techCategories, otherSkills, education ->
+            SkillsData(
+                programmingLanguages = progLangs,
+                technologyCategories = techCategories,
+                otherSkillCategories = otherSkills,
+                education = education
+            )
+        }
     }
 }

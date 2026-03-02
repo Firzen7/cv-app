@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.EducationEntity
 
 @Dao
@@ -13,5 +14,5 @@ interface EducationDao {
     suspend fun insertAll(education: List<EducationEntity>)
 
     @Query("SELECT * FROM education ORDER BY start_year DESC")
-    suspend fun getAll(): List<EducationEntity>
+    fun getAll(): Flow<List<EducationEntity>>
 }

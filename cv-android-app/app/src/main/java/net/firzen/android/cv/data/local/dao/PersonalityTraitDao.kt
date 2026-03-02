@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.PersonalityTraitEntity
 
 @Dao
@@ -13,5 +14,5 @@ interface PersonalityTraitDao {
     suspend fun insertAll(traits: List<PersonalityTraitEntity>)
 
     @Query("SELECT * FROM personality_traits ORDER BY id ASC")
-    suspend fun getAll(): List<PersonalityTraitEntity>
+    fun getAll(): Flow<List<PersonalityTraitEntity>>
 }

@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.OtherSkillCategoryEntity
 import net.firzen.android.cv.data.local.entities.OtherSkillEntity
 
@@ -17,11 +18,11 @@ interface OtherSkillDao {
     suspend fun insertSkills(skills: List<OtherSkillEntity>)
 
     @Query("SELECT * FROM other_skill_categories ORDER BY id ASC")
-    suspend fun getAllCategories(): List<OtherSkillCategoryEntity>
+    fun getAllCategories(): Flow<List<OtherSkillCategoryEntity>>
 
     @Query("SELECT * FROM other_skills WHERE category_id = :categoryId ORDER BY id ASC")
-    suspend fun getForCategory(categoryId: Int): List<OtherSkillEntity>
+    fun getForCategory(categoryId: Int): Flow<List<OtherSkillEntity>>
 
     @Query("SELECT * FROM other_skills ORDER BY category_id, id ASC")
-    suspend fun getAll(): List<OtherSkillEntity>
+    fun getAll(): Flow<List<OtherSkillEntity>>
 }

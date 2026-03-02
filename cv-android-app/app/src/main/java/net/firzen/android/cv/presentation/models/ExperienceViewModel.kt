@@ -1,11 +1,13 @@
 package net.firzen.android.cv.presentation.models
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetWorkExperiencesUseCase
 import net.firzen.android.cv.domain.model.WorkExperience
 import timber.log.Timber
@@ -18,37 +20,27 @@ data class ExperienceScreenState(
     val error: String? = null
 )
 
-// ViewModel loads work experiences via use case and exposes as Compose state.
+// ViewModel exposes work experiences as a StateFlow derived from the reactive use case.
 @HiltViewModel
 class ExperienceViewModel @Inject constructor(
-    private val getWorkExperiencesUseCase: GetWorkExperiencesUseCase
+    getWorkExperiencesUseCase: GetWorkExperiencesUseCase
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ExperienceScreenState())
-    val state: State<ExperienceScreenState> get() = _state
-
-    init {
-        loadExperiences()
-    }
-
-    private fun loadExperiences() {
-        viewModelScope.launch {
-            try {
-                val experiences = getWorkExperiencesUseCase()
-
-                _state.value = ExperienceScreenState(
-                    experiences = experiences,
-                    isLoading = false
-                )
-
-                Timber.i("Work experiences loaded: ${experiences.size} entries")
-            } catch (e: Exception) {
-                Timber.e(e, "Error loading work experiences")
-                _state.value = _state.value.copy(
-                    error = e.message,
-                    isLoading = false
-                )
-            }
+    val state: StateFlow<ExperienceScreenState> = getWorkExperiencesUseCase()
+        .map { experiences ->
+            Timber.i("Work experiences loaded: ${experiences.size} entries")
+            ExperienceScreenState(
+                experiences = experiences,
+                isLoading = false
+            )
         }
-    }
+        .catch { e ->
+            Timber.e(e, "Error loading work experiences")
+            emit(ExperienceScreenState(error = e.message, isLoading = false))
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = ExperienceScreenState()
+        )
 }

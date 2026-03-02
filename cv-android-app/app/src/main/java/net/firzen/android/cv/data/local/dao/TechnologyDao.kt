@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import net.firzen.android.cv.data.local.entities.TechnologyCategoryEntity
 import net.firzen.android.cv.data.local.entities.TechnologyEntity
 
@@ -17,11 +18,11 @@ interface TechnologyDao {
     suspend fun insertTechnologies(technologies: List<TechnologyEntity>)
 
     @Query("SELECT * FROM technology_categories ORDER BY id ASC")
-    suspend fun getAllCategories(): List<TechnologyCategoryEntity>
+    fun getAllCategories(): Flow<List<TechnologyCategoryEntity>>
 
     @Query("SELECT * FROM technologies WHERE category_id = :categoryId ORDER BY id ASC")
-    suspend fun getForCategory(categoryId: Int): List<TechnologyEntity>
+    fun getForCategory(categoryId: Int): Flow<List<TechnologyEntity>>
 
     @Query("SELECT * FROM technologies ORDER BY category_id, id ASC")
-    suspend fun getAll(): List<TechnologyEntity>
+    fun getAll(): Flow<List<TechnologyEntity>>
 }

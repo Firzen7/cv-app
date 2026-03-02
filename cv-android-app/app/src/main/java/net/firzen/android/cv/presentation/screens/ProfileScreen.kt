@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,7 +41,7 @@ import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 // Entry point called from navigation — reads ViewModel state and delegates to content
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel) {
-    ProfileScreenContent(state = viewModel.state.value)
+    ProfileScreenContent(state = viewModel.state.collectAsState().value)
 }
 
 // Stateless content composable — can be used in @Preview with sample data

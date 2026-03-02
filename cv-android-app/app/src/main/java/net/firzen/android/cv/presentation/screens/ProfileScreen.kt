@@ -3,6 +3,7 @@ package net.firzen.android.cv.presentation.screens
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -23,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,12 +67,7 @@ fun ProfileScreenContent(state: ProfileScreenState) {
         // -- Profile Header ---------------------------------------------------
         ProfileHeader(
             name = profile.name,
-            title = profile.title,
-            initials = profile.name
-                .split(" ")
-                .filter { it.first().isUpperCase() && it.first() != '.' && !it.endsWith(".") }
-                .take(2)
-                .joinToString("") { it.first().toString() }
+            title = profile.title
         )
 
         // -- Contact Icons Row ------------------------------------------------
@@ -122,28 +120,22 @@ fun ProfileScreenContent(state: ProfileScreenState) {
 // -- Profile Header with avatar circle, name, and title -----------------------
 
 @Composable
-private fun ProfileHeader(name: String, title: String, initials: String) {
+private fun ProfileHeader(name: String, title: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 32.dp, bottom = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Circular avatar with initials
-        Box(
+        // Circular avatar with photo
+        Image(
+            painter = painterResource(id = R.drawable.photo),
+            contentDescription = name,
             modifier = Modifier
                 .size(96.dp)
-                .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primary),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = initials,
-                color = MaterialTheme.colorScheme.onPrimary,
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
+                .clip(CircleShape),
+            contentScale = ContentScale.Crop
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

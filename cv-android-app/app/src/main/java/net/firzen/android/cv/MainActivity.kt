@@ -8,11 +8,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.firzen.android.cv.navigation.BottomNavBar
 import net.firzen.android.cv.navigation.CvNavHost
+import net.firzen.android.cv.presentation.screens.OnboardingScreen
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
 /**
@@ -36,7 +41,15 @@ class MainActivity : ComponentActivity() {
             // CvAndroidAppTheme wraps the entire UI in Material 3 theming,
             // providing colors, typography, and shapes to all child composables.
             CvAndroidAppTheme {
-                MainScreen()
+                // In-memory flag — resets to true on process death, so the
+                // onboarding screen reappears on each cold start.
+                var showOnboarding by remember { mutableStateOf(true) }
+
+                if (showOnboarding) {
+                    OnboardingScreen(onDismiss = { showOnboarding = false })
+                } else {
+                    MainScreen()
+                }
             }
         }
     }

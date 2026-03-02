@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            // CvandroidappTheme wraps the entire UI in Material 3 theming,
+            // CvAndroidAppTheme wraps the entire UI in Material 3 theming,
             // providing colors, typography, and shapes to all child composables.
             CvAndroidAppTheme {
                 MainScreen()

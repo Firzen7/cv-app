@@ -18,6 +18,8 @@ import net.firzen.android.cv.data.local.dao.*
 import timber.log.Timber
 import javax.inject.Singleton
 
+private const val DB_NAME = "cv_database"
+
 /**
  * Hilt DI module that provides database-related dependencies.
  *
@@ -40,10 +42,8 @@ object DatabaseModule {
         return Room.databaseBuilder(
             appContext,
             CvDatabase::class.java,
-            "cv_database"
+            DB_NAME
         )
-            // During development: if the schema changes, destroy and recreate the DB
-            // instead of crashing. In production, you'd write proper migrations instead.
             .fallbackToDestructiveMigration(true)
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
@@ -56,7 +56,7 @@ object DatabaseModule {
                         val database = Room.databaseBuilder(
                             appContext,
                             CvDatabase::class.java,
-                            "cv_database"
+                            DB_NAME
                         ).build()
 
                         CvDataSeeder.seedAll(database)

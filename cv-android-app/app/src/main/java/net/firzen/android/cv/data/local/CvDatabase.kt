@@ -34,6 +34,7 @@ import net.firzen.android.cv.data.local.entities.*
     version = 1,
     exportSchema = false
 )
+
 abstract class CvDatabase : RoomDatabase() {
     /** Room generates the implementation of each DAO at compile time. */
     abstract val profileDao: ProfileDao

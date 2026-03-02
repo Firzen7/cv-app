@@ -1,0 +1,19 @@
+Dobrý den,
+
+rád experimentuji a učím se nové věci. Teprve asi před 10 dny jsem začal experimentovat s Google Antigravity, a když jsem viděl, co všechno ve spojení s Claude Opus 4.6 dokáže, rozhodl jsem se zkusit vytvořit takovou malou digitální vizitku v podobě této mobilní aplikace. Naleznete v ní vše, co je v mém CV, a ještě něco navíc!
+
+Renderování zajišťuje Jetpack Compose, o vlákna se starají Coroutines, data jsou uložena v Room DB (SQLite), a jejich propojení s rekompozicemi funguje pomocí Flow. Testovatelnost by měla být snadná díky použití Hilt, repository patternu, a oddělení use-cases. Celá architektura aplikace pak funguje dle vzoru MVVM a snaží se následovat principy Clean Architecture.
+
+Celkově jsem se snažil, aby to nebyl jen nějaký "vibecoded AI slop", ale skutečně něco, s čím se dá dále pracovat, a co se designově i kódem podobá něčemu, co bych vytvořil ručně já sám. Celá aplikace včetně návrhu a grafického designu vznikla za pouhé 3 dny, a před produkčním nasazením by jistě vyžadovala testování. V současné chvíli je to takový malý experiment, překvapení a ukázka pro Vás. Vývoj aplikace byl velice zajímavý, a rád Vám o něm řeknu více.
+
+Pokračovat
+
+Hello!
+
+I like to experiment and learn new things. About 10 days ago, I started experimenting with Google Antigravity, and when I saw how capable it is, I have decided to try creating a digital business card in a form of this mobile app. It contains everything listed in my CV, and also some bonuses!
+
+UI Rendering is done via Jetpack Compose, threads are handled using Coroutines, data are stored in Room DB (SQLite), and their connection with recompositions works thans to Flow. Testability should be easy thanks to the use of Hilt, repository pattern and use-cases separation. The whole architecture uses MVVM pattern, and tries to follow Clean Architecture principles.
+
+Overall, I tried to not create just some "vibecoded AI slop", but something that can be extended and maintained (by humans) in future, and what closely resembles my own design and coding style. The whole app - including draft and graphical design - was created in just 3 days, and it surely would require testing before production release. In its current state, it is just a little experiment, surprise and demonstration for You. Development process of the app was very interesting, and I will be happy to tell You more about it.
+
+Continue

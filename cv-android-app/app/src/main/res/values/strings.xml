@@ -50,7 +50,12 @@
     <string name="cd_navigate_back">Navigate back</string>
 
     <!-- Onboarding screen -->
-    <string name="onboarding_title">Welcome!</string>
-    <string name="onboarding_body">Thank you for taking the time to review my CV app.\n\nThis application showcases my professional experience, technical skills, and personal projects — all built with modern Android technologies including Jetpack Compose, Room, Hilt, and Kotlin Coroutines.\n\nFeel free to explore!</string>
+    <string name="onboarding_title">Hello!</string>
+    <string name="onboarding_body1">I like to experiment and learn new things. About 10 days ago, I started experimenting with Google Antigravity, and when I saw how capable it is, I have decided to try creating a digital business card in a form of this mobile app. It contains everything listed in my CV, and also some bonuses!
+</string>
+    <string name="onboarding_body2">UI Rendering is done via Jetpack Compose, threads are handled using Coroutines, data are stored in Room DB (SQLite), and their connection with recompositions works thans to Flow. Testability should be easy thanks to the use of Hilt, repository pattern and use-cases separation. The whole architecture uses MVVM pattern, and tries to follow Clean Architecture principles.</string>
+    <string name="onboarding_body3">
+Overall, I tried to not create just some \"vibecoded AI slop\", but something that can be extended and maintained (by humans) in future, and what closely resembles my own design and coding style. The whole app - including draft and graphical design - was created in just 3 days, and it surely would require testing before production release. In its current state, it is just a little experiment, surprise and demonstration for You. Development process of the app was very interesting, and I will be happy to tell You more about it.
+</string>
     <string name="onboarding_button">Get Started</string>
 </resources>

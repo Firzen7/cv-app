@@ -2,8 +2,10 @@ package net.firzen.android.cv.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,6 +38,8 @@ fun OnboardingScreen(onDismiss: () -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .systemBarsPadding()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -65,11 +69,30 @@ fun OnboardingScreen(onDismiss: () -> Unit) {
 
             // Body text
             Text(
-                text = stringResource(R.string.onboarding_body),
+                text = stringResource(R.string.onboarding_body1),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
             )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = stringResource(R.string.onboarding_body2),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = stringResource(R.string.onboarding_body3),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
+            // EOF body text
 
             Spacer(modifier = Modifier.height(40.dp))
 
@@ -86,6 +109,8 @@ fun OnboardingScreen(onDismiss: () -> Unit) {
                     style = MaterialTheme.typography.titleMedium
                 )
             }
+
+            Spacer(Modifier.height(20.dp))
         }
     }
 }

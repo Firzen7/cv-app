@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">cv-android-app</string>
+
+    <!-- Bottom Navigation tab titles -->
+    <string name="tab_profile">Profil</string>
+    <string name="tab_experience">Zkušenosti</string>
+    <string name="tab_skills">Dovednosti</string>
+    <string name="tab_projects">Projekty</string>
+
+    <!-- Profile screen section titles -->
+    <string name="section_about">O mně</string>
+    <string name="section_languages">Jazyky</string>
+    <string name="section_personality">Osobnost</string>
+    <string name="section_interests">Zájmy</string>
+
+    <!-- Contact button content descriptions (accessibility) -->
+    <string name="cd_call">Zavolat</string>
+    <string name="cd_email">E-mail</string>
+    <string name="cd_linkedin">LinkedIn</string>
+    <string name="cd_github">GitHub</string>
+    <string name="cd_stackoverflow">StackOverflow</string>
+
+    <!-- GitHub dropdown menu labels -->
+    <string name="github_work">Pracovní</string>
+    <string name="github_personal">Osobní</string>
+    <string name="github_profile">Profil</string>
+    <!-- Format: "Pracovní (username)" -->
+    <string name="github_label_format">%1$s (%2$s)</string>
+
+    <!-- Experience screen -->
+    <string name="experience_date_present">současnost</string>
+
+    <!-- Skills screen -->
+    <string name="section_programming_languages">Programovací jazyky</string>
+    <string name="section_android_technologies">Android technologie</string>
+    <string name="section_other_skills">Ostatní dovednosti a znalosti</string>
+    <string name="section_education">Vzdělání</string>
+    <!-- Format: "5/5" -->
+    <string name="skill_level_format">%1$d/%2$d</string>
+
+    <!-- Projects screen -->
+    <string name="cd_project_icon">Ikona projektu</string>
+    <string name="cd_show_details">Zobrazit detail</string>
+
+    <!-- Project detail screen -->
+    <string name="project_details_title">Detail projektu</string>
+    <string name="section_milestones">Milníky</string>
+    <string name="view_on_google_play">Zobrazit na Google Play</string>
+    <string name="view_on_amazon">Zobrazit na Amazonu</string>
+    <string name="cd_navigate_back">Zpět</string>
+
+    <!-- Onboarding screen -->
+    <string name="onboarding_title">Dobrý den,</string>
+    <string name="onboarding_body1">rád experimentuji a učím se nové věci. Teprve asi před 10 dny jsem začal experimentovat s Google Antigravity, a když jsem viděl, co všechno ve spojení s Claude Opus 4.6 dokáže, rozhodl jsem se zkusit vytvořit takovou malou digitální vizitku v podobě této mobilní aplikace. Naleznete v ní vše, co je v mém CV, a ještě něco navíc!</string>
+    <string name="onboarding_body2">Renderování zajišťuje Jetpack Compose, o vlákna se starají Coroutines, data jsou uložena v Room DB (SQLite), a jejich propojení s rekompozicemi funguje pomocí Flow. Testovatelnost by měla být snadná díky použití Hilt, repository patternu, a oddělení use-cases. Celá architektura aplikace pak funguje dle vzoru MVVM a snaží se následovat principy Clean Architecture.</string>
+    <string name="onboarding_body3">Celkově jsem se snažil, aby to nebyl jen nějaký "vibecoded AI slop", ale skutečně něco, s čím se dá dále pracovat, a co se designově i kódem podobá něčemu, co bych vytvořil ručně já sám. Celá aplikace včetně návrhu a grafického designu vznikla za pouhé 3 dny, a před produkčním nasazením by jistě vyžadovala testování. V současné chvíli je to takový malý experiment, překvapení a ukázka pro Vás. Vývoj aplikace byl velice zajímavý, a rád Vám o něm řeknu více.</string>
+    <string name="onboarding_button">Pokračovat</string>
+</resources>

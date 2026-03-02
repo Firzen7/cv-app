@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetSkillsDataUseCase
 import net.firzen.android.cv.domain.model.*
+import net.firzen.android.cv.other.getSupportedLocaleCode
 import timber.log.Timber
+import java.util.Locale
 import javax.inject.Inject
 
 // UI state holding all data needed by the Skills screen
@@ -29,7 +31,7 @@ class SkillsViewModel @Inject constructor(
     getSkillsDataUseCase: GetSkillsDataUseCase
 ) : ViewModel() {
 
-    val state: StateFlow<SkillsScreenState> = getSkillsDataUseCase()
+    val state: StateFlow<SkillsScreenState> = getSkillsDataUseCase(getSupportedLocaleCode())
         .map { data ->
             Timber.i("Skills data loaded: ${data.programmingLanguages.size} languages, " +
                     "${data.technologyCategories.size} tech categories")

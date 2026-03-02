@@ -24,6 +24,9 @@ import javax.inject.Singleton
  *
  * All read methods return [Flow] so that the UI layer is automatically notified
  * when the underlying data changes (e.g. after initial seeding on first launch).
+ *
+ * Every read method accepts a [language] parameter (e.g., "en", "cs") that is
+ * forwarded to the DAO queries so that only locale-specific data is returned.
  */
 @Singleton
 class CvRepository @Inject constructor(
@@ -42,25 +45,25 @@ class CvRepository @Inject constructor(
 
     // -- Profile --------------------------------------------------------------
 
-    fun getProfile(): Flow<Profile?> =
-        profileDao.get().map { it?.toDomain() }
+    fun getProfile(language: String): Flow<Profile?> =
+        profileDao.get(language).map { it?.toDomain() }
 
     // -- Work Experience ------------------------------------------------------
 
-    fun getAllWorkExperiences(): Flow<List<WorkExperience>> =
-        workExperienceDao.getAll().map { list -> list.map { it.toDomain() } }
+    fun getAllWorkExperiences(language: String): Flow<List<WorkExperience>> =
+        workExperienceDao.getAll(language).map { list -> list.map { it.toDomain() } }
 
     // -- Projects -------------------------------------------------------------
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getAllProjects(): Flow<List<Project>> =
-        projectDao.getAll().flatMapLatest { entities ->
+    fun getAllProjects(language: String): Flow<List<Project>> =
+        projectDao.getAll(language).flatMapLatest { entities ->
             if (entities.isEmpty()) {
                 flowOf(emptyList())
             } else {
                 // Combine milestone flows for every project
                 val milestoneFlows = entities.map { entity ->
-                    projectMilestoneDao.getForProject(entity.id)
+                    projectMilestoneDao.getForProject(entity.id, language)
                         .map { milestones -> entity.toDomain(milestones) }
                 }
                 combine(milestoneFlows) { it.toList() }
@@ -68,36 +71,36 @@ class CvRepository @Inject constructor(
         }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getProjectById(projectId: Int): Flow<Project?> =
-        projectDao.getById(projectId).flatMapLatest { entity ->
+    fun getProjectById(projectId: Int, language: String): Flow<Project?> =
+        projectDao.getById(projectId, language).flatMapLatest { entity ->
             if (entity == null) {
                 flowOf(null)
             } else {
-                projectMilestoneDao.getForProject(entity.id)
+                projectMilestoneDao.getForProject(entity.id, language)
                     .map { milestones -> entity.toDomain(milestones) }
             }
         }
 
     // -- Education ------------------------------------------------------------
 
-    fun getAllEducation(): Flow<List<Education>> =
-        educationDao.getAll().map { list -> list.map { it.toDomain() } }
+    fun getAllEducation(language: String): Flow<List<Education>> =
+        educationDao.getAll(language).map { list -> list.map { it.toDomain() } }
 
     // -- Programming Languages ------------------------------------------------
 
-    fun getAllProgrammingLanguages(): Flow<List<ProgrammingLanguage>> =
-        programmingLanguageDao.getAll().map { list -> list.map { it.toDomain() } }
+    fun getAllProgrammingLanguages(language: String): Flow<List<ProgrammingLanguage>> =
+        programmingLanguageDao.getAll(language).map { list -> list.map { it.toDomain() } }
 
     // -- Technologies ---------------------------------------------------------
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getAllTechnologyCategories(): Flow<List<TechnologyCategory>> =
-        technologyDao.getAllCategories().flatMapLatest { categories ->
+    fun getAllTechnologyCategories(language: String): Flow<List<TechnologyCategory>> =
+        technologyDao.getAllCategories(language).flatMapLatest { categories ->
             if (categories.isEmpty()) {
                 flowOf(emptyList())
             } else {
                 val techFlows = categories.map { category ->
-                    technologyDao.getForCategory(category.id)
+                    technologyDao.getForCategory(category.id, language)
                         .map { techs -> category.toDomain(techs) }
                 }
                 combine(techFlows) { it.toList() }
@@ -107,13 +110,13 @@ class CvRepository @Inject constructor(
     // -- Other Skills ---------------------------------------------------------
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getAllOtherSkillCategories(): Flow<List<OtherSkillCategory>> =
-        otherSkillDao.getAllCategories().flatMapLatest { categories ->
+    fun getAllOtherSkillCategories(language: String): Flow<List<OtherSkillCategory>> =
+        otherSkillDao.getAllCategories(language).flatMapLatest { categories ->
             if (categories.isEmpty()) {
                 flowOf(emptyList())
             } else {
                 val skillFlows = categories.map { category ->
-                    otherSkillDao.getForCategory(category.id)
+                    otherSkillDao.getForCategory(category.id, language)
                         .map { skills -> category.toDomain(skills) }
                 }
                 combine(skillFlows) { it.toList() }
@@ -122,18 +125,18 @@ class CvRepository @Inject constructor(
 
     // -- Languages ------------------------------------------------------------
 
-    fun getAllLanguages(): Flow<List<Language>> =
-        languageDao.getAll().map { list -> list.map { it.toDomain() } }
+    fun getAllLanguages(language: String): Flow<List<Language>> =
+        languageDao.getAll(language).map { list -> list.map { it.toDomain() } }
 
     // -- Personality Traits ---------------------------------------------------
 
-    fun getAllPersonalityTraits(): Flow<List<PersonalityTrait>> =
-        personalityTraitDao.getAll().map { list -> list.map { it.toDomain() } }
+    fun getAllPersonalityTraits(language: String): Flow<List<PersonalityTrait>> =
+        personalityTraitDao.getAll(language).map { list -> list.map { it.toDomain() } }
 
     // -- Interests ------------------------------------------------------------
 
-    fun getAllInterests(): Flow<List<Interest>> =
-        interestDao.getAll().map { list -> list.map { it.toDomain() } }
+    fun getAllInterests(language: String): Flow<List<Interest>> =
+        interestDao.getAll(language).map { list -> list.map { it.toDomain() } }
 
     // -- Entity to domain mapping extensions -----------------------------------
 

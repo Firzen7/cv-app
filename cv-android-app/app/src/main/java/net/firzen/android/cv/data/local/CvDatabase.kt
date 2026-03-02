@@ -31,7 +31,7 @@ import net.firzen.android.cv.data.local.entities.*
         PersonalityTraitEntity::class,
         InterestEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 

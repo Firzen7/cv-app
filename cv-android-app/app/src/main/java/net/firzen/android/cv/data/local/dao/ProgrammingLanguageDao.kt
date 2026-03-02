@@ -14,6 +14,6 @@ interface ProgrammingLanguageDao {
     suspend fun insertAll(languages: List<ProgrammingLanguageEntity>)
 
     /** Returns programming languages ordered by skill level (highest first). */
-    @Query("SELECT * FROM programming_languages ORDER BY level DESC")
-    fun getAll(): Flow<List<ProgrammingLanguageEntity>>
+    @Query("SELECT * FROM programming_languages WHERE language = :language ORDER BY level DESC")
+    fun getAll(language: String): Flow<List<ProgrammingLanguageEntity>>
 }

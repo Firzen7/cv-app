@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetProfileDataUseCase
 import net.firzen.android.cv.domain.model.*
+import net.firzen.android.cv.other.getSupportedLocaleCode
 import timber.log.Timber
+import java.util.Locale
 import javax.inject.Inject
 
 // UI state holding all data needed by the Profile screen
@@ -27,11 +29,9 @@ data class ProfileScreenState(
 // The Flow emits automatically whenever the underlying DB tables change — fixing
 // the first-launch empty-screen bug.
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
-    getProfileDataUseCase: GetProfileDataUseCase
-) : ViewModel() {
+class ProfileViewModel @Inject constructor(getProfileDataUseCase: GetProfileDataUseCase) : ViewModel() {
 
-    val state: StateFlow<ProfileScreenState> = getProfileDataUseCase()
+    val state: StateFlow<ProfileScreenState> = getProfileDataUseCase(getSupportedLocaleCode())
         .map { data ->
             Timber.i("Profile data loaded: ${data.profile?.name}")
             ProfileScreenState(

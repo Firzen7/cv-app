@@ -2,16 +2,16 @@ package net.firzen.android.cv.data.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 /**
  * Personal profile information — name, contact details, social links.
- * This table always contains exactly one row (the CV owner's data).
+ * One row per language (e.g., "en" and "cs").
  */
-@Entity(tableName = "profile")
+@Entity(tableName = "profile", primaryKeys = ["id", "language"])
 data class ProfileEntity(
-    @PrimaryKey
     val id: Int = 1,
+
+    val language: String,
 
     val name: String,
 

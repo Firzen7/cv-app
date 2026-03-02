@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetWorkExperiencesUseCase
 import net.firzen.android.cv.domain.model.WorkExperience
+import net.firzen.android.cv.other.getSupportedLocaleCode
 import timber.log.Timber
+import java.util.Locale
 import javax.inject.Inject
 
 // UI state holding all data needed by the Experience screen
@@ -26,7 +28,7 @@ class ExperienceViewModel @Inject constructor(
     getWorkExperiencesUseCase: GetWorkExperiencesUseCase
 ) : ViewModel() {
 
-    val state: StateFlow<ExperienceScreenState> = getWorkExperiencesUseCase()
+    val state: StateFlow<ExperienceScreenState> = getWorkExperiencesUseCase(getSupportedLocaleCode())
         .map { experiences ->
             Timber.i("Work experiences loaded: ${experiences.size} entries")
             ExperienceScreenState(

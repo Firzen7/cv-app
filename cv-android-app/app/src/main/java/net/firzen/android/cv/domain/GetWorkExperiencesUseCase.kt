@@ -14,7 +14,7 @@ class GetWorkExperiencesUseCase @Inject constructor(
     private val repository: CvRepository
 ) {
 
-    operator fun invoke(): Flow<List<WorkExperience>> {
-        return repository.getAllWorkExperiences()
+    operator fun invoke(language: String): Flow<List<WorkExperience>> {
+        return repository.getAllWorkExperiences(language)
     }
 }

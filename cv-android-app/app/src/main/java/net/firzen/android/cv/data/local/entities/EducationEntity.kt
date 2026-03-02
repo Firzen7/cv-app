@@ -12,6 +12,8 @@ data class EducationEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     val institution: String,
 
     val degree: String,

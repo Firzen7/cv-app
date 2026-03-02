@@ -14,9 +14,9 @@ interface ProjectMilestoneDao {
     suspend fun insertAll(milestones: List<ProjectMilestoneEntity>)
 
     /** Returns milestones for a specific project, ordered chronologically. */
-    @Query("SELECT * FROM project_milestones WHERE project_id = :projectId ORDER BY ordinal ASC")
-    fun getForProject(projectId: Int): Flow<List<ProjectMilestoneEntity>>
+    @Query("SELECT * FROM project_milestones WHERE project_id = :projectId AND language = :language ORDER BY ordinal ASC")
+    fun getForProject(projectId: Int, language: String): Flow<List<ProjectMilestoneEntity>>
 
-    @Query("SELECT * FROM project_milestones ORDER BY project_id, ordinal ASC")
-    fun getAll(): Flow<List<ProjectMilestoneEntity>>
+    @Query("SELECT * FROM project_milestones WHERE language = :language ORDER BY project_id, ordinal ASC")
+    fun getAll(language: String): Flow<List<ProjectMilestoneEntity>>
 }

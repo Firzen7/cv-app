@@ -15,6 +15,8 @@ data class TechnologyCategoryEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     @ColumnInfo(name = "category_name")
     val categoryName: String
 )

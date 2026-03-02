@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalUriHandler
 import net.firzen.android.cv.R
+import net.firzen.android.cv.other.projectIconResId
 import net.firzen.android.cv.domain.model.Project
 import net.firzen.android.cv.domain.model.ProjectMilestone
 import net.firzen.android.cv.presentation.models.ProjectDetailScreenState
@@ -118,7 +119,7 @@ private fun ProjectHeaderCard(project: Project) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 // Project icon
                 Image(
-                    painter = painterResource(id = projectIconResId(project.id)),
+                    painter = painterResource(id = projectIconResId(project.name)),
                     contentDescription = stringResource(R.string.cd_project_icon),
                     modifier = Modifier
                         .size(56.dp)
@@ -276,16 +277,7 @@ private fun StoreLinkButton(url: String) {
     }
 }
 
-// -- Icon mapping (reused from ProjectsScreen) --------------------------------
 
-private fun projectIconResId(projectId: Int): Int = when (projectId) {
-    1 -> R.drawable.ic_project_wattsup
-    2 -> R.drawable.ic_project_sanctuary_first
-    3 -> R.drawable.ic_project_crossreach
-    4 -> R.drawable.ic_project_sanctus_tools
-    5 -> R.drawable.ic_project_sf_alexa
-    else -> R.drawable.ic_project_sanctus_tools
-}
 
 // -- Preview ------------------------------------------------------------------
 

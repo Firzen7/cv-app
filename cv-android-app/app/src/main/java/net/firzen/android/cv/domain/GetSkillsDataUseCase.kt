@@ -22,12 +22,12 @@ class GetSkillsDataUseCase @Inject constructor(
         val education: List<Education>
     )
 
-    operator fun invoke(): Flow<SkillsData> {
+    operator fun invoke(language: String): Flow<SkillsData> {
         return combine(
-            repository.getAllProgrammingLanguages(),
-            repository.getAllTechnologyCategories(),
-            repository.getAllOtherSkillCategories(),
-            repository.getAllEducation()
+            repository.getAllProgrammingLanguages(language),
+            repository.getAllTechnologyCategories(language),
+            repository.getAllOtherSkillCategories(language),
+            repository.getAllEducation(language)
         ) { progLangs, techCategories, otherSkills, education ->
             SkillsData(
                 programmingLanguages = progLangs,

@@ -13,6 +13,8 @@ data class ProjectEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     val name: String,
 
     val description: String,

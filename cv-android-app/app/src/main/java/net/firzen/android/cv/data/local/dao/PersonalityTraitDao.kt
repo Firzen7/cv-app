@@ -13,6 +13,6 @@ interface PersonalityTraitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(traits: List<PersonalityTraitEntity>)
 
-    @Query("SELECT * FROM personality_traits ORDER BY id ASC")
-    fun getAll(): Flow<List<PersonalityTraitEntity>>
+    @Query("SELECT * FROM personality_traits WHERE language = :language ORDER BY id ASC")
+    fun getAll(language: String): Flow<List<PersonalityTraitEntity>>
 }

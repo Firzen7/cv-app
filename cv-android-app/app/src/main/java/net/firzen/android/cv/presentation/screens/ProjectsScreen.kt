@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import net.firzen.android.cv.R
 import net.firzen.android.cv.domain.model.Project
+import net.firzen.android.cv.other.projectIconResId
 import net.firzen.android.cv.presentation.models.ProjectsScreenState
 import net.firzen.android.cv.presentation.models.ProjectsViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
@@ -52,7 +53,7 @@ fun ProjectsScreenContent(state: ProjectsScreenState, onProjectClick: (Int) -> U
         state.projects.forEach { project ->
             ProjectCard(
                 project = project,
-                iconResId = projectIconResId(project.id),
+                iconResId = projectIconResId(project.name),
                 onClick = { onProjectClick(project.id) }
             )
         }
@@ -124,16 +125,9 @@ private fun ProjectCard(project: Project, iconResId: Int, onClick: () -> Unit) {
     }
 }
 
-// -- Icon mapping: project ID -> drawable resource ----------------------------
+// -- Icon mapping: project name -> drawable resource --------------------------
 
-private fun projectIconResId(projectId: Int): Int = when (projectId) {
-    1 -> R.drawable.ic_project_wattsup
-    2 -> R.drawable.ic_project_sanctuary_first
-    3 -> R.drawable.ic_project_crossreach
-    4 -> R.drawable.ic_project_sanctus_tools
-    5 -> R.drawable.ic_project_sf_alexa
-    else -> R.drawable.ic_project_sanctus_tools
-}
+
 
 // -- Preview ------------------------------------------------------------------
 

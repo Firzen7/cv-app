@@ -27,6 +27,8 @@ data class ProjectMilestoneEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     @ColumnInfo(name = "project_id")
     val projectId: Int,
 

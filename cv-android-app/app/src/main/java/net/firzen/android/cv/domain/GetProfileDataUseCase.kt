@@ -23,12 +23,12 @@ class GetProfileDataUseCase @Inject constructor(
         val interests: List<Interest>
     )
 
-    operator fun invoke(): Flow<ProfileData> {
+    operator fun invoke(language: String): Flow<ProfileData> {
         return combine(
-            repository.getProfile(),
-            repository.getAllLanguages(),
-            repository.getAllPersonalityTraits(),
-            repository.getAllInterests()
+            repository.getProfile(language),
+            repository.getAllLanguages(language),
+            repository.getAllPersonalityTraits(language),
+            repository.getAllInterests(language)
         ) { profile, languages, traits, interests ->
             ProfileData(
                 profile = profile,

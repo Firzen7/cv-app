@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetProjectByIdUseCase
 import net.firzen.android.cv.domain.model.Project
+import net.firzen.android.cv.other.getSupportedLocaleCode
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -30,7 +31,7 @@ class ProjectDetailViewModel @Inject constructor(
 
     private val projectId: Int = savedStateHandle.get<Int>("projectId") ?: -1
 
-    val state: StateFlow<ProjectDetailScreenState> = getProjectByIdUseCase(projectId)
+    val state: StateFlow<ProjectDetailScreenState> = getProjectByIdUseCase(projectId, getSupportedLocaleCode())
         .map { project ->
             Timber.i("Project detail loaded: ${project?.name}")
             ProjectDetailScreenState(

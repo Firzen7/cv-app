@@ -14,6 +14,6 @@ interface WorkExperienceDao {
     suspend fun insertAll(experiences: List<WorkExperienceEntity>)
 
     /** Returns all work experiences ordered by ordinal (most recent first). */
-    @Query("SELECT * FROM work_experience ORDER BY ordinal ASC")
-    fun getAll(): Flow<List<WorkExperienceEntity>>
+    @Query("SELECT * FROM work_experience WHERE language = :language ORDER BY ordinal ASC")
+    fun getAll(language: String): Flow<List<WorkExperienceEntity>>
 }

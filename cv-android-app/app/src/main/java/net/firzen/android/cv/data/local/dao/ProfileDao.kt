@@ -13,6 +13,6 @@ interface ProfileDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(profile: ProfileEntity)
 
-    @Query("SELECT * FROM profile LIMIT 1")
-    fun get(): Flow<ProfileEntity?>
+    @Query("SELECT * FROM profile WHERE language = :language LIMIT 1")
+    fun get(language: String): Flow<ProfileEntity?>
 }

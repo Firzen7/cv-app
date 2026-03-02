@@ -15,6 +15,8 @@ data class OtherSkillCategoryEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     @ColumnInfo(name = "category_name")
     val categoryName: String
 )

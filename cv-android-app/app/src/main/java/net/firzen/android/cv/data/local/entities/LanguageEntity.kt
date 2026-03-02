@@ -12,6 +12,9 @@ data class LanguageEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    /** Locale code, e.g. "en" or "cs". Not to be confused with the spoken language [name]. */
+    val language: String,
+
     val name: String,
 
     /** Proficiency level, e.g. "Native", "Intermediate (~C1)". */

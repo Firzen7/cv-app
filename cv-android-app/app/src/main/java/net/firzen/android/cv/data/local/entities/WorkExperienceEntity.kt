@@ -13,6 +13,8 @@ data class WorkExperienceEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     val company: String,
 
     val position: String,

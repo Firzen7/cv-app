@@ -13,6 +13,6 @@ interface EducationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(education: List<EducationEntity>)
 
-    @Query("SELECT * FROM education ORDER BY start_year DESC")
-    fun getAll(): Flow<List<EducationEntity>>
+    @Query("SELECT * FROM education WHERE language = :language ORDER BY start_year DESC")
+    fun getAll(language: String): Flow<List<EducationEntity>>
 }

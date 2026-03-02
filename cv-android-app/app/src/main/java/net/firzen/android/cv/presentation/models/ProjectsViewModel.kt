@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.firzen.android.cv.domain.GetProjectsUseCase
 import net.firzen.android.cv.domain.model.Project
+import net.firzen.android.cv.other.getSupportedLocaleCode
 import timber.log.Timber
+import java.util.Locale
 import javax.inject.Inject
 
 // UI state holding all data needed by the Projects screen
@@ -26,7 +28,7 @@ class ProjectsViewModel @Inject constructor(
     getProjectsUseCase: GetProjectsUseCase
 ) : ViewModel() {
 
-    val state: StateFlow<ProjectsScreenState> = getProjectsUseCase()
+    val state: StateFlow<ProjectsScreenState> = getProjectsUseCase(getSupportedLocaleCode())
         .map { projects ->
             Timber.i("Projects loaded: ${projects.size} entries")
             ProjectsScreenState(

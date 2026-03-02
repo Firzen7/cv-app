@@ -17,12 +17,12 @@ interface TechnologyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTechnologies(technologies: List<TechnologyEntity>)
 
-    @Query("SELECT * FROM technology_categories ORDER BY id ASC")
-    fun getAllCategories(): Flow<List<TechnologyCategoryEntity>>
+    @Query("SELECT * FROM technology_categories WHERE language = :language ORDER BY id ASC")
+    fun getAllCategories(language: String): Flow<List<TechnologyCategoryEntity>>
 
-    @Query("SELECT * FROM technologies WHERE category_id = :categoryId ORDER BY id ASC")
-    fun getForCategory(categoryId: Int): Flow<List<TechnologyEntity>>
+    @Query("SELECT * FROM technologies WHERE category_id = :categoryId AND language = :language ORDER BY id ASC")
+    fun getForCategory(categoryId: Int, language: String): Flow<List<TechnologyEntity>>
 
-    @Query("SELECT * FROM technologies ORDER BY category_id, id ASC")
-    fun getAll(): Flow<List<TechnologyEntity>>
+    @Query("SELECT * FROM technologies WHERE language = :language ORDER BY category_id, id ASC")
+    fun getAll(language: String): Flow<List<TechnologyEntity>>
 }

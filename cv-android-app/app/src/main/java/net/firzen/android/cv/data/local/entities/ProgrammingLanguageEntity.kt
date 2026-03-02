@@ -12,6 +12,8 @@ data class ProgrammingLanguageEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     val name: String,
 
     /** Skill level from 1 (beginner) to 5 (expert). */

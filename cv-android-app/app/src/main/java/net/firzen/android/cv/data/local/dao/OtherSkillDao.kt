@@ -17,12 +17,12 @@ interface OtherSkillDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSkills(skills: List<OtherSkillEntity>)
 
-    @Query("SELECT * FROM other_skill_categories ORDER BY id ASC")
-    fun getAllCategories(): Flow<List<OtherSkillCategoryEntity>>
+    @Query("SELECT * FROM other_skill_categories WHERE language = :language ORDER BY id ASC")
+    fun getAllCategories(language: String): Flow<List<OtherSkillCategoryEntity>>
 
-    @Query("SELECT * FROM other_skills WHERE category_id = :categoryId ORDER BY id ASC")
-    fun getForCategory(categoryId: Int): Flow<List<OtherSkillEntity>>
+    @Query("SELECT * FROM other_skills WHERE category_id = :categoryId AND language = :language ORDER BY id ASC")
+    fun getForCategory(categoryId: Int, language: String): Flow<List<OtherSkillEntity>>
 
-    @Query("SELECT * FROM other_skills ORDER BY category_id, id ASC")
-    fun getAll(): Flow<List<OtherSkillEntity>>
+    @Query("SELECT * FROM other_skills WHERE language = :language ORDER BY category_id, id ASC")
+    fun getAll(language: String): Flow<List<OtherSkillEntity>>
 }

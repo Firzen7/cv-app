@@ -7,56 +7,59 @@ import timber.log.Timber
  * Seeds the Room database with all CV data on first app launch.
  *
  * All data here is extracted from the LaTeX CV files (cv_9_en.tex / cv_9_cs.tex).
- * This approach demonstrates Room pre-population without needing a server or bundled JSON --
- * the data is simply hardcoded as Kotlin objects.
+ * Both English ("en") and Czech ("cs") versions are seeded so the app can
+ * display localised content based on the device language.
  */
 object CvDataSeeder {
 
     /**
-     * Inserts all CV data into the database via individual DAOs.
+     * Inserts all CV data (both languages) into the database via individual DAOs.
      * Called from [DatabaseModule]'s RoomDatabase.Callback when the database is first created.
      */
     suspend fun seedAll(database: CvDatabase) {
         Timber.i("Seeding profile...")
-        database.profileDao.insert(profile())
+        database.profileDao.insert(profileEn())
+        database.profileDao.insert(profileCs())
 
         Timber.i("Seeding work experiences...")
-        database.workExperienceDao.insertAll(workExperiences())
+        database.workExperienceDao.insertAll(workExperiencesEn() + workExperiencesCs())
 
         Timber.i("Seeding projects...")
-        database.projectDao.insertAll(projects())
+        database.projectDao.insertAll(projectsEn() + projectsCs())
 
         Timber.i("Seeding project milestones...")
-        database.projectMilestoneDao.insertAll(projectMilestones())
+        database.projectMilestoneDao.insertAll(projectMilestonesEn() + projectMilestonesCs())
 
         Timber.i("Seeding education...")
-        database.educationDao.insertAll(education())
+        database.educationDao.insertAll(educationEn() + educationCs())
 
         Timber.i("Seeding programming languages...")
-        database.programmingLanguageDao.insertAll(programmingLanguages())
+        database.programmingLanguageDao.insertAll(programmingLanguagesEn() + programmingLanguagesCs())
 
         Timber.i("Seeding technology categories and technologies...")
-        database.technologyDao.insertCategories(technologyCategories())
-        database.technologyDao.insertTechnologies(technologies())
+        database.technologyDao.insertCategories(technologyCategoriesEn() + technologyCategoriesCs())
+        database.technologyDao.insertTechnologies(technologiesEn() + technologiesCs())
 
         Timber.i("Seeding other skill categories and skills...")
-        database.otherSkillDao.insertCategories(otherSkillCategories())
-        database.otherSkillDao.insertSkills(otherSkills())
+        database.otherSkillDao.insertCategories(otherSkillCategoriesEn() + otherSkillCategoriesCs())
+        database.otherSkillDao.insertSkills(otherSkillsEn() + otherSkillsCs())
 
         Timber.i("Seeding languages...")
-        database.languageDao.insertAll(languages())
+        database.languageDao.insertAll(languagesEn() + languagesCs())
 
         Timber.i("Seeding personality traits...")
-        database.personalityTraitDao.insertAll(personalityTraits())
+        database.personalityTraitDao.insertAll(personalityTraitsEn() + personalityTraitsCs())
 
         Timber.i("Seeding interests...")
-        database.interestDao.insertAll(interests())
+        database.interestDao.insertAll(interestsEn() + interestsCs())
     }
 
-    // -- Profile --------------------------------------------------------------
+    // =========================================================================
+    // Profile
+    // =========================================================================
 
-    private fun profile() = ProfileEntity(
-        id = 1,
+    private fun profileEn() = ProfileEntity(
+        id = 1, language = "en",
         name = "Bc. Ondřej Bockschneider",
         title = "Android Developer",
         dateOfBirth = "11.7.1991",
@@ -68,11 +71,26 @@ object CvDataSeeder {
         stackOverflowId = "1735603/firzen"
     )
 
-    // -- Work Experience ------------------------------------------------------
+    private fun profileCs() = ProfileEntity(
+        id = 1, language = "cs",
+        name = "Bc. Ondřej Bockschneider",
+        title = "Android Developer",
+        dateOfBirth = "11.7.1991",
+        address = "Komenského 316/13, 679 04 Adamov (20 minut od Brna)",
+        phone = "+420 737 491 274",
+        email = "obockschneider@gmail.com",
+        linkedInUsername = "obockschneider",
+        githubUsernames = "ondrejsml,Firzen7",
+        stackOverflowId = "1735603/firzen"
+    )
 
-    private fun workExperiences() = listOf(
+    // =========================================================================
+    // Work Experience
+    // =========================================================================
+
+    private fun workExperiencesEn() = listOf(
         WorkExperienceEntity(
-            id = 1, company = "Sanctus Media, Ltd.", position = "Android Developer",
+            language = "en", company = "Sanctus Media, Ltd.", position = "Android Developer",
             startDate = "2/2019", endDate = null,
             description = "Development of 6 Android applications, 2 Android libraries, " +
                     "2 REST API microservices, 1 Alexa skill, and 9 side projects. " +
@@ -82,34 +100,34 @@ object CvDataSeeder {
             ordinal = 1
         ),
         WorkExperienceEntity(
-            id = 2, company = "Redcroft Care Homes, Ltd.", position = "Support Worker",
+            language = "en", company = "Redcroft Care Homes, Ltd.", position = "Support Worker",
             startDate = "3/2017", endDate = "3/2018",
             description = "Support and protection of adults suffering from Learning Disability, " +
                     "ASD and Prader-Willi Syndrome.",
             ordinal = 2
         ),
         WorkExperienceEntity(
-            id = 3, company = "FCR Tech, spol. s.r.o.", position = "Java Developer",
+            language = "en", company = "FCR Tech, spol. s.r.o.", position = "Java Developer",
             startDate = "6/2016", endDate = "1/2017",
             description = "Development of an application for printing yellow pages. " +
                     "Leading team of four Turkish internship students.",
             ordinal = 3
         ),
         WorkExperienceEntity(
-            id = 4, company = "Bach systems, s.r.o.", position = "Java Developer",
+            language = "en", company = "Bach systems, s.r.o.", position = "Java Developer",
             startDate = "1/2014", endDate = "6/2016",
             description = "Development of intranet web applications in Vaadin & Java. " +
                     "Worked on larger projects, such as Archive of Czech National Bank.",
             ordinal = 4
         ),
         WorkExperienceEntity(
-            id = 5, company = "Exekutorský úřad Havlíčkův Brod", position = "Java Developer",
+            language = "en", company = "Exekutorský úřad Havlíčkův Brod", position = "Java Developer",
             startDate = "1/2014", endDate = "6/2014",
             description = "Development and support of the Hybrid Post application.",
             ordinal = 5
         ),
         WorkExperienceEntity(
-            id = 6, company = "Exekutorský úřad Havlíčkův Brod", position = "Administrator",
+            language = "en", company = "Exekutorský úřad Havlíčkův Brod", position = "Administrator",
             startDate = "6/2011", endDate = "1/2014",
             description = "Administration of client stations and servers, development of " +
                     "custom software tools according to employer's needs. " +
@@ -118,11 +136,61 @@ object CvDataSeeder {
         )
     )
 
-    // -- Projects -------------------------------------------------------------
+    private fun workExperiencesCs() = listOf(
+        WorkExperienceEntity(
+            language = "cs", company = "Sanctus Media, Ltd.", position = "Android Developer",
+            startDate = "2/2019", endDate = null,
+            description = "Vývoj celkem 6 Android aplikací, 2 Android knihoven, " +
+                    "2 REST API microservices, 1 schopnosti pro Alexu a 9 pomocných projektů. " +
+                    "Okrajověji také správa Linuxových serverů, Google Play Console, " +
+                    "Firebase nebo AWS infrastruktury.\n" +
+                    "100% remote práce od roku 2020. Denní komunikace s týmem výhradně v angličtině.",
+            ordinal = 1
+        ),
+        WorkExperienceEntity(
+            language = "cs", company = "Redcroft Care Homes, Ltd.", position = "Support Worker",
+            startDate = "3/2017", endDate = "3/2018",
+            description = "Práce v chráněném bydlení s klienty trpícími poruchou učení, " +
+                    "ASD a Prader-Willi syndromem.",
+            ordinal = 2
+        ),
+        WorkExperienceEntity(
+            language = "cs", company = "FCR Tech, spol. s.r.o.", position = "Java Programátor",
+            startDate = "6/2016", endDate = "1/2017",
+            description = "Vývoj aplikace pro tisk zlatých stránek. " +
+                    "Vedení čtyřčlenného týmu studentů z Turecka.",
+            ordinal = 3
+        ),
+        WorkExperienceEntity(
+            language = "cs", company = "Bach systems, s.r.o.", position = "Java Programátor",
+            startDate = "1/2014", endDate = "6/2016",
+            description = "Vývoj webových aplikací s pomocí technologie Vaadin v Javě. " +
+                    "Pracoval jsem zde zejména na projektu Dabs Web vyvíjeného pro ČNB.",
+            ordinal = 4
+        ),
+        WorkExperienceEntity(
+            language = "cs", company = "Exekutorský úřad Havlíčkův Brod", position = "Programátor",
+            startDate = "1/2014", endDate = "6/2014",
+            description = "Vývoj a podpora aplikace Hybrid Post.",
+            ordinal = 5
+        ),
+        WorkExperienceEntity(
+            language = "cs", company = "Exekutorský úřad Havlíčkův Brod", position = "Správce sítě",
+            startDate = "6/2011", endDate = "1/2014",
+            description = "Administrace klientských a serverových stanic, vývoj software na míru " +
+                    "dle potřeb zaměstnavatele. Zde jsem vytvořil program Hybrid Post " +
+                    "a uvědomil si, že se chci stát programátorem.",
+            ordinal = 6
+        )
+    )
 
-    private fun projects() = listOf(
+    // =========================================================================
+    // Projects
+    // =========================================================================
+
+    private fun projectsEn() = listOf(
         ProjectEntity(
-            id = 1, name = "WattsUp",
+            id = 1, language = "en", name = "WattsUp",
             description = "Assistant for EV drivers which allows to find nearest rapid chargers, " +
                     "plan route, select charging stops along the chosen route, and also view the " +
                     "live status of charging stations.",
@@ -130,7 +198,7 @@ object CvDataSeeder {
             ordinal = 1
         ),
         ProjectEntity(
-            id = 2, name = "Sanctuary First",
+            id = 2, language = "en", name = "Sanctuary First",
             description = "Christian spiritual community with modern approach. The app contains " +
                     "videos, podcasts, likes, comments, live streams, music, favorites, " +
                     "Bible reader, etc.",
@@ -138,7 +206,7 @@ object CvDataSeeder {
             ordinal = 2
         ),
         ProjectEntity(
-            id = 3, name = "CrossReach",
+            id = 3, language = "en", name = "CrossReach",
             description = "Originally an electronic version of a physical book annually released " +
                     "by the organization of the same name. Over time, interesting features " +
                     "were added.",
@@ -146,7 +214,7 @@ object CvDataSeeder {
             ordinal = 3
         ),
         ProjectEntity(
-            id = 4, name = "Sanctus Tools",
+            id = 4, language = "en", name = "Sanctus Tools",
             description = "AAR library created in response to the growing number of Android " +
                     "applications at Sanctus Media. Contains top-level utility functions and " +
                     "Kotlin extensions for quick fade-out animation, detection of overlapping " +
@@ -155,7 +223,7 @@ object CvDataSeeder {
             ordinal = 4
         ),
         ProjectEntity(
-            id = 5, name = "Sanctuary First for Amazon Alexa",
+            id = 5, language = "en", name = "Sanctuary First for Amazon Alexa",
             description = "Alexa Skill that allows user to listen to daily prayers or readings " +
                     "from Bible or other spiritual book. Prayers and readings are downloaded " +
                     "from Sanctuary First API.",
@@ -164,78 +232,122 @@ object CvDataSeeder {
         )
     )
 
-    // -- Project Milestones ---------------------------------------------------
+    private fun projectsCs() = listOf(
+        ProjectEntity(
+            id = 6, language = "cs", name = "WattsUp",
+            description = "Asistent pro řidiče elektromobilů, který umožňuje nalézt nejbližší " +
+                    "rychlé nabíječky, naplánovat trasu, zvolit zastávky pro nabití podél " +
+                    "zvolené trasy a zobrazit status nabíječek v reálném čase.",
+            googlePlayUrl = "https://play.google.com/store/apps/details?id=com.sanctusmedia.android.WattsUp",
+            ordinal = 1
+        ),
+        ProjectEntity(
+            id = 7, language = "cs", name = "Sanctuary First",
+            description = "Duchovní, křesťanská komunita ve velmi moderním pojetí. Aplikace " +
+                    "obsahuje videa, podcasty, lajky, komentáře, živé streamy, hudbu, " +
+                    "oblíbené položky, čtečku Bible, atd.",
+            googlePlayUrl = "https://play.google.com/store/apps/details?id=com.sanctusmedia.android.sanctuaryfirst",
+            ordinal = 2
+        ),
+        ProjectEntity(
+            id = 8, language = "cs", name = "CrossReach",
+            description = "Původně to byla pouze elektronická verze knihy každoročně vydávané " +
+                    "stejnojmennou organizací. Časem byly ale přidány zajímavé funkce.",
+            googlePlayUrl = "https://play.google.com/store/apps/details?id=com.sanctusmedia.android.crossreach",
+            ordinal = 3
+        ),
+        ProjectEntity(
+            id = 9, language = "cs", name = "Sanctus Tools",
+            description = "AAR knihovna vytvořená v reakci na rostoucí počet Android aplikací " +
+                    "v Sanctus Media, a zároveň na častou redundanci boilerplate kódu. " +
+                    "Obsahuje utility top-level funkce, ale také spoustu Kotlin extensions.",
+            googlePlayUrl = null,
+            ordinal = 4
+        ),
+        ProjectEntity(
+            id = 10, language = "cs", name = "Sanctuary First pro Amazon Alexa",
+            description = "Schopnost (aplikace), která uživateli přečte denní modlitbu či " +
+                    "výňatek z Bible, popř. jiné duchovní knihy. Modlitby jsou stahovány " +
+                    "ze Sanctuary First API.",
+            googlePlayUrl = "https://www.amazon.co.uk/Santus-Media-Ltd-Sanctuary-First/dp/B0811W4GFK",
+            ordinal = 5
+        )
+    )
 
-    private fun projectMilestones() = listOf(
+    // =========================================================================
+    // Project Milestones
+    // =========================================================================
+
+    private fun projectMilestonesEn() = listOf(
         // WattsUp milestones (projectId = 1)
         ProjectMilestoneEntity(
-            projectId = 1, year = "2019",
+            language = "en", projectId = 1, year = "2019",
             title = "Android version design",
             description = "Design and development of Android version for the existing iOS version " +
                     "and graphical design of dark mode.",
             ordinal = 1
         ),
         ProjectMilestoneEntity(
-            projectId = 1, year = "2020",
+            language = "en", projectId = 1, year = "2020",
             title = "Discovery Mode feature",
             description = "Design and development of the first and most successful paid feature to date.",
             ordinal = 2
         ),
         ProjectMilestoneEntity(
-            projectId = 1, year = "2022",
+            language = "en", projectId = 1, year = "2022",
             title = "Dynamic operator logos",
             description = "Added dynamic logos for charger operators.",
             ordinal = 3
         ),
         ProjectMilestoneEntity(
-            projectId = 1, year = "2024",
+            language = "en", projectId = 1, year = "2024",
             title = "Advanced filtering",
             description = "Implementation of advanced filtering, price calculation, " +
                     "and WattsUp Pro paywall dialog.",
             ordinal = 4
         ),
         ProjectMilestoneEntity(
-            projectId = 1, year = "2024",
+            language = "en", projectId = 1, year = "2024",
             title = "OCPI support",
             description = "Added support for generic charger operators and close integration " +
                     "with the OCPI standard.",
             ordinal = 5
         ),
         ProjectMilestoneEntity(
-            projectId = 1, year = "2025",
+            language = "en", projectId = 1, year = "2025",
             title = "Major redesign",
             description = "The beginning of a major redesign and transition to Mapbox 11.",
             ordinal = 6
         ),
         // Sanctuary First milestones (projectId = 2)
         ProjectMilestoneEntity(
-            projectId = 2, year = "2020-2021",
+            language = "en", projectId = 2, year = "2020-2021",
             title = "Initial Android version",
             description = "Development of the initial Android version based on the graphical design.",
             ordinal = 1
         ),
         ProjectMilestoneEntity(
-            projectId = 2, year = "2021",
+            language = "en", projectId = 2, year = "2021",
             title = "User section design",
             description = "Initial graphical design of the user section.",
             ordinal = 2
         ),
         ProjectMilestoneEntity(
-            projectId = 2, year = "2022",
+            language = "en", projectId = 2, year = "2022",
             title = "Comments & likes",
             description = "Database architecture design for comments and likes + graphical design " +
                     "of the comments section.",
             ordinal = 3
         ),
         ProjectMilestoneEntity(
-            projectId = 2, year = "2023",
+            language = "en", projectId = 2, year = "2023",
             title = "Pusher integration",
             description = "Dynamic updates of likes, comments, and the start/end of live streams " +
                     "using the Pusher library.",
             ordinal = 4
         ),
         ProjectMilestoneEntity(
-            projectId = 2, year = "2025",
+            language = "en", projectId = 2, year = "2025",
             title = "Major refactoring",
             description = "Major refactoring of core architecture; added Bible reader and " +
                     "playlists for guided meditations.",
@@ -243,229 +355,515 @@ object CvDataSeeder {
         ),
         // CrossReach milestones (projectId = 3)
         ProjectMilestoneEntity(
-            projectId = 3, year = "2024",
+            language = "en", projectId = 3, year = "2024",
             title = "Google Sign-In & Stripe",
             description = "Implementation of Google sign-in and payments via the native Stripe API.",
             ordinal = 1
         ),
         ProjectMilestoneEntity(
-            projectId = 3, year = "2025",
+            language = "en", projectId = 3, year = "2025",
             title = "Deep links",
             description = "Added support for deep links.",
             ordinal = 2
         ),
         ProjectMilestoneEntity(
-            projectId = 3, year = "2025",
+            language = "en", projectId = 3, year = "2025",
             title = "Push notifications",
             description = "Notifications using Pusher Beams with dynamic Room DB updates on-demand.",
             ordinal = 3
         ),
-        // Sanctus Tools (projectId = 4) -- library, no timeline milestones
         // Alexa skill milestones (projectId = 5)
         ProjectMilestoneEntity(
-            projectId = 5, year = "2019",
+            language = "en", projectId = 5, year = "2019",
             title = "Design & development",
             description = "Complete design and development of the Alexa Skill.",
             ordinal = 1
         ),
         ProjectMilestoneEntity(
-            projectId = 5, year = "2019",
+            language = "en", projectId = 5, year = "2019",
             title = "Amazon Store publication",
             description = "Publication on the Amazon Store.",
             ordinal = 2
         )
     )
 
-    // -- Education ------------------------------------------------------------
-
-    private fun education() = listOf(
-        EducationEntity(
-            id = 1, institution = "Palacký University Olomouc",
-            degree = "BSc Applied Computer Science",
-            startYear = 2011, endYear = 2015
+    private fun projectMilestonesCs() = listOf(
+        // WattsUp milestones (projectId = 6 for CS)
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 6, year = "2019",
+            title = "Návrh Android verze",
+            description = "Návrh a vývoj Android verze pro existující iOS verzi " +
+                    "a grafický návrh tmavého režimu.",
+            ordinal = 1
         ),
-        EducationEntity(
-            id = 2, institution = "Gymnázium Havlíčkův Brod",
-            degree = "Maturita",
-            startYear = 2003, endYear = 2011
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 6, year = "2020",
+            title = "Discovery Mode",
+            description = "Návrh a vývoj první a dosud nejúspěšnější placené funkce.",
+            ordinal = 2
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 6, year = "2022",
+            title = "Dynamická loga operátorů",
+            description = "Přidána dynamická loga operátorů nabíječek.",
+            ordinal = 3
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 6, year = "2024",
+            title = "Pokročilé filtrování",
+            description = "Implementace pokročilého filtrování, výpočtu cen " +
+                    "a paywall dialogu WattsUp Pro.",
+            ordinal = 4
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 6, year = "2024",
+            title = "Podpora OCPI",
+            description = "Přidána podpora obecného operátora nabíječek " +
+                    "a úzká provázanost se standardem OCPI.",
+            ordinal = 5
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 6, year = "2025",
+            title = "Velký redesign",
+            description = "Počátek velkého redesignu a přechod na Mapbox 11.",
+            ordinal = 6
+        ),
+        // Sanctuary First milestones (projectId = 7 for CS)
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 7, year = "2020-2021",
+            title = "Prvotní Android verze",
+            description = "Vývoj prvotní Android verze dle grafického návrhu.",
+            ordinal = 1
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 7, year = "2021",
+            title = "Návrh uživatelské sekce",
+            description = "Prvotní grafický návrh uživatelské sekce.",
+            ordinal = 2
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 7, year = "2022",
+            title = "Komentáře a lajky",
+            description = "Návrh databázové architektury komentářů s reakcemi a lajky " +
+                    "+ grafický návrh sekce komentářů.",
+            ordinal = 3
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 7, year = "2023",
+            title = "Integrace Pusher",
+            description = "Dynamické updaty lajků, komentářů a začátku / konce živých streamů " +
+                    "s pomocí knihovny Pusher.",
+            ordinal = 4
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 7, year = "2025",
+            title = "Velký refactoring",
+            description = "Velký refactoring základní architektury; přidána čtečka Bible " +
+                    "a playlisty pro vedené meditace.",
+            ordinal = 5
+        ),
+        // CrossReach milestones (projectId = 8 for CS)
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 8, year = "2024",
+            title = "Google Sign-In a Stripe",
+            description = "Přihlášení pomocí Google sign-in a platby přes nativní Stripe API.",
+            ordinal = 1
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 8, year = "2025",
+            title = "Deep linky",
+            description = "Přidána podpora Deep linků.",
+            ordinal = 2
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 8, year = "2025",
+            title = "Notifikace",
+            description = "Notifikace pomocí Pusher Beams.",
+            ordinal = 3
+        ),
+        // Alexa skill milestones (projectId = 10 for CS)
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 10, year = "2019",
+            title = "Návrh a vývoj",
+            description = "Kompletní návrh a vývoj aplikace.",
+            ordinal = 1
+        ),
+        ProjectMilestoneEntity(
+            language = "cs", projectId = 10, year = "2019",
+            title = "Zveřejnění na Amazonu",
+            description = "Zveřejnění v obchodě Amazon.",
+            ordinal = 2
         )
     )
 
-    // -- Programming Languages ------------------------------------------------
+    // =========================================================================
+    // Education
+    // =========================================================================
 
-    private fun programmingLanguages() = listOf(
-        ProgrammingLanguageEntity(id = 1, name = "Kotlin", level = 5),
-        ProgrammingLanguageEntity(id = 2, name = "Java", level = 5),
-        ProgrammingLanguageEntity(id = 3, name = "Bash", level = 4),
-        ProgrammingLanguageEntity(id = 4, name = "C/C++", level = 3),
-        ProgrammingLanguageEntity(id = 5, name = "Swift", level = 2),
-        ProgrammingLanguageEntity(id = 6, name = "Common Lisp", level = 2)
+    private fun educationEn() = listOf(
+        EducationEntity(language = "en", institution = "Palacký University Olomouc",
+            degree = "BSc Applied Computer Science", startYear = 2011, endYear = 2015),
+        EducationEntity(language = "en", institution = "Gymnázium Havlíčkův Brod",
+            degree = "Maturita", startYear = 2003, endYear = 2011)
     )
 
-    // -- Technology Categories & Technologies ---------------------------------
-    // Category IDs are hardcoded to match the foreign keys in technologies()
-
-    private fun technologyCategories() = listOf(
-        TechnologyCategoryEntity(id = 1, categoryName = "Basics"),
-        TechnologyCategoryEntity(id = 2, categoryName = "UI"),
-        TechnologyCategoryEntity(id = 3, categoryName = "Parallelization"),
-        TechnologyCategoryEntity(id = 4, categoryName = "Networking"),
-        TechnologyCategoryEntity(id = 5, categoryName = "Data"),
-        TechnologyCategoryEntity(id = 6, categoryName = "Security"),
-        TechnologyCategoryEntity(id = 7, categoryName = "Architecture"),
-        TechnologyCategoryEntity(id = 8, categoryName = "Notifications"),
-        TechnologyCategoryEntity(id = 9, categoryName = "Maps"),
-        TechnologyCategoryEntity(id = 10, categoryName = "Media"),
-        TechnologyCategoryEntity(id = 11, categoryName = "Monetization"),
-        TechnologyCategoryEntity(id = 12, categoryName = "Tooling"),
-        TechnologyCategoryEntity(id = 13, categoryName = "Testing"),
-        TechnologyCategoryEntity(id = 14, categoryName = "Telemetry")
+    private fun educationCs() = listOf(
+        EducationEntity(language = "cs", institution = "Univerzita Palackého Olomouc",
+            degree = "Bc., Aplikovaná informatika", startYear = 2011, endYear = 2015),
+        EducationEntity(language = "cs", institution = "Gymnázium Havlíčkův Brod",
+            degree = "Maturita", startYear = 2003, endYear = 2011)
     )
 
-    private fun technologies() = listOf(
+    // =========================================================================
+    // Programming Languages
+    // =========================================================================
+
+    private fun programmingLanguagesEn() = listOf(
+        ProgrammingLanguageEntity(language = "en", name = "Kotlin", level = 5),
+        ProgrammingLanguageEntity(language = "en", name = "Java", level = 5),
+        ProgrammingLanguageEntity(language = "en", name = "Bash", level = 4),
+        ProgrammingLanguageEntity(language = "en", name = "C/C++", level = 3),
+        ProgrammingLanguageEntity(language = "en", name = "Swift", level = 2),
+        ProgrammingLanguageEntity(language = "en", name = "Common Lisp", level = 2)
+    )
+
+    private fun programmingLanguagesCs() = listOf(
+        ProgrammingLanguageEntity(language = "cs", name = "Kotlin", level = 5),
+        ProgrammingLanguageEntity(language = "cs", name = "Java", level = 5),
+        ProgrammingLanguageEntity(language = "cs", name = "Bash", level = 4),
+        ProgrammingLanguageEntity(language = "cs", name = "C/C++", level = 3),
+        ProgrammingLanguageEntity(language = "cs", name = "Swift", level = 2),
+        ProgrammingLanguageEntity(language = "cs", name = "Common Lisp", level = 2)
+    )
+
+    // =========================================================================
+    // Technology Categories & Technologies
+    // =========================================================================
+    // EN categories get IDs 1–14, CS categories get IDs 15–28.
+    // Technologies reference their category by these explicit IDs.
+
+    private fun technologyCategoriesEn() = listOf(
+        TechnologyCategoryEntity(id = 1, language = "en", categoryName = "Basics"),
+        TechnologyCategoryEntity(id = 2, language = "en", categoryName = "UI"),
+        TechnologyCategoryEntity(id = 3, language = "en", categoryName = "Parallelization"),
+        TechnologyCategoryEntity(id = 4, language = "en", categoryName = "Networking"),
+        TechnologyCategoryEntity(id = 5, language = "en", categoryName = "Data"),
+        TechnologyCategoryEntity(id = 6, language = "en", categoryName = "Security"),
+        TechnologyCategoryEntity(id = 7, language = "en", categoryName = "Architecture"),
+        TechnologyCategoryEntity(id = 8, language = "en", categoryName = "Notifications"),
+        TechnologyCategoryEntity(id = 9, language = "en", categoryName = "Maps"),
+        TechnologyCategoryEntity(id = 10, language = "en", categoryName = "Media"),
+        TechnologyCategoryEntity(id = 11, language = "en", categoryName = "Monetization"),
+        TechnologyCategoryEntity(id = 12, language = "en", categoryName = "Tooling"),
+        TechnologyCategoryEntity(id = 13, language = "en", categoryName = "Testing"),
+        TechnologyCategoryEntity(id = 14, language = "en", categoryName = "Telemetry")
+    )
+
+    private fun technologyCategoriesCs() = listOf(
+        TechnologyCategoryEntity(id = 15, language = "cs", categoryName = "Základy"),
+        TechnologyCategoryEntity(id = 16, language = "cs", categoryName = "UI"),
+        TechnologyCategoryEntity(id = 17, language = "cs", categoryName = "Paralelizace"),
+        TechnologyCategoryEntity(id = 18, language = "cs", categoryName = "Síťování"),
+        TechnologyCategoryEntity(id = 19, language = "cs", categoryName = "Data"),
+        TechnologyCategoryEntity(id = 20, language = "cs", categoryName = "Bezpečnost"),
+        TechnologyCategoryEntity(id = 21, language = "cs", categoryName = "Architektura"),
+        TechnologyCategoryEntity(id = 22, language = "cs", categoryName = "Notifikace"),
+        TechnologyCategoryEntity(id = 23, language = "cs", categoryName = "Mapy"),
+        TechnologyCategoryEntity(id = 24, language = "cs", categoryName = "Média"),
+        TechnologyCategoryEntity(id = 25, language = "cs", categoryName = "Monetizace"),
+        TechnologyCategoryEntity(id = 26, language = "cs", categoryName = "Nástroje"),
+        TechnologyCategoryEntity(id = 27, language = "cs", categoryName = "Testování"),
+        TechnologyCategoryEntity(id = 28, language = "cs", categoryName = "Telemetrie")
+    )
+
+    private fun technologiesEn() = listOf(
         // Basics (1)
-        TechnologyEntity(categoryId = 1, name = "Android SDK"),
-        TechnologyEntity(categoryId = 1, name = "Activity"),
-        TechnologyEntity(categoryId = 1, name = "Services"),
-        TechnologyEntity(categoryId = 1, name = "Fragments"),
-        TechnologyEntity(categoryId = 1, name = "Composable functions"),
-        TechnologyEntity(categoryId = 1, name = "Lifecycle"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Android SDK"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Activity"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Services"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Fragments"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Composable functions"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Lifecycle"),
         // UI (2)
-        TechnologyEntity(categoryId = 2, name = "Jetpack Compose"),
-        TechnologyEntity(categoryId = 2, name = "XML layouts"),
-        TechnologyEntity(categoryId = 2, name = "Custom Views (Canvas)"),
-        TechnologyEntity(categoryId = 2, name = "Material Design"),
+        TechnologyEntity(language = "en", categoryId = 2, name = "Jetpack Compose"),
+        TechnologyEntity(language = "en", categoryId = 2, name = "XML layouts"),
+        TechnologyEntity(language = "en", categoryId = 2, name = "Custom Views (Canvas)"),
+        TechnologyEntity(language = "en", categoryId = 2, name = "Material Design"),
         // Parallelization (3)
-        TechnologyEntity(categoryId = 3, name = "Kotlin Coroutines"),
-        TechnologyEntity(categoryId = 3, name = "Java Executors"),
+        TechnologyEntity(language = "en", categoryId = 3, name = "Kotlin Coroutines"),
+        TechnologyEntity(language = "en", categoryId = 3, name = "Java Executors"),
         // Networking (4)
-        TechnologyEntity(categoryId = 4, name = "OkHttp"),
-        TechnologyEntity(categoryId = 4, name = "Retrofit"),
-        TechnologyEntity(categoryId = 4, name = "REST APIs"),
-        TechnologyEntity(categoryId = 4, name = "JSON"),
-        TechnologyEntity(categoryId = 4, name = "GSON"),
-        TechnologyEntity(categoryId = 4, name = "Base64"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "OkHttp"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "Retrofit"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "REST APIs"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "JSON"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "GSON"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "Base64"),
         // Data (5)
-        TechnologyEntity(categoryId = 5, name = "Room DB"),
-        TechnologyEntity(categoryId = 5, name = "SQLite"),
-        TechnologyEntity(categoryId = 5, name = "Shared Preferences"),
+        TechnologyEntity(language = "en", categoryId = 5, name = "Room DB"),
+        TechnologyEntity(language = "en", categoryId = 5, name = "SQLite"),
+        TechnologyEntity(language = "en", categoryId = 5, name = "Shared Preferences"),
         // Security (6)
-        TechnologyEntity(categoryId = 6, name = "AES"),
-        TechnologyEntity(categoryId = 6, name = "R8 / ProGuard"),
-        TechnologyEntity(categoryId = 6, name = "Secure token handling"),
-        TechnologyEntity(categoryId = 6, name = "JWT"),
-        TechnologyEntity(categoryId = 6, name = "Google Sign-In"),
+        TechnologyEntity(language = "en", categoryId = 6, name = "AES"),
+        TechnologyEntity(language = "en", categoryId = 6, name = "R8 / ProGuard"),
+        TechnologyEntity(language = "en", categoryId = 6, name = "Secure token handling"),
+        TechnologyEntity(language = "en", categoryId = 6, name = "JWT"),
+        TechnologyEntity(language = "en", categoryId = 6, name = "Google Sign-In"),
         // Architecture (7)
-        TechnologyEntity(categoryId = 7, name = "Lifecycle-aware components"),
-        TechnologyEntity(categoryId = 7, name = "ViewModel"),
-        TechnologyEntity(categoryId = 7, name = "Navigation Component"),
-        TechnologyEntity(categoryId = 7, name = "KMM"),
+        TechnologyEntity(language = "en", categoryId = 7, name = "Lifecycle-aware components"),
+        TechnologyEntity(language = "en", categoryId = 7, name = "ViewModel"),
+        TechnologyEntity(language = "en", categoryId = 7, name = "Navigation Component"),
+        TechnologyEntity(language = "en", categoryId = 7, name = "KMM"),
         // Notifications (8)
-        TechnologyEntity(categoryId = 8, name = "Push notifications"),
-        TechnologyEntity(categoryId = 8, name = "Deep links"),
-        TechnologyEntity(categoryId = 8, name = "Pusher"),
-        TechnologyEntity(categoryId = 8, name = "Pusher Beams"),
-        TechnologyEntity(categoryId = 8, name = "Pushwoosh"),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Push notifications"),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Deep links"),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Pusher"),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Pusher Beams"),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Pushwoosh"),
         // Maps (9)
-        TechnologyEntity(categoryId = 9, name = "Mapbox SDK"),
+        TechnologyEntity(language = "en", categoryId = 9, name = "Mapbox SDK"),
         // Media (10)
-        TechnologyEntity(categoryId = 10, name = "ExoPlayer"),
+        TechnologyEntity(language = "en", categoryId = 10, name = "ExoPlayer"),
         // Monetization (11)
-        TechnologyEntity(categoryId = 11, name = "Google Play Billing library"),
-        TechnologyEntity(categoryId = 11, name = "Stripe SDK"),
+        TechnologyEntity(language = "en", categoryId = 11, name = "Google Play Billing library"),
+        TechnologyEntity(language = "en", categoryId = 11, name = "Stripe SDK"),
         // Tooling (12)
-        TechnologyEntity(categoryId = 12, name = "Gradle"),
-        TechnologyEntity(categoryId = 12, name = "Google Play Console"),
-        TechnologyEntity(categoryId = 12, name = "App Signing"),
+        TechnologyEntity(language = "en", categoryId = 12, name = "Gradle"),
+        TechnologyEntity(language = "en", categoryId = 12, name = "Google Play Console"),
+        TechnologyEntity(language = "en", categoryId = 12, name = "App Signing"),
         // Testing (13)
-        TechnologyEntity(categoryId = 13, name = "Unit tests"),
-        TechnologyEntity(categoryId = 13, name = "System tests"),
-        TechnologyEntity(categoryId = 13, name = "Organizing of internal beta testing"),
+        TechnologyEntity(language = "en", categoryId = 13, name = "Unit tests"),
+        TechnologyEntity(language = "en", categoryId = 13, name = "System tests"),
+        TechnologyEntity(language = "en", categoryId = 13, name = "Organizing of internal beta testing"),
         // Telemetry (14)
-        TechnologyEntity(categoryId = 14, name = "Sentry"),
-        TechnologyEntity(categoryId = 14, name = "Mixpanel")
+        TechnologyEntity(language = "en", categoryId = 14, name = "Sentry"),
+        TechnologyEntity(language = "en", categoryId = 14, name = "Mixpanel")
     )
 
-    // -- Other Skill Categories & Skills --------------------------------------
-
-    private fun otherSkillCategories() = listOf(
-        OtherSkillCategoryEntity(id = 1, categoryName = "Versioning"),
-        OtherSkillCategoryEntity(id = 2, categoryName = "Organization"),
-        OtherSkillCategoryEntity(id = 3, categoryName = "CI/CD"),
-        OtherSkillCategoryEntity(id = 4, categoryName = "Backend"),
-        OtherSkillCategoryEntity(id = 5, categoryName = "Server-side"),
-        OtherSkillCategoryEntity(id = 6, categoryName = "Infrastructure"),
-        OtherSkillCategoryEntity(id = 7, categoryName = "OS"),
-        OtherSkillCategoryEntity(id = 8, categoryName = "Others")
+    private fun technologiesCs() = listOf(
+        // Základy (15)
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Android SDK"),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Activity"),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Services"),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Fragmenty"),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Composable funkce"),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Lifecycle"),
+        // UI (16)
+        TechnologyEntity(language = "cs", categoryId = 16, name = "Jetpack Compose"),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "XML layouty"),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "Custom Views (Canvas)"),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "Material Design"),
+        // Paralelizace (17)
+        TechnologyEntity(language = "cs", categoryId = 17, name = "Kotlin Coroutines"),
+        TechnologyEntity(language = "cs", categoryId = 17, name = "Java Executors"),
+        // Síťování (18)
+        TechnologyEntity(language = "cs", categoryId = 18, name = "OkHttp"),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "Retrofit"),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "REST APIs"),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "JSON"),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "GSON"),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "Base64"),
+        // Data (19)
+        TechnologyEntity(language = "cs", categoryId = 19, name = "Room DB"),
+        TechnologyEntity(language = "cs", categoryId = 19, name = "SQLite"),
+        TechnologyEntity(language = "cs", categoryId = 19, name = "Shared Preferences"),
+        // Bezpečnost (20)
+        TechnologyEntity(language = "cs", categoryId = 20, name = "AES"),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "R8 / ProGuard"),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "Secure token handling"),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "JWT"),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "Google Sign-In"),
+        // Architektura (21)
+        TechnologyEntity(language = "cs", categoryId = 21, name = "Lifecycle-aware components"),
+        TechnologyEntity(language = "cs", categoryId = 21, name = "ViewModel"),
+        TechnologyEntity(language = "cs", categoryId = 21, name = "Navigation Component"),
+        TechnologyEntity(language = "cs", categoryId = 21, name = "KMM"),
+        // Notifikace (22)
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Push notifications"),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Deep links"),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Pusher"),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Pusher Beams"),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Pushwoosh"),
+        // Mapy (23)
+        TechnologyEntity(language = "cs", categoryId = 23, name = "Mapbox SDK"),
+        // Média (24)
+        TechnologyEntity(language = "cs", categoryId = 24, name = "ExoPlayer"),
+        // Monetizace (25)
+        TechnologyEntity(language = "cs", categoryId = 25, name = "Google Play Billing library"),
+        TechnologyEntity(language = "cs", categoryId = 25, name = "Stripe SDK"),
+        // Nástroje (26)
+        TechnologyEntity(language = "cs", categoryId = 26, name = "Gradle"),
+        TechnologyEntity(language = "cs", categoryId = 26, name = "Google Play Console"),
+        TechnologyEntity(language = "cs", categoryId = 26, name = "App Signing"),
+        // Testování (27)
+        TechnologyEntity(language = "cs", categoryId = 27, name = "Unit testy"),
+        TechnologyEntity(language = "cs", categoryId = 27, name = "Systémové testy"),
+        TechnologyEntity(language = "cs", categoryId = 27, name = "Organizace interního testování"),
+        // Telemetrie (28)
+        TechnologyEntity(language = "cs", categoryId = 28, name = "Sentry"),
+        TechnologyEntity(language = "cs", categoryId = 28, name = "Mixpanel")
     )
 
-    private fun otherSkills() = listOf(
+    // =========================================================================
+    // Other Skill Categories & Skills
+    // =========================================================================
+    // EN categories get IDs 1–8, CS categories get IDs 9–16.
+
+    private fun otherSkillCategoriesEn() = listOf(
+        OtherSkillCategoryEntity(id = 1, language = "en", categoryName = "Versioning"),
+        OtherSkillCategoryEntity(id = 2, language = "en", categoryName = "Organization"),
+        OtherSkillCategoryEntity(id = 3, language = "en", categoryName = "CI/CD"),
+        OtherSkillCategoryEntity(id = 4, language = "en", categoryName = "Backend"),
+        OtherSkillCategoryEntity(id = 5, language = "en", categoryName = "Server-side"),
+        OtherSkillCategoryEntity(id = 6, language = "en", categoryName = "Infrastructure"),
+        OtherSkillCategoryEntity(id = 7, language = "en", categoryName = "OS"),
+        OtherSkillCategoryEntity(id = 8, language = "en", categoryName = "Others")
+    )
+
+    private fun otherSkillCategoriesCs() = listOf(
+        OtherSkillCategoryEntity(id = 9, language = "cs", categoryName = "Verzování"),
+        OtherSkillCategoryEntity(id = 10, language = "cs", categoryName = "Organizace"),
+        OtherSkillCategoryEntity(id = 11, language = "cs", categoryName = "CI/CD"),
+        OtherSkillCategoryEntity(id = 12, language = "cs", categoryName = "Backend"),
+        OtherSkillCategoryEntity(id = 13, language = "cs", categoryName = "Server-side"),
+        OtherSkillCategoryEntity(id = 14, language = "cs", categoryName = "Infrastruktura"),
+        OtherSkillCategoryEntity(id = 15, language = "cs", categoryName = "OS"),
+        OtherSkillCategoryEntity(id = 16, language = "cs", categoryName = "Ostatní")
+    )
+
+    private fun otherSkillsEn() = listOf(
         // Versioning (1)
-        OtherSkillEntity(categoryId = 1, name = "Git"),
-        OtherSkillEntity(categoryId = 1, name = "GitLab"),
-        OtherSkillEntity(categoryId = 1, name = "GitHub"),
+        OtherSkillEntity(language = "en", categoryId = 1, name = "Git"),
+        OtherSkillEntity(language = "en", categoryId = 1, name = "GitLab"),
+        OtherSkillEntity(language = "en", categoryId = 1, name = "GitHub"),
         // Organization (2)
-        OtherSkillEntity(categoryId = 2, name = "Slack"),
-        OtherSkillEntity(categoryId = 2, name = "Zoom"),
-        OtherSkillEntity(categoryId = 2, name = "GitHub Issues"),
-        OtherSkillEntity(categoryId = 2, name = "Jira"),
-        OtherSkillEntity(categoryId = 2, name = "Clockify"),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Slack"),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Zoom"),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "GitHub Issues"),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Jira"),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Clockify"),
         // CI/CD (3)
-        OtherSkillEntity(categoryId = 3, name = "Jenkins"),
-        OtherSkillEntity(categoryId = 3, name = "Teamcity"),
+        OtherSkillEntity(language = "en", categoryId = 3, name = "Jenkins"),
+        OtherSkillEntity(language = "en", categoryId = 3, name = "Teamcity"),
         // Backend (4)
-        OtherSkillEntity(categoryId = 4, name = "Ktor"),
-        OtherSkillEntity(categoryId = 4, name = "MariaDB"),
-        OtherSkillEntity(categoryId = 4, name = "MySQL"),
-        OtherSkillEntity(categoryId = 4, name = "PostgreSQL"),
-        OtherSkillEntity(categoryId = 4, name = "Elasticsearch"),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "Ktor"),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "MariaDB"),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "MySQL"),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "PostgreSQL"),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "Elasticsearch"),
         // Server-side (5)
-        OtherSkillEntity(categoryId = 5, name = "Apache"),
-        OtherSkillEntity(categoryId = 5, name = "Nginx"),
-        OtherSkillEntity(categoryId = 5, name = "Supervisord"),
-        OtherSkillEntity(categoryId = 5, name = "TLS/SSL"),
-        OtherSkillEntity(categoryId = 5, name = "Wowza Streaming Engine"),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Apache"),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Nginx"),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Supervisord"),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "TLS/SSL"),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Wowza Streaming Engine"),
         // Infrastructure (6)
-        OtherSkillEntity(categoryId = 6, name = "AWS"),
-        OtherSkillEntity(categoryId = 6, name = "Hetzner"),
-        OtherSkillEntity(categoryId = 6, name = "Linode"),
-        OtherSkillEntity(categoryId = 6, name = "Digital Ocean"),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "AWS"),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "Hetzner"),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "Linode"),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "Digital Ocean"),
         // OS (7)
-        OtherSkillEntity(categoryId = 7, name = "GNU/Linux"),
-        OtherSkillEntity(categoryId = 7, name = "Android"),
-        OtherSkillEntity(categoryId = 7, name = "Mac OS"),
-        OtherSkillEntity(categoryId = 7, name = "Windows"),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "GNU/Linux"),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "Android"),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "Mac OS"),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "Windows"),
         // Others (8)
-        OtherSkillEntity(categoryId = 8, name = "HTML/CSS"),
-        OtherSkillEntity(categoryId = 8, name = "SQL"),
-        OtherSkillEntity(categoryId = 8, name = "LaTeX")
+        OtherSkillEntity(language = "en", categoryId = 8, name = "HTML/CSS"),
+        OtherSkillEntity(language = "en", categoryId = 8, name = "SQL"),
+        OtherSkillEntity(language = "en", categoryId = 8, name = "LaTeX")
     )
 
-    // -- Languages ------------------------------------------------------------
-
-    private fun languages() = listOf(
-        LanguageEntity(id = 1, name = "Czech", level = "Native", note = null),
-        LanguageEntity(
-            id = 2, name = "English", level = "Intermediate (~C1)",
-            note = "Fluent interaction with native speakers"
-        )
+    private fun otherSkillsCs() = listOf(
+        // Verzování (9)
+        OtherSkillEntity(language = "cs", categoryId = 9, name = "Git"),
+        OtherSkillEntity(language = "cs", categoryId = 9, name = "GitLab"),
+        OtherSkillEntity(language = "cs", categoryId = 9, name = "GitHub"),
+        // Organizace (10)
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Slack"),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Zoom"),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "GitHub Issues"),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Jira"),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Clockify"),
+        // CI/CD (11)
+        OtherSkillEntity(language = "cs", categoryId = 11, name = "Jenkins"),
+        OtherSkillEntity(language = "cs", categoryId = 11, name = "Teamcity"),
+        // Backend (12)
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "Ktor"),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "MariaDB"),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "MySQL"),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "PostgreSQL"),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "Elasticsearch"),
+        // Server-side (13)
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Apache"),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Nginx"),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Supervisord"),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "TLS/SSL"),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Wowza Streaming Engine"),
+        // Infrastruktura (14)
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "AWS"),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "Hetzner"),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "Linode"),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "Digital Ocean"),
+        // OS (15)
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "GNU/Linux"),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "Android"),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "Mac OS"),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "Windows"),
+        // Ostatní (16)
+        OtherSkillEntity(language = "cs", categoryId = 16, name = "HTML/CSS"),
+        OtherSkillEntity(language = "cs", categoryId = 16, name = "SQL"),
+        OtherSkillEntity(language = "cs", categoryId = 16, name = "LaTeX")
     )
 
-    // -- Personality Traits ---------------------------------------------------
+    // =========================================================================
+    // Languages (spoken)
+    // =========================================================================
 
-    private fun personalityTraits() = listOf(
-        PersonalityTraitEntity(id = 1, trait = "Independence"),
-        PersonalityTraitEntity(id = 2, trait = "Honesty"),
-        PersonalityTraitEntity(id = 3, trait = "Perseverance"),
-        PersonalityTraitEntity(id = 4, trait = "Passion to learn new things")
+    private fun languagesEn() = listOf(
+        LanguageEntity(language = "en", name = "Czech", level = "Native", note = null),
+        LanguageEntity(language = "en", name = "English", level = "Intermediate (~C1)",
+            note = "Fluent interaction with native speakers")
     )
 
-    // -- Interests ------------------------------------------------------------
+    private fun languagesCs() = listOf(
+        LanguageEntity(language = "cs", name = "Čeština", level = "Mateřský jazyk", note = null),
+        LanguageEntity(language = "cs", name = "Angličtina", level = "Pokročilý",
+            note = "Znalost umožňující profesionální práci")
+    )
 
-    private fun interests() = listOf(
-        InterestEntity(id = 1, name = "Photography"),
-        InterestEntity(id = 2, name = "Graphics"),
-        InterestEntity(id = 3, name = "Artificial Intelligence"),
-        InterestEntity(id = 4, name = "Travel")
+    // =========================================================================
+    // Personality Traits
+    // =========================================================================
+
+    private fun personalityTraitsEn() = listOf(
+        PersonalityTraitEntity(language = "en", trait = "Independence"),
+        PersonalityTraitEntity(language = "en", trait = "Honesty"),
+        PersonalityTraitEntity(language = "en", trait = "Perseverance"),
+        PersonalityTraitEntity(language = "en", trait = "Passion to learn new things")
+    )
+
+    private fun personalityTraitsCs() = listOf(
+        PersonalityTraitEntity(language = "cs", trait = "Samostatnost"),
+        PersonalityTraitEntity(language = "cs", trait = "Poctivost"),
+        PersonalityTraitEntity(language = "cs", trait = "Vytrvalost"),
+        PersonalityTraitEntity(language = "cs", trait = "Rád experimentuji a učím se nové věci")
+    )
+
+    // =========================================================================
+    // Interests
+    // =========================================================================
+
+    private fun interestsEn() = listOf(
+        InterestEntity(language = "en", name = "Photography"),
+        InterestEntity(language = "en", name = "Graphics"),
+        InterestEntity(language = "en", name = "Artificial Intelligence"),
+        InterestEntity(language = "en", name = "Travel")
+    )
+
+    private fun interestsCs() = listOf(
+        InterestEntity(language = "cs", name = "Fotografie"),
+        InterestEntity(language = "cs", name = "Počítačová grafika"),
+        InterestEntity(language = "cs", name = "Umělá inteligence"),
+        InterestEntity(language = "cs", name = "Cestování")
     )
 }

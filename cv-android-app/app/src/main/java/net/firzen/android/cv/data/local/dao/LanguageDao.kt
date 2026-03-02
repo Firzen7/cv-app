@@ -13,6 +13,6 @@ interface LanguageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(languages: List<LanguageEntity>)
 
-    @Query("SELECT * FROM languages ORDER BY id ASC")
-    fun getAll(): Flow<List<LanguageEntity>>
+    @Query("SELECT * FROM languages WHERE language = :language ORDER BY id ASC")
+    fun getAll(language: String): Flow<List<LanguageEntity>>
 }

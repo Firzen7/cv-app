@@ -2,7 +2,9 @@ package net.firzen.android.cv
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import net.firzen.android.cv.data.local.CvDatabase
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Application-level entry point for the CV app.
@@ -14,6 +16,14 @@ import timber.log.Timber
  */
 @HiltAndroidApp
 class CvApp : Application() {
+
+    /**
+     * Eagerly inject the database so Room's onCreate callback (which seeds
+     * all CV data) fires at app startup — not when the first DAO is accessed.
+     * This guarantees data is ready before any screen tries to display it.
+     */
+    @Inject lateinit var database: CvDatabase
+
     override fun onCreate() {
         super.onCreate()
 
@@ -22,5 +32,9 @@ class CvApp : Application() {
         // In a production app, you'd use a different Tree that sends logs to Crashlytics/Sentry.
         Timber.plant(Timber.DebugTree())
         Timber.i("*** CV App started ***")
+
+        // Force Room to open the database now (triggers onCreate callback + seeding)
+        database.openHelper.writableDatabase
+        Timber.i("Database initialised eagerly")
     }
 }

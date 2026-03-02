@@ -11,5 +11,7 @@ data class PersonalityTraitEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val language: String,
+
     val trait: String
 )

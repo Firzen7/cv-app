@@ -14,7 +14,7 @@ class GetProjectsUseCase @Inject constructor(
     private val repository: CvRepository
 ) {
 
-    operator fun invoke(): Flow<List<Project>> {
-        return repository.getAllProjects()
+    operator fun invoke(language: String): Flow<List<Project>> {
+        return repository.getAllProjects(language)
     }
 }

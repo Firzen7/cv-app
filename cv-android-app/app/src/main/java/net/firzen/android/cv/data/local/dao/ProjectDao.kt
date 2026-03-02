@@ -13,9 +13,9 @@ interface ProjectDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(projects: List<ProjectEntity>)
 
-    @Query("SELECT * FROM projects ORDER BY ordinal ASC")
-    fun getAll(): Flow<List<ProjectEntity>>
+    @Query("SELECT * FROM projects WHERE language = :language ORDER BY ordinal ASC")
+    fun getAll(language: String): Flow<List<ProjectEntity>>
 
-    @Query("SELECT * FROM projects WHERE id = :projectId")
-    fun getById(projectId: Int): Flow<ProjectEntity?>
+    @Query("SELECT * FROM projects WHERE id = :projectId AND language = :language")
+    fun getById(projectId: Int, language: String): Flow<ProjectEntity?>
 }

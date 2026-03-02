@@ -14,7 +14,7 @@ class GetProjectByIdUseCase @Inject constructor(
     private val repository: CvRepository
 ) {
 
-    operator fun invoke(projectId: Int): Flow<Project?> {
-        return repository.getProjectById(projectId)
+    operator fun invoke(projectId: Int, language: String): Flow<Project?> {
+        return repository.getProjectById(projectId, language)
     }
 }

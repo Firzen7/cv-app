@@ -850,16 +850,16 @@ object CvDataSeeder {
     // =========================================================================
 
     private fun interestsEn() = listOf(
-        InterestEntity(language = "en", name = "Photography", description = "I started taking photos around 2007. One might think that after all this time I must be a professional, but I'm still just an amateur. Actually, that was intentional \u2014 I didn't want to ruin this hobby. You can find some of my better photos here: LINK"),
+        InterestEntity(language = "en", name = "Photography", description = "I started taking photos around 2007. One might think that after all this time I must be a professional, but I'm still just an amateur. Actually, that was intentional \u2014 I didn't want to ruin this hobby. You can find some of my better photos here: https://gurushots.com/firzen/photos"),
         InterestEntity(language = "en", name = "Graphics", description = "I don't do graphics that often, but I occasionally create something, including commercially, as part of mobile app design. I mainly use Inkscape."),
         InterestEntity(language = "en", name = "Artificial Intelligence", description = ""),
-        InterestEntity(language = "en", name = "Travel", description = "I spend most of my time sitting at a computer, and that's probably why I sometimes become a pilgrim and do something extreme. My record so far was walking 2,500 km from Edinburgh through Scotland, England, the Netherlands, Belgium, France and Spain, all the way to Santiago and Finisterre. During the journey I kept a journal here: LINK")
+        InterestEntity(language = "en", name = "Travel", description = "I spend most of my time sitting at a computer, and that's probably why I sometimes become a pilgrim and do something extreme. My record so far was walking 2,500 km from Edinburgh through Scotland, England, the Netherlands, Belgium, France and Spain, all the way to Santiago and Finisterre. During the journey I kept a journal here: https://www.facebook.com/pilgrimstemple")
     )
 
     private fun interestsCs() = listOf(
-        InterestEntity(language = "cs", name = "Fotografie", description = "Fotit jsem začal už někdy kolem roku 2007. Jeden by si myslel, že za tu dobu už musím být profesionál, ale stále jsem pouze amatérem. Vlastně to bylo záměrné, protože jsem si nechtěl tento koníček zkazit. Několik povedených fotografií naleznete zde: ODKAZ"),
+        InterestEntity(language = "cs", name = "Fotografie", description = "Fotit jsem začal už někdy kolem roku 2007. Jeden by si myslel, že za tu dobu už musím být profesionál, ale stále jsem pouze amatérem. Vlastně to bylo záměrné, protože jsem si nechtěl tento koníček zkazit. Několik povedených fotografií naleznete zde: https://gurushots.com/firzen/photos"),
         InterestEntity(language = "cs", name = "Počítačová grafika", description = "Grafice se nevěnuju až tak často, ale občas něco vytvořím, a to i komerečně, jako součást designu mobilních aplikací. Používám zejména Inkscape."),
         InterestEntity(language = "cs", name = "Umělá inteligence", description = ""),
-        InterestEntity(language = "cs", name = "Cestování", description = "Většinu času sedím u počítače, a asi proto se občas stanu poutníkem, a podniknu něco extrémního. Můj dosavadní rekord bylo ujít 2500 km z Edinburghu přes Skotsko, Anglii, Nizozemí, Belgii, Francii a Španělsko, až do Santiaga a na Fisterru. Během cesty jsem psal zápisky zde: ODKAZ")
+        InterestEntity(language = "cs", name = "Cestování", description = "Většinu času sedím u počítače, a asi proto se občas stanu poutníkem, a podniknu něco extrémního. Můj dosavadní rekord bylo ujít 2500 km z Edinburghu přes Skotsko, Anglii, Nizozemí, Belgii, Francii a Španělsko, až do Santiaga a na Fisterru. Během cesty jsem psal zápisky zde: https://www.facebook.com/pilgrimstemple")
     )
 }

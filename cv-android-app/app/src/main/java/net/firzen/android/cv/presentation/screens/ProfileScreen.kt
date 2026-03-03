@@ -161,7 +161,7 @@ private fun ProfileHeader(name: String, title: String, onPhotoClick: () -> Unit 
         Text(
             text = title,
             style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.secondary
         )
     }
 }

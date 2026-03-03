@@ -140,7 +140,7 @@ private fun ExperienceCard(experience: WorkExperience, modifier: Modifier = Modi
             Text(
                 text = dateRange,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.secondary
             )
 
             Spacer(modifier = Modifier.height(8.dp))

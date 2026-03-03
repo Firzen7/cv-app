@@ -347,7 +347,7 @@ private fun EducationRow(education: Education) {
         Text(
             text = "${education.startYear} – ${education.endYear}",
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.secondary
         )
     }
 }

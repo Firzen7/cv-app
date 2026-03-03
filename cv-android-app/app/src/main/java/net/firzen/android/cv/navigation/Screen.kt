@@ -40,6 +40,9 @@ sealed class Screen(
         /** Route pattern for project detail screen (not in bottom nav). */
         const val PROJECT_DETAIL_ROUTE = "project_detail/{projectId}"
 
+        /** Route for the onboarding screen (not in bottom nav). */
+        const val ONBOARDING_ROUTE = "onboarding"
+
         /** Creates a navigation route for a specific project. */
         fun projectDetailRoute(projectId: Int) = "project_detail/$projectId"
     }

@@ -13,11 +13,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.firzen.android.cv.data.local.OnboardingPreferences
 import net.firzen.android.cv.navigation.BottomNavBar
 import net.firzen.android.cv.navigation.CvNavHost
+import net.firzen.android.cv.navigation.Screen
 import net.firzen.android.cv.presentation.screens.OnboardingScreen
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 import javax.inject.Inject
@@ -78,11 +80,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun MainScreen() {
     val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    // Only show the bottom bar on the four main tab screens
+    val showBottomBar = currentRoute in Screen.bottomNavItems.map { it.route }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        // The bottom bar is placed here in the Scaffold so it stays visible across all screens
-        bottomBar = { BottomNavBar(navController) }
+        // The bottom bar is placed here in the Scaffold so it stays visible across tab screens
+        bottomBar = { if (showBottomBar) BottomNavBar(navController) }
     ) { innerPadding ->
         // innerPadding accounts for the space taken by the bottom bar and system bars,
         // ensuring screen content doesn't render underneath them

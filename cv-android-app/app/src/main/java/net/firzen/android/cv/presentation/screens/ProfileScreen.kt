@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -45,14 +46,14 @@ import net.firzen.android.cv.presentation.dialogs.ChipDetailDialog
 
 // Entry point called from navigation — reads ViewModel state and delegates to content
 @Composable
-fun ProfileScreen(viewModel: ProfileViewModel) {
+fun ProfileScreen(viewModel: ProfileViewModel, onPhotoClick: () -> Unit = {}) {
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refreshLocale() }
-    ProfileScreenContent(state = viewModel.state.collectAsState().value)
+    ProfileScreenContent(state = viewModel.state.collectAsState().value, onPhotoClick = onPhotoClick)
 }
 
 // Stateless content composable — can be used in @Preview with sample data
 @Composable
-fun ProfileScreenContent(state: ProfileScreenState) {
+fun ProfileScreenContent(state: ProfileScreenState, onPhotoClick: () -> Unit = {}) {
     val context = LocalContext.current
 
     if (state.isLoading) {
@@ -74,7 +75,8 @@ fun ProfileScreenContent(state: ProfileScreenState) {
         // -- Profile Header ---------------------------------------------------
         ProfileHeader(
             name = profile.name,
-            title = profile.title
+            title = profile.title,
+            onPhotoClick = onPhotoClick
         )
 
         // -- Contact Icons Row ------------------------------------------------
@@ -127,20 +129,21 @@ fun ProfileScreenContent(state: ProfileScreenState) {
 // -- Profile Header with avatar circle, name, and title -----------------------
 
 @Composable
-private fun ProfileHeader(name: String, title: String) {
+private fun ProfileHeader(name: String, title: String, onPhotoClick: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 32.dp, bottom = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Circular avatar with photo
+        // Circular avatar with photo – clickable to show onboarding
         Image(
             painter = painterResource(id = R.drawable.photo),
             contentDescription = name,
             modifier = Modifier
                 .size(96.dp)
-                .clip(CircleShape),
+                .clip(CircleShape)
+                .clickable(onClick = onPhotoClick),
             contentScale = ContentScale.Crop
         )
 

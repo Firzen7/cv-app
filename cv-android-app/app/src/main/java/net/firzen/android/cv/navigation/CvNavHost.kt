@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import net.firzen.android.cv.presentation.screens.ExperienceScreen
+import net.firzen.android.cv.presentation.screens.OnboardingScreen
 import net.firzen.android.cv.presentation.screens.ProfileScreen
 import net.firzen.android.cv.presentation.screens.ProjectDetailScreen
 import net.firzen.android.cv.presentation.screens.ProjectsScreen
@@ -43,7 +44,10 @@ fun CvNavHost(
         // Each `composable()` block registers a route and the screen to display for it.
         // The route strings must match those defined in the Screen sealed class.
         composable(Screen.Profile.route) {
-            ProfileScreen(hiltViewModel<ProfileViewModel>())
+            ProfileScreen(
+                viewModel = hiltViewModel<ProfileViewModel>(),
+                onPhotoClick = { navController.navigate(Screen.ONBOARDING_ROUTE) }
+            )
         }
         composable(Screen.Experience.route) {
             ExperienceScreen(hiltViewModel<ExperienceViewModel>())
@@ -66,6 +70,11 @@ fun CvNavHost(
             ProjectDetailScreen(
                 viewModel = hiltViewModel<ProjectDetailViewModel>(),
                 onNavigateBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ONBOARDING_ROUTE) {
+            OnboardingScreen(
+                onDismiss = { navController.popBackStack() }
             )
         }
     }

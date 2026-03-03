@@ -377,9 +377,10 @@ private fun ChipsRow(items: List<Pair<String, String?>>) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items.forEach { (name, description) ->
+            val hasDescription = !description.isNullOrBlank()
             SuggestionChip(
                 onClick = {
-                    if (description != null) dialogItem = name to description
+                    if (hasDescription) dialogItem = name to description!!
                 },
                 label = {
                     Text(
@@ -387,7 +388,15 @@ private fun ChipsRow(items: List<Pair<String, String?>>) {
                         style = MaterialTheme.typography.bodySmall
                     )
                 },
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                colors = if (hasDescription) {
+                    SuggestionChipDefaults.suggestionChipColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        labelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                } else {
+                    SuggestionChipDefaults.suggestionChipColors()
+                }
             )
         }
     }

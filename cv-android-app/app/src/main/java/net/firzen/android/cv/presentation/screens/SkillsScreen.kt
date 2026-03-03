@@ -215,14 +215,23 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 items.forEach { item ->
+                    val hasDescription = !item.description.isNullOrBlank()
                     SuggestionChip(
                         onClick = {
-                            if (item.description != null) dialogItem = item
+                            if (hasDescription) dialogItem = item
                         },
                         label = {
                             Text(text = item.name, style = MaterialTheme.typography.bodySmall)
                         },
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(8.dp),
+                        colors = if (hasDescription) {
+                            SuggestionChipDefaults.suggestionChipColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                labelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        } else {
+                            SuggestionChipDefaults.suggestionChipColors()
+                        }
                     )
                 }
             }
@@ -243,15 +252,24 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     items.forEach { item ->
+                        val hasDescription = !item.description.isNullOrBlank()
                         SuggestionChip(
                             onClick = {
                                 if (isCollapsible) expanded = true
-                                else if (item.description != null) dialogItem = item
+                                else if (hasDescription) dialogItem = item
                             },
                             label = {
                                 Text(text = item.name, style = MaterialTheme.typography.bodySmall)
                             },
-                            shape = RoundedCornerShape(8.dp)
+                            shape = RoundedCornerShape(8.dp),
+                            colors = if (hasDescription) {
+                                SuggestionChipDefaults.suggestionChipColors(
+                                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            } else {
+                                SuggestionChipDefaults.suggestionChipColors()
+                            }
                         )
                     }
                 }

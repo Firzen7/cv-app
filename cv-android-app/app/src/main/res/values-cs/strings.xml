@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">cv-android-app</string>
+    <string name="app_name">Životopis</string>
 
     <!-- Bottom Navigation tab titles -->
     <string name="tab_profile">Profil</string>

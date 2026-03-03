@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cv-android-app</string>
+    <string name="app_name">Digital CV</string>
 
     <!-- Bottom Navigation tab titles -->
     <string name="tab_profile">Profile</string>

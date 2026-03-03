@@ -380,7 +380,7 @@ private fun ChipsRow(items: List<Pair<String, String?>>) {
             val hasDescription = !description.isNullOrBlank()
             SuggestionChip(
                 onClick = {
-                    if (hasDescription) dialogItem = name to description!!
+                    if (hasDescription) dialogItem = name to description
                 },
                 label = {
                     Text(

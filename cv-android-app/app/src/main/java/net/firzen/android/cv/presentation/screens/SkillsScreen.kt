@@ -298,7 +298,7 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
         if(description != null && description.isNotBlank()) {
             ChipDetailDialog(
                 title = title,
-                description = description ?: "",
+                description = description,
                 onDismiss = { dialogItem = null }
             )
         }

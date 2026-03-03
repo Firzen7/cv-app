@@ -4,5 +4,5 @@ package net.firzen.android.cv.domain.model
 data class OtherSkillCategory(
     val id: Int,
     val name: String,
-    val skills: List<String> = emptyList()
+    val skills: List<NamedItem> = emptyList()
 )

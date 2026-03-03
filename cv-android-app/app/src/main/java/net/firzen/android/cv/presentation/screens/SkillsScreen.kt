@@ -27,12 +27,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import net.firzen.android.cv.R
 import net.firzen.android.cv.domain.model.*
+import net.firzen.android.cv.domain.model.NamedItem
 import net.firzen.android.cv.presentation.models.SkillsScreenState
 import net.firzen.android.cv.presentation.models.SkillsViewModel
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import net.firzen.android.cv.presentation.dialogs.ChipDetailDialog
 
 // Entry point called from navigation - reads ViewModel state and delegates to content
 @Composable
@@ -157,7 +159,7 @@ private fun SectionCard(title: String, content: @Composable ColumnScope.() -> Un
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
+private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>) {
     var expanded by remember { mutableStateOf(false) }
     // Whether the chips overflow the available width (null = not yet measured)
     var overflows by remember { mutableStateOf<Boolean?>(null) }
@@ -166,6 +168,9 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
         label = "chevron"
     )
     val isCollapsible = overflows ?: false
+
+    // Dialog state: holds the NamedItem of the currently shown chip
+    var dialogItem by remember { mutableStateOf<NamedItem?>(null) }
 
     Column(
         modifier = Modifier
@@ -211,9 +216,11 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
             ) {
                 items.forEach { item ->
                     SuggestionChip(
-                        onClick = { },
+                        onClick = {
+                            if (item.description != null) dialogItem = item
+                        },
                         label = {
-                            Text(text = item, style = MaterialTheme.typography.bodySmall)
+                            Text(text = item.name, style = MaterialTheme.typography.bodySmall)
                         },
                         shape = RoundedCornerShape(8.dp)
                     )
@@ -237,9 +244,12 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                 ) {
                     items.forEach { item ->
                         SuggestionChip(
-                            onClick = { if (isCollapsible) expanded = true },
+                            onClick = {
+                                if (isCollapsible) expanded = true
+                                else if (item.description != null) dialogItem = item
+                            },
                             label = {
-                                Text(text = item, style = MaterialTheme.typography.bodySmall)
+                                Text(text = item.name, style = MaterialTheme.typography.bodySmall)
                             },
                             shape = RoundedCornerShape(8.dp)
                         )
@@ -263,6 +273,15 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<String>) {
                 }
             }
         }
+    }
+
+    // Show dialog when a chip is tapped
+    dialogItem?.let { item ->
+        ChipDetailDialog(
+            title = item.name,
+            description = item.description ?: "",
+            onDismiss = { dialogItem = null }
+        )
     }
 }
 
@@ -348,15 +367,15 @@ fun SkillsScreenPreview() {
                     ProgrammingLanguage(5, "Swift", 2)
                 ),
                 technologyCategories = listOf(
-                    TechnologyCategory(1, "Basics", listOf("Android SDK", "Activity", "Services", "Fragments", "Composable functions", "Lifecycle")),
-                    TechnologyCategory(2, "UI", listOf("Jetpack Compose", "XML layouts", "Custom Views (Canvas)", "Material Design")),
-                    TechnologyCategory(3, "Networking", listOf("OkHttp", "Retrofit", "REST APIs", "JSON", "GSON", "Base64")),
-                    TechnologyCategory(4, "Data", listOf("Room DB", "SQLite", "Shared Preferences"))
+                    TechnologyCategory(1, "Basics", listOf(NamedItem("Android SDK"), NamedItem("Activity"), NamedItem("Services"), NamedItem("Fragments"), NamedItem("Composable functions"), NamedItem("Lifecycle"))),
+                    TechnologyCategory(2, "UI", listOf(NamedItem("Jetpack Compose"), NamedItem("XML layouts"), NamedItem("Custom Views (Canvas)"), NamedItem("Material Design"))),
+                    TechnologyCategory(3, "Networking", listOf(NamedItem("OkHttp"), NamedItem("Retrofit"), NamedItem("REST APIs"), NamedItem("JSON"), NamedItem("GSON"), NamedItem("Base64"))),
+                    TechnologyCategory(4, "Data", listOf(NamedItem("Room DB"), NamedItem("SQLite"), NamedItem("Shared Preferences")))
                 ),
                 otherSkillCategories = listOf(
-                    OtherSkillCategory(1, "Versioning", listOf("Git", "GitLab", "GitHub")),
-                    OtherSkillCategory(2, "CI/CD", listOf("Jenkins", "Teamcity")),
-                    OtherSkillCategory(3, "Backend", listOf("Ktor", "MariaDB", "MySQL", "PostgreSQL", "Elasticsearch"))
+                    OtherSkillCategory(1, "Versioning", listOf(NamedItem("Git"), NamedItem("GitLab"), NamedItem("GitHub"))),
+                    OtherSkillCategory(2, "CI/CD", listOf(NamedItem("Jenkins"), NamedItem("Teamcity"))),
+                    OtherSkillCategory(3, "Backend", listOf(NamedItem("Ktor"), NamedItem("MariaDB"), NamedItem("MySQL"), NamedItem("PostgreSQL"), NamedItem("Elasticsearch")))
                 ),
                 education = listOf(
                     Education(1, "Palacký University Olomouc", "BSc Applied Computer Science", 2011, 2015),

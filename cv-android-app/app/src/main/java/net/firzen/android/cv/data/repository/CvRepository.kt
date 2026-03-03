@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.map
 import net.firzen.android.cv.data.local.dao.*
 import net.firzen.android.cv.data.local.entities.*
 import net.firzen.android.cv.domain.model.*
+import net.firzen.android.cv.domain.model.NamedItem
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -175,12 +176,12 @@ class CvRepository @Inject constructor(
 
     private fun TechnologyCategoryEntity.toDomain(techs: List<TechnologyEntity>) = TechnologyCategory(
         id = id, name = categoryName,
-        technologies = techs.map { it.name }
+        technologies = techs.map { NamedItem(it.name, it.description) }
     )
 
     private fun OtherSkillCategoryEntity.toDomain(skills: List<OtherSkillEntity>) = OtherSkillCategory(
         id = id, name = categoryName,
-        skills = skills.map { it.name }
+        skills = skills.map { NamedItem(it.name, it.description) }
     )
 
     private fun LanguageEntity.toDomain() = Language(
@@ -188,10 +189,10 @@ class CvRepository @Inject constructor(
     )
 
     private fun PersonalityTraitEntity.toDomain() = PersonalityTrait(
-        id = id, trait = trait
+        id = id, trait = trait, description = description
     )
 
     private fun InterestEntity.toDomain() = Interest(
-        id = id, name = name
+        id = id, name = name, description = description
     )
 }

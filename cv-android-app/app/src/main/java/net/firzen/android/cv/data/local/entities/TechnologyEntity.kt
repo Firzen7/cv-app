@@ -31,5 +31,7 @@ data class TechnologyEntity(
     @ColumnInfo(name = "category_id")
     val categoryId: Int,
 
-    val name: String
+    val name: String,
+
+    val description: String? = null
 )

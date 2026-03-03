@@ -13,5 +13,7 @@ data class PersonalityTraitEntity(
 
     val language: String,
 
-    val trait: String
+    val trait: String,
+
+    val description: String? = null
 )

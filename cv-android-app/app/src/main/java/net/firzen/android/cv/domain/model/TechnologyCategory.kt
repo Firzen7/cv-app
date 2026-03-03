@@ -4,5 +4,5 @@ package net.firzen.android.cv.domain.model
 data class TechnologyCategory(
     val id: Int,
     val name: String,
-    val technologies: List<String> = emptyList()
+    val technologies: List<NamedItem> = emptyList()
 )

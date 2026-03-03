@@ -38,6 +38,7 @@ import androidx.core.net.toUri
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import net.firzen.android.cv.presentation.dialogs.ChipDetailDialog
 
 // Entry point called from navigation — reads ViewModel state and delegates to content
 @Composable
@@ -110,12 +111,12 @@ fun ProfileScreenContent(state: ProfileScreenState) {
 
         // -- Personality Card -------------------------------------------------
         SectionCard(title = stringResource(R.string.section_personality)) {
-            ChipsRow(items = state.personalityTraits.map { it.trait })
+            ChipsRow(items = state.personalityTraits.map { it.trait to it.description })
         }
 
         // -- Interests Card ---------------------------------------------------
         SectionCard(title = stringResource(R.string.section_interests)) {
-            ChipsRow(items = state.interests.map { it.name })
+            ChipsRow(items = state.interests.map { it.name to it.description })
         }
     }
 }
@@ -359,25 +360,45 @@ private fun LanguageRow(language: Language) {
 
 // -- Chip/tag flow row --------------------------------------------------------
 
+/**
+ * Displays a flow of [SuggestionChip]s. Tapping a chip with a non-null
+ * description opens a [net.firzen.android.cv.presentation.dialogs.ChipDetailDialog].
+ *
+ * @param items list of (name, description?) pairs
+ */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun ChipsRow(items: List<String>) {
+private fun ChipsRow(items: List<Pair<String, String?>>) {
+    // Dialog state: holds the (name, description) of the currently shown chip
+    var dialogItem by remember { mutableStateOf<Pair<String, String>?>(null) }
+
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items.forEach { item ->
+        items.forEach { (name, description) ->
             SuggestionChip(
-                onClick = { },
+                onClick = {
+                    if (description != null) dialogItem = name to description
+                },
                 label = {
                     Text(
-                        text = item,
+                        text = name,
                         style = MaterialTheme.typography.bodySmall
                     )
                 },
                 shape = RoundedCornerShape(8.dp)
             )
         }
+    }
+
+    // Show dialog when a chip is tapped
+    dialogItem?.let { (title, description) ->
+        ChipDetailDialog(
+            title = title,
+            description = description,
+            onDismiss = { dialogItem = null }
+        )
     }
 }
 

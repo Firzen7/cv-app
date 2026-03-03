@@ -13,5 +13,7 @@ data class InterestEntity(
 
     val language: String,
 
-    val name: String
+    val name: String,
+
+    val description: String? = null
 )

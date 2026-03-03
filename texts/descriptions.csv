@@ -1,0 +1,84 @@
+"Independence";
+"Honesty";
+"Perseverance";
+"Passion to learn new things";
+"Photography";"Fotit jsem začal už někdy kolem roku 2007. Jeden by si myslel, že za tu dobu už musím být profesionál, ale stále jsem pouze amatérem. Vlastně to bylo záměrné, protože jsem si nechtěl tento koníček zkazit. Několik povedených fotografií naleznete zde: ODKAZ"
+"Graphics";"Grafice se nevěnuju až tak často, ale občas něco vytvořím, a to i komerečně, jako součást designu mobilních aplikací. Používám zejména Inkscape."
+"Artificial Intelligence";
+"Travel";"Většinu času sedím u počítače, a asi proto se občas stanu poutníkem, a podniknu něco extrémního. Můj dosavadní rekord bylo ujít 2500 km z Edinburghu přes Skotsko, Anglii, Nizozemí, Belgii, Francii a Španělsko, až do Santiaga a na Fisterru. Během cesty jsem psal zápisky zde: ODKAZ"
+"Activity";"Jsou základním stavebním kamenem každé Android aplikace, a dříve dokonce ani nic jiného, než Activity+Views v aplikacích nebylo. Mají svůj životní cyklus a jsou dodnes používány v každé aplikaci alespoň jednou."
+"Services";"Hodí se v momentě, kdy musí nějaký kód běžet na pozadí v situaci, kdy uživatel aplikaci minimalizoval, zamkl obrazovku, či jinak pozastavil. Zkrátka a dobře je to něco, co může spolehlivě fungovat i v momentě, kdy byla aplikace nejen pozastavena, ale i dealokována. Typickým příkladem je přehrávání zvuku či videa na pozadí spolu s notifikací. Zkušenost s nimi pochopitelně mám, ale neřekl bych, že jsem v tomto expert."
+"Fragments";"Fragmenty pro mě byly velký posun od prostých Views, neboť mají vlastní životní cyklus, což do jisté míry eliminuje nutnost úzké provázanosti s rodičovskou komponentou. Až na pár nových projektů z poslední doby jsem je použil všude."
+"Composable functions";
+"Lifecycle";"Životní cyklus či spíše cykly jsou v Androidu velmi důležité. Jsou to události nastávající v momentech, kdy uživatel opustí aplikaci, změní jazyk, zamkne obrazovku, anebo když systém aplikaci dealokuje. Aplikace pak na tyto změny musí vhodně reagovat podle toho, co je cílem. ViewModely a Coroutines pak značně usnadňují reakce na tyto změny."
+"Jetpack Compose";"Compose je něco, co je pro mě sice relativně novinkou, ale podobně jako to bylo v případě Kotlinu, jsem si byl již po krátkém experimentu jistý, že je to něco, co mi pomůže být mnohem produktivnější, a že je to zkrátka správná cesta dalšího vývoje."
+"XML layouts";"S klasickými XML layouty mám asi 7 let zkušeností, a za tu dobu jsem se s nimi naučil rychle implementovat prakticky jakýkoli design. Hojně jsem používal ConstraintLayout, který je velmi dobrý pro podporu režimu na šířku."
+"Custom Views (Canvas)";
+"Material Design";
+"Kotlin Coroutines";"Coroutines jsem začal používat teprve nedávno. Byla to opět technologie, po které jsem už dlouho pokukoval, ale měl strach, že bude náročné se to naučit. Opak byl ale pravdou – zjistil jsem, že Dispatchery se velmi podobají mému uspořádání Executorů, a že coroutines navíc automatický reagují na události životního cyklu aplikace."
+"Java Executors";"Executory jsem objevil už v roce 2019. Tehdy to byly „temné časy“, kdy byl internet zahlcený příklady s veškerou logikou přidanou přímo do Aktivit, a vlákna se spouštěla přímo, když byla potřeba – nijak se neřešil jejich počet či životní cyklus.. Už v té době jsem viděl, že toto není dobrý postup, a začal ve svých aplikacích vlákna organizovat do thread-poolů pomocí třídy Executor. Již tehdy jsem používal 3 kategorie vláken – IO, network a UI."
+"OkHttp";"Tuto knihovnu používám už mnoho let, a mám s ní jen ty nejlepší zkušenosti. Vše potřebné k jakémukoli typu dotazu lze definovat velmi stručně a přehledně. Knihovna je navíc opravdu velmi stabilní, a umožňuje i implementaci vlastního interceptoru např. pro účely cachování. Je nepostradatelná pro všechny možné nestandardní API, které se vymykají běžné struktuře."
+"Retrofit";"Retrofit znám trestuhodně poměrně čerstvě, protože mi vždy přišel složitý, a tak jsem používal OkHttp na všechno. Ve skutečnosti je ale tato knihovna velmi jednoduchá a užitečná. Konfigurace entit pomocí anotací je přesně ten způsob, jaký bych očekával. Je to dobrá věc pro eliminaci boilerplate kódu."
+"REST APIs";"Kdo by neznal REST API, že? Je to, jako se ptát řidiče, jestli pracuje s volantem. V CV to mám vlastně jen kvůli indexování. REST API však nepoužívám jen ze strany klienta – pár jsem jich i sám vytvořil."
+"JSON";"JSON je taková malá nenápadná věc, o které se moc nemluví, ale jsem si jistý, že jej milují všichni z nás, kdo zažili XML nebo ještě krkolomnější formáty pro přenos dat. JSON používají prakticky všechny projekty, na kterých jsem kdy pracoval."
+"GSON";
+"Base64";
+"Room DB";"Room je za mě opravdu skvělá věc. Pracoval jsem s čistým SQL i s Hibernate, a obojí jsou extrémy za mě nepříliš šťastné v reálném provozu. Líbí se mi, že Room se nesnaží zcela nahradit SQL, ale je jeho nadstavbou. Třešnička na dortu je pak elegantní systém verzí a definice migrací. Používám všude, kde to má smysl."
+"SQLite";
+"Shared Preferences";"Shared Preferences jsou podle mě nic moc, a proto jsem vytvořil jejich nadstavbu zvanou PrefTool. Zatím nezveřejněno, ale jednoho dne možná ano."
+"AES";"Šifrování AES jsme použili pro komunikaci s interním API v Sanctus Media. Toto šifrování je, jak jsem zjistil, přímo součástí Javy."
+"R8 / ProGuard";"S ProGuardem mám smíšený vztah.. Je skvělý, když funguje, a navíc minify výrazně zmenší velikost APK souboru, ale když nefunguje, jak má, tak je to takové malé debugovací peklo plné zaklínadel v proguard-rules.pro. Každopádně ProGuard rozhodně umí překvapit – a to zejména nefungujícím release buildem po tom, co všichni věřili, že aplikace bezchybně funguje (avšak pouze v debug režimu)."
+"Secure token handling";
+"JWT";
+"Google Sign-In";"Implementace Google sign-in v aplikaci CrossReach byla poměrně strastiplná, ale nakonec jsem to zvládl. Na cestě k úspěchu čekalo mnoho nefungujících snippetů v dokumentaci, nepovinná nastavení v Google Cloud Console, která se ukázala ve skutečnosti být povinná; nemožnost rozumného testování před nahráním binárky do interního testování v Google Play Console, atd. Zkrátka a dobře to byla zábava na několik týdnů. Jsem si ale jistý, že na druhý pokus už bych to zvládl rychleji."
+"ViewModel";
+"Navigation Component";
+"KMM";"Zkoušel jsem již mnoho řešení na způsob „code once, run everywhere“. Xamarin, Cordova, Flutter, React.. všechny tyto frameworky slibují zázrak, ale všechny mají také velkou vstupní daň: Nutnost se naučit zcela nový jazyk. To ve výsledku znamená migrovat v podstatě veškerý současný kód, a to je, řekl bych, ve většině případů nepřijatelné. Navíc tyto frameworky mívají mnoho omezení, a jen málokdy je možné jejich prostřednictvím využít plný potenciál cílové platformy. Kotlin Multiplatform Mobile mě proto nesmírně zaujal tím, že Android i iOS vývojář(i) si mohou ponechat svůj dosavadní kód v nezměněné formě. Sdílená část kódu je pak v Kotlinu, což mi přijde přijatelné. Úspěšně jsem KMM zprovoznil pro jeden dosud nevydaný projekt. Jako jediné omezení bych viděl nemožnost použití knihoven psaných v Javě – aby KMM fungovalo, tak večkěrý stílený kód musí být v Kotlinu."
+"Push notifications";
+"Deep links";
+"Pusher";
+"Pusher Beams";
+"Pushwoosh";
+"Mapbox SDK";"Tyto mapy byly vybrány ve WattsUpu vzhledem ke štědrému free-tieru dotazů pro výpočet trasy z body A do B. Ke knihovně mám dost rozporuplný vztah. Sice pro základní věci funguje velmi dobře, avšak pro zobrazení mnoha bodů v mapě není příliš optimalizovaná, a navíc nové verze knihovny opakovaně přinesly breaking changes, které byly nedokumentované, a strávil jsem jejich implementací nejednou celé týdny."
+"ExoPlayer";"ExoPlayer, respektive jeho nadstavbu zvanou Media3 jsem použil v aplikaci Sanctuary First a CrossReach. Asi vzhledem k tomu, že jsem začal s touto knihovnou pracovat těsně po vydání její prvně verze, jsem narazil na řadu problémů – od nefunkční dokumentace, až po ne zcela smysluplná omezení. Media3 například neobsahuje podporu pro celoobrazovkové přehrávání, což bych řekl, že není žádný luxus. Vytvořil jsem proto vlastní nadstavbu zvanou Just Play, která použití knihovny Media3 značně ulehčuje, a přidává různé chybějící funkce."
+"Google Play Billing library";
+"Stripe SDK";
+"Gradle";"Někdo by si snad mohl říct, že Gradle je složitý, a plný různých hacků. Já to ale vidím jinak, neboť jsem zažil Maven. Kdo pracoval s Mavenem, jistě bude souhlasit, že Gradle je dar Boží, a o jeho mírných nedokonalostech se proto nediskutuje."
+"Google Play Console";"V Google Play Console mám zkušenosti s většinou úkolů – například vydávání nových verzí, správa seznamu testerů, testování plateb, nastavení deeplinků, správa app listingu, vyplnění app content, správa uživatelů a nastavení jejich přístupu ke statistikám, atd."
+"App Signing";
+"Unit tests";"Pro unit testy používám standardní knihovnu JUnit."
+"System tests";
+"Organizing of internal beta testing";"Již vícekrát jsem organizoval manuální testování před vydáním zásadních novinek. Týkalo se to hlavně WattsUpu, ale minimálně jednou také Sanctuary First a CrossReach. Z mé strany se jednalo zejména o vytvoření formulářů přes Google Forms, které byly zaměřené na testování částí aplikace, které byly v dané verzi přidány, měněny, nebo do nich mohly být vneseny chyby."
+"Sentry";
+"Mixpanel";"Tento analytický nástroj jsem použil hned v několika projektech. Samozřejmě jsem vytvořil vlastní EventReporter pro zamezení vendor lock-inu, ale zatím Mixpanel vypadá dobře."
+"Git";
+"GitLab";
+"GitHub";
+"Slack";
+"Zoom";
+"GitHub Issues";
+"Jira";
+"Clockify";
+"Jenkins";"Jenkins jsme používali v Bach systems pro automatizované nasazování webových stránek z master branche v Gitu. Jenkins také sám spouštěl testy před nasazením, a tak to byla taková poslední kontrola před samotným provozem."
+"Teamcity";
+"Ktor";
+"MariaDB";
+"MySQL";
+"PostgreSQL";
+"Elasticsearch";"Nemám jen upřímně až tak v lásce pro jeho složitost, avšak jakmile se člověk dostane do bodu, kdy databáze a hledání funguje, tak musím říct, že je to velice spolehlivé řešení. Sice je to docela hardwarově náročné, ale jeho výkonnost a HW nároky se s rostoucím počtem dotazů prakticky nemění, což je dost užitečné. Alespoň teoreticky pak lze provozovat tento search engine distribuovaně a škálovat tak výkonnost systému (s tím ale zatím nemám zkušenost)."
+"Apache";
+"Nginx";
+"Supervisord";"Supervisord je velmi jednoduchý a elegantní nástroj pro správu procesů. Velmi úspěšně jsem jej použil pro nasazení mikroslužby ve formě fatJaru obsahujícího REST API s vlastním embedded web serverem (pomocí Ktoru). Narozdíl od nutnosti kompilace waru, a složité konfigurace aplikačního serveru mi Supervisord přišel o mnoho lepší."
+"TLS/SSL";
+"Wowza Streaming Engine";
+"AWS";
+"Hetzner";
+"Linode";
+"Digital Ocean";
+"GNU/Linux";"Hrdý uživatel Linuxu od roku 2007! Začínal jsem s Ubuntu, a kolem roku 2014 přešel na Debian, který používám jako hlavní systém dodnes. Na serveru mám zkušenosti kromě Debianu a Ubuntu také s CentOS."
+"Android";
+"Mac OS";"V letech 2022-2025 jsem Mac OS používal jako pracovní systém. Od počátku roku 2026 jsem se však vrátil zpět k Debianu i pro práci."
+"Windows";"Jsem již starý, a tak pamatuji dokonce ještě Windows 95. Profesně jsem se pak věnoval základní správě Windows XP a 7."
+"HTML/CSS";
+"SQL";
+"LaTeX";"V LaTeXu jsem sice pouhý amatér, ale například na tvorbu PDF verze mého CV moje skromné dovednosti stačily. :-)"

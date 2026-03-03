@@ -1,9 +1,13 @@
 package net.firzen.android.cv.presentation.dialogs
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -69,16 +73,18 @@ fun ChipDetailDialog(
             )
         },
         text = {
-            ClickableText(
-                text = annotated,
-                style = textStyle,
-                onClick = { offset ->
-                    annotated.getStringAnnotations(tag = "URL", start = offset, end = offset)
-                        .firstOrNull()?.let { annotation ->
-                            uriHandler.openUri(annotation.item)
-                        }
-                }
-            )
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                ClickableText(
+                    text = annotated,
+                    style = textStyle,
+                    onClick = { offset ->
+                        annotated.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                            .firstOrNull()?.let { annotation ->
+                                uriHandler.openUri(annotation.item)
+                            }
+                    }
+                )
+            }
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {

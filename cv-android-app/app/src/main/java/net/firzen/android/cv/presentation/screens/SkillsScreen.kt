@@ -276,12 +276,14 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
     }
 
     // Show dialog when a chip is tapped
-    dialogItem?.let { item ->
-        ChipDetailDialog(
-            title = item.name,
-            description = item.description ?: "",
-            onDismiss = { dialogItem = null }
-        )
+    dialogItem?.let { (title, description) ->
+        if(description != null && description.isNotBlank()) {
+            ChipDetailDialog(
+                title = title,
+                description = description ?: "",
+                onDismiss = { dialogItem = null }
+            )
+        }
     }
 }
 

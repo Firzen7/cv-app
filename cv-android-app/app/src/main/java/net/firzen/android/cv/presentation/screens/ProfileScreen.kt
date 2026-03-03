@@ -394,11 +394,13 @@ private fun ChipsRow(items: List<Pair<String, String?>>) {
 
     // Show dialog when a chip is tapped
     dialogItem?.let { (title, description) ->
-        ChipDetailDialog(
-            title = title,
-            description = description,
-            onDismiss = { dialogItem = null }
-        )
+        if(description.isNotBlank()) {
+            ChipDetailDialog(
+                title = title,
+                description = description,
+                onDismiss = { dialogItem = null }
+            )
+        }
     }
 }
 

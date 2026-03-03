@@ -578,7 +578,6 @@ object CvDataSeeder {
 
     private fun technologiesEn() = listOf(
         // Basics (1)
-        TechnologyEntity(language = "en", categoryId = 1, name = "Android SDK", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 1, name = "Activity", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 1, name = "Services", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 1, name = "Fragments", description = "TODO"),
@@ -610,7 +609,6 @@ object CvDataSeeder {
         TechnologyEntity(language = "en", categoryId = 6, name = "JWT", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 6, name = "Google Sign-In", description = "TODO"),
         // Architecture (7)
-        TechnologyEntity(language = "en", categoryId = 7, name = "Lifecycle-aware components", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 7, name = "ViewModel", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 7, name = "Navigation Component", description = "TODO"),
         TechnologyEntity(language = "en", categoryId = 7, name = "KMM", description = "TODO"),
@@ -642,7 +640,6 @@ object CvDataSeeder {
 
     private fun technologiesCs() = listOf(
         // Základy (15)
-        TechnologyEntity(language = "cs", categoryId = 15, name = "Android SDK", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 15, name = "Activity", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 15, name = "Services", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 15, name = "Fragmenty", description = "TODO"),
@@ -674,7 +671,6 @@ object CvDataSeeder {
         TechnologyEntity(language = "cs", categoryId = 20, name = "JWT", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 20, name = "Google Sign-In", description = "TODO"),
         // Architektura (21)
-        TechnologyEntity(language = "cs", categoryId = 21, name = "Lifecycle-aware components", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 21, name = "ViewModel", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 21, name = "Navigation Component", description = "TODO"),
         TechnologyEntity(language = "cs", categoryId = 21, name = "KMM", description = "TODO"),

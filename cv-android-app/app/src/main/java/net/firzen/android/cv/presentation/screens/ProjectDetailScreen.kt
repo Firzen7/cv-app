@@ -1,7 +1,9 @@
 package net.firzen.android.cv.presentation.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -110,6 +112,7 @@ fun ProjectDetailContent(state: ProjectDetailScreenState, modifier: Modifier = M
 
 @Composable
 private fun ProjectHeaderCard(project: Project) {
+    val darkBorder = if (isSystemInDarkTheme()) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -117,7 +120,8 @@ private fun ProjectHeaderCard(project: Project) {
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        border = darkBorder
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -158,6 +162,7 @@ private fun ProjectHeaderCard(project: Project) {
 
 @Composable
 private fun MilestonesSection(milestones: List<ProjectMilestone>) {
+    val darkBorder = if (isSystemInDarkTheme()) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -165,7 +170,8 @@ private fun MilestonesSection(milestones: List<ProjectMilestone>) {
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        border = darkBorder
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(

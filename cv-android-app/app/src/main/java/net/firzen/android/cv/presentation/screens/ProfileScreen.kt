@@ -2,7 +2,9 @@ package net.firzen.android.cv.presentation.screens
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -296,6 +298,7 @@ private fun GitHubDropdownButton(githubUsernames: String, context: Context) {
 
 @Composable
 private fun SectionCard(title: String, content: @Composable ColumnScope.() -> Unit) {
+    val darkBorder = if (isSystemInDarkTheme()) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -303,7 +306,8 @@ private fun SectionCard(title: String, content: @Composable ColumnScope.() -> Un
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        border = darkBorder
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(

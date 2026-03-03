@@ -1,7 +1,9 @@
 package net.firzen.android.cv.presentation.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -68,6 +70,7 @@ fun ProjectsScreenContent(state: ProjectsScreenState, onProjectClick: (Int) -> U
 
 @Composable
 private fun ProjectCard(project: Project, iconResId: Int, onClick: () -> Unit) {
+    val darkBorder = if (isSystemInDarkTheme()) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,7 +79,8 @@ private fun ProjectCard(project: Project, iconResId: Int, onClick: () -> Unit) {
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        border = darkBorder
     ) {
         Row(
             modifier = Modifier

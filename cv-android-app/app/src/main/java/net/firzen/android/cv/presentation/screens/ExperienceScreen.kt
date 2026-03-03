@@ -1,6 +1,8 @@
 package net.firzen.android.cv.presentation.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -116,12 +118,14 @@ private fun ExperienceCard(experience: WorkExperience, modifier: Modifier = Modi
     val presentLabel = stringResource(R.string.experience_date_present)
     val dateRange = "${experience.startDate} – ${experience.endDate ?: presentLabel}"
 
+    val darkBorder = if (isSystemInDarkTheme()) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        border = darkBorder
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             // Company - Position header

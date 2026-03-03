@@ -2,9 +2,11 @@ package net.firzen.android.cv.presentation.screens
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -133,6 +135,7 @@ private fun OtherTechnologiesSection(state: SkillsScreenState) {
 
 @Composable
 private fun SectionCard(title: String, content: @Composable ColumnScope.() -> Unit) {
+    val darkBorder = if (isSystemInDarkTheme()) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -140,7 +143,8 @@ private fun SectionCard(title: String, content: @Composable ColumnScope.() -> Un
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
-        )
+        ),
+        border = darkBorder
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(

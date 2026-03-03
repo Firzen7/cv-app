@@ -76,7 +76,7 @@ object CvDataSeeder {
         name = "Bc. Ondřej Bockschneider",
         title = "Android Developer",
         dateOfBirth = "11.7.1991",
-        address = "Komenského 316/13, 679 04 Adamov (20 minut od Brna)",
+        address = "Komenského 316/13, 679 04 Adamov",
         phone = "+420 737 491 274",
         email = "obockschneider@gmail.com",
         linkedInUsername = "obockschneider",

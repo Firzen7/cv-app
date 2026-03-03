@@ -1,0 +1,84 @@
+"Independence";
+"Honesty";
+"Perseverance";
+"Passion to learn new things";
+"Photography";"I started taking photos around 2007. One might think that after all this time I must be a professional, but I'm still just an amateur. Actually, that was intentional — I didn't want to ruin this hobby. You can find some of my better photos here: LINK"
+"Graphics";"I don't do graphics that often, but I occasionally create something, including commercially, as part of mobile app design. I mainly use Inkscape."
+"Artificial Intelligence";
+"Travel";"I spend most of my time sitting at a computer, and that's probably why I sometimes become a pilgrim and do something extreme. My record so far was walking 2,500 km from Edinburgh through Scotland, England, the Netherlands, Belgium, France and Spain, all the way to Santiago and Finisterre. During the journey I kept a journal here: LINK"
+"Activity";"Activities are the fundamental building block of every Android application. In the past, there was actually nothing else besides Activities+Views in apps. They have their own lifecycle and are still used in every application at least once."
+"Services";"Useful when some code needs to run in the background while the user has minimized the app, locked the screen, or otherwise paused it. In short, it's something that can reliably work even when the application has been not only paused but also deallocated. A typical example is playing audio or video in the background along with a notification. I naturally have experience with them, but I wouldn't say I'm an expert in this area."
+"Fragments";"Fragments were a big step up from plain Views for me, since they have their own lifecycle, which to some extent eliminates the need for tight coupling with the parent component. Except for a few new projects recently, I've used them everywhere."
+"Composable functions";
+"Lifecycle";"Lifecycles are very important in Android. These are events that occur when the user leaves the app, changes the language, locks the screen, or when the system deallocates the app. The application must then respond appropriately to these changes depending on the goal. ViewModels and Coroutines greatly simplify reacting to these changes."
+"Jetpack Compose";"Compose is something that is relatively new for me, but similar to when I first tried Kotlin, after a brief experiment I was already sure that it would help me be much more productive, and that it's simply the right path forward."
+"XML layouts";"I have about 7 years of experience with classic XML layouts, and during that time I've learned to quickly implement practically any design. I used ConstraintLayout extensively, which is very good for supporting landscape mode."
+"Custom Views (Canvas)";
+"Material Design";
+"Kotlin Coroutines";"I only started using Coroutines recently. It was yet another technology I had been eyeing for a long time but was afraid would be difficult to learn. The opposite turned out to be true — I discovered that Dispatchers are very similar to my Executor setup, and that coroutines also automatically respond to application lifecycle events."
+"Java Executors";"I discovered Executors back in 2019. Those were 'dark times' when the internet was flooded with examples that had all logic added directly into Activities, and threads were spawned directly when needed — nobody cared about their count or lifecycle. Even back then I could see this wasn't a good approach, and I started organizing threads into thread pools using the Executor class in my apps. Already at that time I was using 3 thread categories — IO, network, and UI."
+"OkHttp";"I've been using this library for many years and have only had the best experiences with it. Everything needed for any type of request can be defined very concisely and clearly. The library is also really very stable and even allows implementing custom interceptors, e.g. for caching purposes. It's indispensable for all kinds of non-standard APIs that don't follow conventional structure."
+"Retrofit";"I'm embarrassingly new to Retrofit, because it always seemed complex to me, so I used OkHttp for everything. In reality, however, this library is very simple and useful. Configuring entities via annotations is exactly the approach I'd expect. It's great for eliminating boilerplate code."
+"REST APIs";"Who doesn't know REST APIs, right? It's like asking a driver if they work with a steering wheel. I actually have it in my CV mainly for indexing purposes. However, I don't just use REST APIs on the client side — I've also created a few myself."
+"JSON";"JSON is such a small unassuming thing that doesn't get talked about much, but I'm sure all of us who experienced XML or even more cumbersome data transfer formats love it. JSON is used in practically every project I've ever worked on."
+"GSON";
+"Base64";
+"Room DB";"Room is, in my opinion, truly excellent. I've worked with raw SQL and with Hibernate, and both are extremes that I consider rather unfortunate in real-world use. I like that Room doesn't try to completely replace SQL but rather builds on top of it. The cherry on top is the elegant versioning system and migration definitions. I use it everywhere it makes sense."
+"SQLite";
+"Shared Preferences";"In my opinion, Shared Preferences are mediocre, which is why I created a wrapper called PrefTool. Not yet published, but maybe one day."
+"AES";"We used AES encryption for communication with an internal API at Sanctus Media. This encryption, as I discovered, is a built-in part of Java."
+"R8 / ProGuard";"I have a mixed relationship with ProGuard. It's great when it works, and minification significantly reduces APK size, but when it doesn't work as expected, it becomes a little debugging hell full of incantations in proguard-rules.pro. In any case, ProGuard can definitely surprise you — especially with a non-functioning release build after everyone believed the app worked flawlessly (but only in debug mode)."
+"Secure token handling";
+"JWT";
+"Google Sign-In";"Implementing Google Sign-In in the CrossReach app was quite a painful experience, but I managed it in the end. Along the way there were many non-working snippets in the documentation, optional settings in Google Cloud Console that turned out to be mandatory, the impossibility of reasonable testing before uploading the binary to internal testing in Google Play Console, etc. In short, it was weeks of fun. But I'm sure I would manage it faster on a second try."
+"ViewModel";
+"Navigation Component";
+"KMM";"I've tried many 'code once, run everywhere' solutions. Xamarin, Cordova, Flutter, React — all these frameworks promise miracles, but they all have a large entry cost: the need to learn an entirely new language. This ultimately means migrating essentially all existing code, which I'd say is unacceptable in most cases. Moreover, these frameworks tend to have many limitations, and it's rarely possible to leverage the full potential of the target platform through them. Kotlin Multiplatform Mobile therefore greatly impressed me because both Android and iOS developer(s) can keep their existing code unchanged. The shared code portion is in Kotlin, which seems acceptable to me. I successfully got KMM running for one yet-unreleased project. The only limitation I see is the inability to use libraries written in Java — for KMM to work, all shared code must be in Kotlin."
+"Push notifications";
+"Deep links";
+"Pusher";
+"Pusher Beams";
+"Pushwoosh";
+"Mapbox SDK";"These maps were chosen for WattsUp due to the generous free tier of queries for calculating routes from point A to B. I have quite a mixed relationship with this library. While it works very well for basic tasks, it's not very optimized for displaying many points on the map. Additionally, new versions of the library repeatedly introduced undocumented breaking changes, and I spent entire weeks implementing them on more than one occasion."
+"ExoPlayer";"I used ExoPlayer, or rather its wrapper called Media3, in the Sanctuary First and CrossReach apps. Probably because I started working with this library right after its first version was released, I ran into a number of issues — from non-functioning documentation to not entirely sensible limitations. Media3, for example, doesn't include support for fullscreen playback, which I'd say is hardly a luxury. I therefore created my own wrapper called Just Play, which significantly simplifies using the Media3 library and adds various missing features."
+"Google Play Billing library";
+"Stripe SDK";
+"Gradle";"Some might say that Gradle is complex and full of various hacks. I see it differently, however, because I've experienced Maven. Anyone who has worked with Maven will surely agree that Gradle is a gift from above, and therefore its minor imperfections are not up for discussion."
+"Google Play Console";"I have experience with most tasks in Google Play Console — for example, publishing new versions, managing the list of testers, testing payments, setting up deep links, managing the app listing, filling in app content, managing users and configuring their access to statistics, etc."
+"App Signing";
+"Unit tests";"For unit tests I use the standard JUnit library."
+"System tests";
+"Organizing of internal beta testing";"I've organized manual testing before releasing major updates several times. This mainly concerned WattsUp, but also at least once Sanctuary First and CrossReach. On my part, this mainly involved creating forms via Google Forms, which were focused on testing the parts of the app that were added, changed, or could have had bugs introduced in the given version."
+"Sentry";
+"Mixpanel";"I've used this analytics tool in several projects. Of course, I created my own EventReporter to prevent vendor lock-in, but so far Mixpanel looks good."
+"Git";
+"GitLab";
+"GitHub";
+"Slack";
+"Zoom";
+"GitHub Issues";
+"Jira";
+"Clockify";
+"Jenkins";"We used Jenkins at Bach Systems for automated deployment of websites from the master branch in Git. Jenkins also ran tests before deployment on its own, so it served as a final check before going live."
+"Teamcity";
+"Ktor";
+"MariaDB";
+"MySQL";
+"PostgreSQL";
+"Elasticsearch";"I honestly don't love it that much due to its complexity, but once you reach the point where the database and search actually work, I must say it's a very reliable solution. While it's quite resource-intensive, its performance and hardware demands practically don't change with an increasing number of queries, which is quite useful. Theoretically, you can run this search engine in a distributed manner and scale the system's performance (though I don't have experience with that yet)."
+"Apache";
+"Nginx";
+"Supervisord";"Supervisord is a very simple and elegant process management tool. I successfully used it for deploying a microservice in the form of a fat JAR containing a REST API with its own embedded web server (using Ktor). Compared to the need to compile a WAR and the complex configuration of an application server, Supervisord seemed much better to me."
+"TLS/SSL";
+"Wowza Streaming Engine";
+"AWS";
+"Hetzner";
+"Linode";
+"Digital Ocean";
+"GNU/Linux";"Proud Linux user since 2007! I started with Ubuntu, and around 2014 switched to Debian, which I use as my main system to this day. On the server side, in addition to Debian and Ubuntu, I also have experience with CentOS."
+"Android";
+"Mac OS";"I used Mac OS as my work system from 2022 to 2025. However, since the beginning of 2026, I've returned to Debian for work as well."
+"Windows";"I'm old enough to remember even Windows 95. Professionally, I dealt with basic administration of Windows XP and 7."
+"HTML/CSS";
+"SQL";
+"LaTeX";"I'm just an amateur when it comes to LaTeX, but for creating the PDF version of my CV, my humble skills were sufficient. :-)"

@@ -578,126 +578,126 @@ object CvDataSeeder {
 
     private fun technologiesEn() = listOf(
         // Basics (1)
-        TechnologyEntity(language = "en", categoryId = 1, name = "Activity", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 1, name = "Services", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 1, name = "Fragments", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 1, name = "Composable functions", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 1, name = "Lifecycle", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Activity", description = ""),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Services", description = ""),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Fragments", description = ""),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Composable functions", description = ""),
+        TechnologyEntity(language = "en", categoryId = 1, name = "Lifecycle", description = ""),
         // UI (2)
-        TechnologyEntity(language = "en", categoryId = 2, name = "Jetpack Compose", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 2, name = "XML layouts", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 2, name = "Custom Views (Canvas)", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 2, name = "Material Design", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 2, name = "Jetpack Compose", description = ""),
+        TechnologyEntity(language = "en", categoryId = 2, name = "XML layouts", description = ""),
+        TechnologyEntity(language = "en", categoryId = 2, name = "Custom Views (Canvas)", description = ""),
+        TechnologyEntity(language = "en", categoryId = 2, name = "Material Design", description = ""),
         // Parallelization (3)
-        TechnologyEntity(language = "en", categoryId = 3, name = "Kotlin Coroutines", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 3, name = "Java Executors", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 3, name = "Kotlin Coroutines", description = ""),
+        TechnologyEntity(language = "en", categoryId = 3, name = "Java Executors", description = ""),
         // Networking (4)
-        TechnologyEntity(language = "en", categoryId = 4, name = "OkHttp", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 4, name = "Retrofit", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 4, name = "REST APIs", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 4, name = "JSON", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 4, name = "GSON", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 4, name = "Base64", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 4, name = "OkHttp", description = ""),
+        TechnologyEntity(language = "en", categoryId = 4, name = "Retrofit", description = ""),
+        TechnologyEntity(language = "en", categoryId = 4, name = "REST APIs", description = ""),
+        TechnologyEntity(language = "en", categoryId = 4, name = "JSON", description = ""),
+        TechnologyEntity(language = "en", categoryId = 4, name = "GSON", description = ""),
+        TechnologyEntity(language = "en", categoryId = 4, name = "Base64", description = ""),
         // Data (5)
-        TechnologyEntity(language = "en", categoryId = 5, name = "Room DB", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 5, name = "SQLite", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 5, name = "Shared Preferences", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 5, name = "Room DB", description = ""),
+        TechnologyEntity(language = "en", categoryId = 5, name = "SQLite", description = ""),
+        TechnologyEntity(language = "en", categoryId = 5, name = "Shared Preferences", description = ""),
         // Security (6)
-        TechnologyEntity(language = "en", categoryId = 6, name = "AES", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 6, name = "R8 / ProGuard", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 6, name = "Secure token handling", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 6, name = "JWT", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 6, name = "Google Sign-In", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 6, name = "AES", description = ""),
+        TechnologyEntity(language = "en", categoryId = 6, name = "R8 / ProGuard", description = ""),
+        TechnologyEntity(language = "en", categoryId = 6, name = "Secure token handling", description = ""),
+        TechnologyEntity(language = "en", categoryId = 6, name = "JWT", description = ""),
+        TechnologyEntity(language = "en", categoryId = 6, name = "Google Sign-In", description = ""),
         // Architecture (7)
-        TechnologyEntity(language = "en", categoryId = 7, name = "ViewModel", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 7, name = "Navigation Component", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 7, name = "KMM", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 7, name = "ViewModel", description = ""),
+        TechnologyEntity(language = "en", categoryId = 7, name = "Navigation Component", description = ""),
+        TechnologyEntity(language = "en", categoryId = 7, name = "KMM", description = ""),
         // Notifications (8)
-        TechnologyEntity(language = "en", categoryId = 8, name = "Push notifications", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 8, name = "Deep links", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 8, name = "Pusher", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 8, name = "Pusher Beams", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 8, name = "Pushwoosh", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Push notifications", description = ""),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Deep links", description = ""),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Pusher", description = ""),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Pusher Beams", description = ""),
+        TechnologyEntity(language = "en", categoryId = 8, name = "Pushwoosh", description = ""),
         // Maps (9)
-        TechnologyEntity(language = "en", categoryId = 9, name = "Mapbox SDK", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 9, name = "Mapbox SDK", description = ""),
         // Media (10)
-        TechnologyEntity(language = "en", categoryId = 10, name = "ExoPlayer", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 10, name = "ExoPlayer", description = ""),
         // Monetization (11)
-        TechnologyEntity(language = "en", categoryId = 11, name = "Google Play Billing library", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 11, name = "Stripe SDK", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 11, name = "Google Play Billing library", description = ""),
+        TechnologyEntity(language = "en", categoryId = 11, name = "Stripe SDK", description = ""),
         // Tooling (12)
-        TechnologyEntity(language = "en", categoryId = 12, name = "Gradle", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 12, name = "Google Play Console", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 12, name = "App Signing", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 12, name = "Gradle", description = ""),
+        TechnologyEntity(language = "en", categoryId = 12, name = "Google Play Console", description = ""),
+        TechnologyEntity(language = "en", categoryId = 12, name = "App Signing", description = ""),
         // Testing (13)
-        TechnologyEntity(language = "en", categoryId = 13, name = "Unit tests", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 13, name = "System tests", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 13, name = "Organizing of internal beta testing", description = "TODO"),
+        TechnologyEntity(language = "en", categoryId = 13, name = "Unit tests", description = ""),
+        TechnologyEntity(language = "en", categoryId = 13, name = "System tests", description = ""),
+        TechnologyEntity(language = "en", categoryId = 13, name = "Organizing of internal beta testing", description = ""),
         // Telemetry (14)
-        TechnologyEntity(language = "en", categoryId = 14, name = "Sentry", description = "TODO"),
-        TechnologyEntity(language = "en", categoryId = 14, name = "Mixpanel", description = "TODO")
+        TechnologyEntity(language = "en", categoryId = 14, name = "Sentry", description = ""),
+        TechnologyEntity(language = "en", categoryId = 14, name = "Mixpanel", description = "")
     )
 
     private fun technologiesCs() = listOf(
         // Základy (15)
-        TechnologyEntity(language = "cs", categoryId = 15, name = "Activity", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 15, name = "Services", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 15, name = "Fragmenty", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 15, name = "Composable funkce", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 15, name = "Lifecycle", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Activity", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Services", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Fragmenty", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Composable funkce", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 15, name = "Lifecycle", description = ""),
         // UI (16)
-        TechnologyEntity(language = "cs", categoryId = 16, name = "Jetpack Compose", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 16, name = "XML layouty", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 16, name = "Custom Views (Canvas)", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 16, name = "Material Design", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "Jetpack Compose", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "XML layouty", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "Custom Views (Canvas)", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 16, name = "Material Design", description = ""),
         // Paralelizace (17)
-        TechnologyEntity(language = "cs", categoryId = 17, name = "Kotlin Coroutines", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 17, name = "Java Executors", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 17, name = "Kotlin Coroutines", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 17, name = "Java Executors", description = ""),
         // Síťování (18)
-        TechnologyEntity(language = "cs", categoryId = 18, name = "OkHttp", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 18, name = "Retrofit", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 18, name = "REST APIs", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 18, name = "JSON", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 18, name = "GSON", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 18, name = "Base64", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "OkHttp", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "Retrofit", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "REST APIs", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "JSON", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "GSON", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 18, name = "Base64", description = ""),
         // Data (19)
-        TechnologyEntity(language = "cs", categoryId = 19, name = "Room DB", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 19, name = "SQLite", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 19, name = "Shared Preferences", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 19, name = "Room DB", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 19, name = "SQLite", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 19, name = "Shared Preferences", description = ""),
         // Bezpečnost (20)
-        TechnologyEntity(language = "cs", categoryId = 20, name = "AES", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 20, name = "R8 / ProGuard", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 20, name = "Secure token handling", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 20, name = "JWT", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 20, name = "Google Sign-In", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "AES", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "R8 / ProGuard", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "Secure token handling", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "JWT", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 20, name = "Google Sign-In", description = ""),
         // Architektura (21)
-        TechnologyEntity(language = "cs", categoryId = 21, name = "ViewModel", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 21, name = "Navigation Component", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 21, name = "KMM", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 21, name = "ViewModel", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 21, name = "Navigation Component", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 21, name = "KMM", description = ""),
         // Notifikace (22)
-        TechnologyEntity(language = "cs", categoryId = 22, name = "Push notifications", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 22, name = "Deep links", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 22, name = "Pusher", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 22, name = "Pusher Beams", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 22, name = "Pushwoosh", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Push notifications", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Deep links", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Pusher", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Pusher Beams", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 22, name = "Pushwoosh", description = ""),
         // Mapy (23)
-        TechnologyEntity(language = "cs", categoryId = 23, name = "Mapbox SDK", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 23, name = "Mapbox SDK", description = ""),
         // Média (24)
-        TechnologyEntity(language = "cs", categoryId = 24, name = "ExoPlayer", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 24, name = "ExoPlayer", description = ""),
         // Monetizace (25)
-        TechnologyEntity(language = "cs", categoryId = 25, name = "Google Play Billing library", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 25, name = "Stripe SDK", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 25, name = "Google Play Billing library", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 25, name = "Stripe SDK", description = ""),
         // Nástroje (26)
-        TechnologyEntity(language = "cs", categoryId = 26, name = "Gradle", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 26, name = "Google Play Console", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 26, name = "App Signing", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 26, name = "Gradle", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 26, name = "Google Play Console", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 26, name = "App Signing", description = ""),
         // Testování (27)
-        TechnologyEntity(language = "cs", categoryId = 27, name = "Unit testy", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 27, name = "Systémové testy", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 27, name = "Organizace interního testování", description = "TODO"),
+        TechnologyEntity(language = "cs", categoryId = 27, name = "Unit testy", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 27, name = "Systémové testy", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 27, name = "Organizace interního testování", description = ""),
         // Telemetrie (28)
-        TechnologyEntity(language = "cs", categoryId = 28, name = "Sentry", description = "TODO"),
-        TechnologyEntity(language = "cs", categoryId = 28, name = "Mixpanel", description = "TODO")
+        TechnologyEntity(language = "cs", categoryId = 28, name = "Sentry", description = ""),
+        TechnologyEntity(language = "cs", categoryId = 28, name = "Mixpanel", description = "")
     )
 
     // =========================================================================
@@ -729,86 +729,86 @@ object CvDataSeeder {
 
     private fun otherSkillsEn() = listOf(
         // Versioning (1)
-        OtherSkillEntity(language = "en", categoryId = 1, name = "Git", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 1, name = "GitLab", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 1, name = "GitHub", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 1, name = "Git", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 1, name = "GitLab", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 1, name = "GitHub", description = ""),
         // Organization (2)
-        OtherSkillEntity(language = "en", categoryId = 2, name = "Slack", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 2, name = "Zoom", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 2, name = "GitHub Issues", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 2, name = "Jira", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 2, name = "Clockify", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Slack", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Zoom", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "GitHub Issues", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Jira", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 2, name = "Clockify", description = ""),
         // CI/CD (3)
-        OtherSkillEntity(language = "en", categoryId = 3, name = "Jenkins", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 3, name = "Teamcity", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 3, name = "Jenkins", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 3, name = "Teamcity", description = ""),
         // Backend (4)
-        OtherSkillEntity(language = "en", categoryId = 4, name = "Ktor", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 4, name = "MariaDB", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 4, name = "MySQL", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 4, name = "PostgreSQL", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 4, name = "Elasticsearch", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "Ktor", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "MariaDB", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "MySQL", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "PostgreSQL", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 4, name = "Elasticsearch", description = ""),
         // Server-side (5)
-        OtherSkillEntity(language = "en", categoryId = 5, name = "Apache", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 5, name = "Nginx", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 5, name = "Supervisord", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 5, name = "TLS/SSL", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 5, name = "Wowza Streaming Engine", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Apache", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Nginx", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Supervisord", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "TLS/SSL", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 5, name = "Wowza Streaming Engine", description = ""),
         // Infrastructure (6)
-        OtherSkillEntity(language = "en", categoryId = 6, name = "AWS", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 6, name = "Hetzner", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 6, name = "Linode", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 6, name = "Digital Ocean", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "AWS", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "Hetzner", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "Linode", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 6, name = "Digital Ocean", description = ""),
         // OS (7)
-        OtherSkillEntity(language = "en", categoryId = 7, name = "GNU/Linux", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 7, name = "Android", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 7, name = "Mac OS", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 7, name = "Windows", description = "TODO"),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "GNU/Linux", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "Android", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "Mac OS", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 7, name = "Windows", description = ""),
         // Others (8)
-        OtherSkillEntity(language = "en", categoryId = 8, name = "HTML/CSS", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 8, name = "SQL", description = "TODO"),
-        OtherSkillEntity(language = "en", categoryId = 8, name = "LaTeX", description = "TODO")
+        OtherSkillEntity(language = "en", categoryId = 8, name = "HTML/CSS", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 8, name = "SQL", description = ""),
+        OtherSkillEntity(language = "en", categoryId = 8, name = "LaTeX", description = "")
     )
 
     private fun otherSkillsCs() = listOf(
         // Verzování (9)
-        OtherSkillEntity(language = "cs", categoryId = 9, name = "Git", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 9, name = "GitLab", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 9, name = "GitHub", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 9, name = "Git", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 9, name = "GitLab", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 9, name = "GitHub", description = ""),
         // Organizace (10)
-        OtherSkillEntity(language = "cs", categoryId = 10, name = "Slack", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 10, name = "Zoom", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 10, name = "GitHub Issues", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 10, name = "Jira", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 10, name = "Clockify", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Slack", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Zoom", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "GitHub Issues", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Jira", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 10, name = "Clockify", description = ""),
         // CI/CD (11)
-        OtherSkillEntity(language = "cs", categoryId = 11, name = "Jenkins", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 11, name = "Teamcity", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 11, name = "Jenkins", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 11, name = "Teamcity", description = ""),
         // Backend (12)
-        OtherSkillEntity(language = "cs", categoryId = 12, name = "Ktor", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 12, name = "MariaDB", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 12, name = "MySQL", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 12, name = "PostgreSQL", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 12, name = "Elasticsearch", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "Ktor", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "MariaDB", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "MySQL", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "PostgreSQL", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 12, name = "Elasticsearch", description = ""),
         // Server-side (13)
-        OtherSkillEntity(language = "cs", categoryId = 13, name = "Apache", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 13, name = "Nginx", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 13, name = "Supervisord", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 13, name = "TLS/SSL", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 13, name = "Wowza Streaming Engine", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Apache", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Nginx", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Supervisord", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "TLS/SSL", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 13, name = "Wowza Streaming Engine", description = ""),
         // Infrastruktura (14)
-        OtherSkillEntity(language = "cs", categoryId = 14, name = "AWS", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 14, name = "Hetzner", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 14, name = "Linode", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 14, name = "Digital Ocean", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "AWS", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "Hetzner", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "Linode", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 14, name = "Digital Ocean", description = ""),
         // OS (15)
-        OtherSkillEntity(language = "cs", categoryId = 15, name = "GNU/Linux", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 15, name = "Android", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 15, name = "Mac OS", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 15, name = "Windows", description = "TODO"),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "GNU/Linux", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "Android", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "Mac OS", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 15, name = "Windows", description = ""),
         // Ostatní (16)
-        OtherSkillEntity(language = "cs", categoryId = 16, name = "HTML/CSS", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 16, name = "SQL", description = "TODO"),
-        OtherSkillEntity(language = "cs", categoryId = 16, name = "LaTeX", description = "TODO")
+        OtherSkillEntity(language = "cs", categoryId = 16, name = "HTML/CSS", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 16, name = "SQL", description = ""),
+        OtherSkillEntity(language = "cs", categoryId = 16, name = "LaTeX", description = "")
     )
 
     // =========================================================================
@@ -832,17 +832,17 @@ object CvDataSeeder {
     // =========================================================================
 
     private fun personalityTraitsEn() = listOf(
-        PersonalityTraitEntity(language = "en", trait = "Independence", description = "TODO"),
-        PersonalityTraitEntity(language = "en", trait = "Honesty", description = "TODO"),
-        PersonalityTraitEntity(language = "en", trait = "Perseverance", description = "TODO"),
-        PersonalityTraitEntity(language = "en", trait = "Passion to learn new things", description = "TODO")
+        PersonalityTraitEntity(language = "en", trait = "Independence", description = ""),
+        PersonalityTraitEntity(language = "en", trait = "Honesty", description = ""),
+        PersonalityTraitEntity(language = "en", trait = "Perseverance", description = ""),
+        PersonalityTraitEntity(language = "en", trait = "Passion to learn new things", description = "")
     )
 
     private fun personalityTraitsCs() = listOf(
-        PersonalityTraitEntity(language = "cs", trait = "Samostatnost", description = "TODO"),
-        PersonalityTraitEntity(language = "cs", trait = "Poctivost", description = "TODO"),
-        PersonalityTraitEntity(language = "cs", trait = "Vytrvalost", description = "TODO"),
-        PersonalityTraitEntity(language = "cs", trait = "Rád experimentuji a učím se nové věci", description = "TODO")
+        PersonalityTraitEntity(language = "cs", trait = "Samostatnost", description = ""),
+        PersonalityTraitEntity(language = "cs", trait = "Poctivost", description = ""),
+        PersonalityTraitEntity(language = "cs", trait = "Vytrvalost", description = ""),
+        PersonalityTraitEntity(language = "cs", trait = "Rád experimentuji a učím se nové věci", description = "")
     )
 
     // =========================================================================
@@ -850,16 +850,16 @@ object CvDataSeeder {
     // =========================================================================
 
     private fun interestsEn() = listOf(
-        InterestEntity(language = "en", name = "Photography", description = "TODO"),
-        InterestEntity(language = "en", name = "Graphics", description = "TODO"),
-        InterestEntity(language = "en", name = "Artificial Intelligence", description = "TODO"),
-        InterestEntity(language = "en", name = "Travel", description = "TODO")
+        InterestEntity(language = "en", name = "Photography", description = ""),
+        InterestEntity(language = "en", name = "Graphics", description = ""),
+        InterestEntity(language = "en", name = "Artificial Intelligence", description = ""),
+        InterestEntity(language = "en", name = "Travel", description = "")
     )
 
     private fun interestsCs() = listOf(
-        InterestEntity(language = "cs", name = "Fotografie", description = "TODO"),
-        InterestEntity(language = "cs", name = "Počítačová grafika", description = "TODO"),
-        InterestEntity(language = "cs", name = "Umělá inteligence", description = "TODO"),
-        InterestEntity(language = "cs", name = "Cestování", description = "TODO")
+        InterestEntity(language = "cs", name = "Fotografie", description = ""),
+        InterestEntity(language = "cs", name = "Počítačová grafika", description = ""),
+        InterestEntity(language = "cs", name = "Umělá inteligence", description = ""),
+        InterestEntity(language = "cs", name = "Cestování", description = "")
     )
 }

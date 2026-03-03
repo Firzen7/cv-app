@@ -15,10 +15,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import net.firzen.android.cv.data.local.OnboardingPreferences
 import net.firzen.android.cv.navigation.BottomNavBar
 import net.firzen.android.cv.navigation.CvNavHost
 import net.firzen.android.cv.presentation.screens.OnboardingScreen
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
+import javax.inject.Inject
 
 /**
  * The single Activity in this app (single-activity architecture).
@@ -29,6 +31,10 @@ import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var onboardingPreferences: OnboardingPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,12 +47,17 @@ class MainActivity : ComponentActivity() {
             // CvAndroidAppTheme wraps the entire UI in Material 3 theming,
             // providing colors, typography, and shapes to all child composables.
             CvAndroidAppTheme {
-                // In-memory flag — resets to true on process death, so the
-                // onboarding screen reappears on each cold start.
-                var showOnboarding by remember { mutableStateOf(true) }
+                // Persisted flag — reads from SharedPreferences so the onboarding
+                // screen is shown only once after install (or data wipe).
+                var showOnboarding by remember {
+                    mutableStateOf(!onboardingPreferences.isOnboardingCompleted())
+                }
 
                 if (showOnboarding) {
-                    OnboardingScreen(onDismiss = { showOnboarding = false })
+                    OnboardingScreen(onDismiss = {
+                        onboardingPreferences.setOnboardingCompleted()
+                        showOnboarding = false
+                    })
                 } else {
                     MainScreen()
                 }

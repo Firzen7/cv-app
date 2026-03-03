@@ -22,10 +22,11 @@ import net.firzen.android.cv.R
 import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
 /**
- * Full-screen onboarding screen shown on every cold start.
+ * Full-screen onboarding screen shown only once after install.
  *
- * This screen is gated by an in-memory flag in [net.firzen.android.cv.MainActivity],
- * so it reappears naturally after process death without any persistence logic.
+ * The completed state is persisted via [net.firzen.android.cv.data.local.OnboardingPreferences],
+ * so the screen will not reappear after the user taps "Get Started" — unless the
+ * app is reinstalled or its data is cleared.
  *
  * @param onDismiss callback invoked when the user taps the "Get Started" button
  */

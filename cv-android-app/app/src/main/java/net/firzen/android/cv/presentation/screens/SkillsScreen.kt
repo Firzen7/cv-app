@@ -36,6 +36,7 @@ import net.firzen.android.cv.ui.theme.CvAndroidAppTheme
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import net.firzen.android.cv.presentation.components.CustomChip
 import net.firzen.android.cv.presentation.dialogs.ChipDetailDialog
 
 // Entry point called from navigation - reads ViewModel state and delegates to content
@@ -176,6 +177,9 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
     // Dialog state: holds the NamedItem of the currently shown chip
     var dialogItem by remember { mutableStateOf<NamedItem?>(null) }
 
+    val isDark = isSystemInDarkTheme()
+    val darkChipBorder = if (isDark) BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant) else null
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -220,23 +224,9 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
             ) {
                 items.forEach { item ->
                     val hasDescription = !item.description.isNullOrBlank()
-                    SuggestionChip(
-                        onClick = {
-                            if (hasDescription) dialogItem = item
-                        },
-                        label = {
-                            Text(text = item.name, style = MaterialTheme.typography.bodySmall)
-                        },
-                        shape = RoundedCornerShape(8.dp),
-                        colors = if (hasDescription) {
-                            SuggestionChipDefaults.suggestionChipColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                                labelColor = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        } else {
-                            SuggestionChipDefaults.suggestionChipColors()
-                        }
-                    )
+                    CustomChip(item.name, hasDescription, isDark) {
+                        if (hasDescription) dialogItem = item
+                    }
                 }
             }
         } else {
@@ -257,24 +247,11 @@ private fun CollapsibleCategoryRow(categoryName: String, items: List<NamedItem>)
                 ) {
                     items.forEach { item ->
                         val hasDescription = !item.description.isNullOrBlank()
-                        SuggestionChip(
-                            onClick = {
-                                if (isCollapsible) expanded = true
-                                else if (hasDescription) dialogItem = item
-                            },
-                            label = {
-                                Text(text = item.name, style = MaterialTheme.typography.bodySmall)
-                            },
-                            shape = RoundedCornerShape(8.dp),
-                            colors = if (hasDescription) {
-                                SuggestionChipDefaults.suggestionChipColors(
-                                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            } else {
-                                SuggestionChipDefaults.suggestionChipColors()
-                            }
-                        )
+
+                        CustomChip(item.name, hasDescription, isDark) {
+                            if (isCollapsible) expanded = true
+                            else if (hasDescription) dialogItem = item
+                        }
                     }
                 }
 

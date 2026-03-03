@@ -40,6 +40,7 @@ import androidx.core.net.toUri
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import net.firzen.android.cv.presentation.components.CustomChip
 import net.firzen.android.cv.presentation.dialogs.ChipDetailDialog
 
 // Entry point called from navigation — reads ViewModel state and delegates to content
@@ -376,32 +377,18 @@ private fun ChipsRow(items: List<Pair<String, String?>>) {
     // Dialog state: holds the (name, description) of the currently shown chip
     var dialogItem by remember { mutableStateOf<Pair<String, String>?>(null) }
 
+    val isDark = isSystemInDarkTheme()
+
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items.forEach { (name, description) ->
             val hasDescription = !description.isNullOrBlank()
-            SuggestionChip(
-                onClick = {
-                    if (hasDescription) dialogItem = name to description
-                },
-                label = {
-                    Text(
-                        text = name,
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                },
-                shape = RoundedCornerShape(8.dp),
-                colors = if (hasDescription) {
-                    SuggestionChipDefaults.suggestionChipColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        labelColor = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                } else {
-                    SuggestionChipDefaults.suggestionChipColors()
-                }
-            )
+
+            CustomChip(name, hasDescription, isDark) {
+                if (hasDescription) dialogItem = name to description
+            }
         }
     }
 

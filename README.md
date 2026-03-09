@@ -1,4 +1,4 @@
-# About
+# About (this was writtenn by human)
 
 Due to the fact that future is here, and even [Linus Torvalds himself](https://github.com/torvalds/AudioNoise) (check bottom of his Readme) is experimenting with AI agents, I decided to give it a try. Also at the time of developing this project, I was preparing for an interview at pretty AI friendly company, and wanted to get some experience with it.
 
@@ -19,7 +19,7 @@ This sounds amazing, but of course comes with few dangers:
 
 Below is Readme created by Opus 4.6, which might be helpful:
 
-# CV Android App
+# CV Android App (all AI generated below this point)
 
 A native Android application that presents my professional CV as an interactive, beautifully designed mobile experience. Built with modern Android technologies and designed for demonstration during in-person job interviews.
 

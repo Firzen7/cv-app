@@ -2,7 +2,7 @@
 
 Due to the fact that future is here, and even [Linus Torvalds himself](https://github.com/torvalds/AudioNoise) (check bottom of his Readme) is experimenting with AI agents, I decided to give it a try. Also at the time of developing this project, I was preparing for an interview at pretty AI friendly company, and wanted to get some experience with it.
 
-I have decided to use Google Antigravity with Claude Opus 4.6 model. Slight technical limitation was that Antigraviti does not support Android or even Kotlin. But that was actually ok, since I preferred to review all changes in Android Studio and in emulator anyway.
+I have decided to use Google Antigravity with Claude Opus 4.6 model. Slight technical limitation was that Antigravity does not support Android or even Kotlin. But that was actually ok, since I preferred to review all changes in Android Studio and in emulator anyway.
 
 The whole process was pretty fascinating, and I definitely did not make it easy for Opus 4.6. My prompts were very vague (check [`ai_chats/`](ai_chats/)), and I let the agent to create initial visual designs of the app as well. Of course I had to correct many changes - for example, Opus initially generated all DAOs in one file, and UI logic was using them directly without any repository! But usually it was enough to explain necessary changes by another prompt.
 

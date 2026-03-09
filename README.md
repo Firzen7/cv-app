@@ -11,7 +11,7 @@ Overall, this was an experiment inspired by thought, which could be described as
 This sounds amazing, but of course comes with few dangers:
  1. I **do not** fully understand all the generated code, since it was **not** reviewed line-by-line yet. However, I **do** understand the overall structure, libraries and featurues used.
  2. This project is **not** intended to be taken as release ready! I would never release code that I do not fully understand to production.
- 3. There are several issues with the code and structure as of now. For example, there are redundant DB entities, performance issues, and also probably somem bug related to `Flow` (which I do not understand yet). Also the comments in the code are currently very bad. I might clean 
+ 3. There are several issues with the code and structure as of now. For example, there are redundant DB entities, performance issues, and also probably some bug related to `Flow` (which I do not understand yet) causing that data were not properly loaded on first app start, and ther is currently workaround for this. Also the comments in the code are currently very bad. I might clean it up later.
  
 **So please keep in mind that this is a demonstration of Google Antigravity and Claude Opus 4.6 possibilities, and not my own skills.**
 

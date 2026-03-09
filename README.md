@@ -6,12 +6,14 @@ I have decided to use Google Antigravity with Claude Opus 4.6 model. Slight tech
 
 The whole process was pretty fascinating, and I definitely did not make it easy for Opus 4.6. My prompts were very vague (check [`ai_chats/`](ai_chats/)), and I let the agent to create initial visual designs of the app as well. Of course I had to correct many changes - for example, Opus initially generated all DAOs in one file, and UI logic was using them directly without any repository! But usually it was enough to explain necessary changes by another prompt.
 
-Overall, this was an experiment inspired by thought, which could be described as: *"Hmm, I wonder how far I can get by just prompting Antigravity with my Android app idea."* And considering this all took me just 4 days to create, I would say that I got pretty far! I only wrote around 30 lines of code manually in this whole project. **That means less than 1% of this code was written by me!**
+Overall, this was an experiment inspired by thought, which could be described as: *"Hmm, I wonder how far I can get by just prompting Antigravity with my Android app idea."* And considering this all took me just 4 days to create, I would say that I got pretty far! I only wrote around 30 lines of code manually in this whole project.
+**That means less than 1% of this code was written by me!**
 
-This sounds amazing, but of course comes with few dangers:
- 1. I **do not** fully understand all the generated code, since it was **not** reviewed line-by-line yet. However, I **do** understand the overall structure, libraries and featurues used.
+This all sounds amazing, but of course comes with few issues:
+ 1. I **do not** fully understand all the generated code, since it was **not** reviewed line-by-line yet. However, I **do** understand the overall structure, libraries and featurues used. Also I think that the current code is fit to be debugged, optimized and extended in future by human, which is important.
  2. This project is **not** intended to be taken as release ready! I would never release code that I do not fully understand to production.
  3. There are several issues with the code and structure as of now. For example, there are redundant DB entities, performance issues, and also probably some bug related to `Flow` (which I do not understand yet) causing that data were not properly loaded on first app start, and ther is currently workaround for this. Also the comments in the code are currently very bad. I might clean it up later.
+ 4. There are basically no useful tests. Present tests only focus on DB part, and access DAOs directly, which is not great. Again, I might improve this later.
  
 **So please keep in mind that this is a demonstration of Google Antigravity and Claude Opus 4.6 possibilities, and not my own skills.**
 

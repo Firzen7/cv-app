@@ -1,3 +1,22 @@
+# About
+
+Due to the fact that future is here, and even [Linus Torvalds himself](https://github.com/torvalds/AudioNoise)(check bottom of his Readme) is experimenting with AI agents, I decided to give it a try. Also at the time of developing this project, I was preparing for an interview at pretty AI friendly company, and wanted to get some experience with it.
+
+I have decided to use Google Antigravity with Claude Opus 4.6 model. Slight technical limitation was that Antigraviti does not support Android or even Kotlin. But that was actually ok, since I preferred to review all changes in Android Studio and in emulator anyway.
+
+The whole process was pretty fascinating, and I definitely did not make it easy for Opus 4.6. My prompts were very vague (check [`ai_chats/`](ai_chats/)), and I let the agent to create initial visual designs of the app as well. Of course I had to correct many changes - for example, Opus initially generated all DAOs in one file, and UI logic was using them directly without any repository! But usually it was enough to explain necessary changes by another prompt.
+
+Overall, this was an experiment inspired by thought, which could be described as: *"Hmm, I wonder how far I can get by just prompting Antigravity with my Android app idea."* And considering this all took me just 4 days to create, I would say that I got pretty far! I only wrote around 30 lines of code manually in this whole project. **That means less than 1% of this code was written by me!**
+
+This sounds amazing, but of course comes with few dangers:
+ 1. I **do not** fully understand all the generated code, since it was **not** reviewed line-by-line yet. However, I **do** understand the overall structure, libraries and featurues used.
+ 2. This project is **not** intended to be taken as release ready! I would never release code that I do not fully understand to production.
+ 3. There are several issues with the code and structure as of now. For example, there are redundant DB entities, performance issues, and also probably somem bug related to `Flow` (which I do not understand yet). Also the comments in the code are currently very bad. I might clean 
+ 
+**So please keep in mind that this is a demonstration of Google Antigravity and Claude Opus 4.6 possibilities, and not my own skills.**
+
+Below is Readme created by Opus 4.6, which might be helpful:
+
 # CV Android App
 
 A native Android application that presents my professional CV as an interactive, beautifully designed mobile experience. Built with modern Android technologies and designed for demonstration during in-person job interviews.

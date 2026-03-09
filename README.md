@@ -1,4 +1,4 @@
-# About (this was writtenn by human)
+# About (this was written by human)
 
 Due to the fact that future is here, and even [Linus Torvalds himself](https://github.com/torvalds/AudioNoise) (check bottom of his Readme) is experimenting with AI agents, I decided to give it a try. Also at the time of developing this project, I was preparing for an interview at pretty AI friendly company, and wanted to get some experience with it.
 

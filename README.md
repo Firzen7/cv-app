@@ -1,6 +1,6 @@
 # About
 
-Due to the fact that future is here, and even [Linus Torvalds himself](https://github.com/torvalds/AudioNoise)(check bottom of his Readme) is experimenting with AI agents, I decided to give it a try. Also at the time of developing this project, I was preparing for an interview at pretty AI friendly company, and wanted to get some experience with it.
+Due to the fact that future is here, and even [Linus Torvalds himself](https://github.com/torvalds/AudioNoise) (check bottom of his Readme) is experimenting with AI agents, I decided to give it a try. Also at the time of developing this project, I was preparing for an interview at pretty AI friendly company, and wanted to get some experience with it.
 
 I have decided to use Google Antigravity with Claude Opus 4.6 model. Slight technical limitation was that Antigraviti does not support Android or even Kotlin. But that was actually ok, since I preferred to review all changes in Android Studio and in emulator anyway.
 
@@ -14,6 +14,8 @@ This sounds amazing, but of course comes with few dangers:
  3. There are several issues with the code and structure as of now. For example, there are redundant DB entities, performance issues, and also probably somem bug related to `Flow` (which I do not understand yet). Also the comments in the code are currently very bad. I might clean 
  
 **So please keep in mind that this is a demonstration of Google Antigravity and Claude Opus 4.6 possibilities, and not my own skills.**
+
+<img width="3200" height="2708" alt="screens" src="https://github.com/user-attachments/assets/5a4bdf32-989f-4e62-882c-e726a7e4bf5a" />
 
 Below is Readme created by Opus 4.6, which might be helpful:
 
